@@ -12,9 +12,9 @@
 #' @keywords internal
 fix_contributor <- function(contributors = NULL) {
   if (is.null(contributors) ||
-      (is.character(contributors)
-       && length(contributors) == 1
-       && contributors == ":unas")) {
+    (is.character(contributors) &&
+      length(contributors) == 1 &&
+      contributors == ":unas")) {
     return(":unas")
   }
 

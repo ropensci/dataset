@@ -58,11 +58,12 @@ remotes::install_github("dataobservatory-eu/dataset")
 library(dataset)
 df <- dataset_df(
   country = defined(
-    c("AD", "LI"), 
-    label = "Country", 
-    namespace = "https://dd.eionet.europa.eu/vocabulary/eurostat/geo/$1"),
+    c("AD", "LI"),
+    label = "Country",
+    namespace = "https://www.geonames.org/countries/$1/"
+  ),
   gdp = defined(c(3897, 7365),
-    label = "GDP", 
+    label = "GDP",
     unit = "million euros"
   ),
   dataset_bibentry = dublincore(

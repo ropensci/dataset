@@ -55,33 +55,37 @@ crosswalk_bib <- function(x, target = c("schema.org", "dataspice")) {
 
   # Unified view over both classes
   unified <- list(
-    title       = x$title,
+    title = x$title,
     description = x$description %||% NA_character_,
-    identifier  = x$identifier %||% NA_character_,
-    creator     = if (is.null(x$author)) list() else {
+    identifier = x$identifier %||% NA_character_,
+    creator = if (is.null(x$author)) {
+      list()
+    } else {
       # ensure a list of person
       if (inherits(x$author, "person")) as.list(x$author) else x$author
     },
     contributor = attr(x, "contributor", exact = TRUE) %||% list(),
-    publisher   = x$publisher %||% NA_character_,
-    date        = x$date %||% x$year %||% NA_character_,
-    language    = x$language %||% NA_character_,
-    keywords    = .extract_subject_term(x),
-    relation    = .extract_related_identifier(x)
+    publisher = x$publisher %||% NA_character_,
+    date = x$date %||% x$year %||% NA_character_,
+    language = x$language %||% NA_character_,
+    keywords = .extract_subject_term(x),
+    relation = .extract_related_identifier(x)
   )
 
   if (identical(target, "schema.org")) {
     sch <- list(
-      "@context"      = "https://schema.org",
-      "@type"         = "Dataset",
-      name            = unified$title,
-      description     = unified$description,
-      identifier      = unified$identifier,
-      publisher       = if (!is.na(unified$publisher) && nzchar(unified$publisher)) {
+      "@context" = "https://schema.org",
+      "@type" = "Dataset",
+      name = unified$title,
+      description = unified$description,
+      identifier = unified$identifier,
+      publisher = if (!is.na(unified$publisher) && nzchar(unified$publisher)) {
         list("@type" = "Organization", name = unified$publisher)
-      } else NULL,
-      datePublished   = unified$date,
-      inLanguage      = unified$language
+      } else {
+        NULL
+      },
+      datePublished = unified$date,
+      inLanguage = unified$language
     )
 
     # keywords (single string or NA -> omit)
@@ -110,7 +114,9 @@ crosswalk_bib <- function(x, target = c("schema.org", "dataspice")) {
       # normalize single person to list
       contr_list <- if (inherits(unified$contributor, "person")) {
         as.list(unified$contributor)
-      } else unified$contributor
+      } else {
+        unified$contributor
+      }
 
       if (length(contr_list)) {
         sch$contributor <- lapply(contr_list, function(p) {
@@ -153,14 +159,14 @@ crosswalk_bib <- function(x, target = c("schema.org", "dataspice")) {
 
   # biblio df (always 1 row; use NA when missing)
   biblio_df <- data.frame(
-    title       = unified$title %||% NA_character_,
+    title = unified$title %||% NA_character_,
     description = unified$description %||% NA_character_,
-    id          = unified$identifier %||% NA_character_,
-    publisher   = unified$publisher %||% NA_character_,
-    date        = unified$date %||% NA_character_,
-    language    = unified$language %||% NA_character_,
-    keywords    = unified$keywords %||% NA_character_,
-    relation    = unified$relation %||% NA_character_,
+    id = unified$identifier %||% NA_character_,
+    publisher = unified$publisher %||% NA_character_,
+    date = unified$date %||% NA_character_,
+    language = unified$language %||% NA_character_,
+    keywords = unified$keywords %||% NA_character_,
+    relation = unified$relation %||% NA_character_,
     stringsAsFactors = FALSE
   )
 

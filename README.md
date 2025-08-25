@@ -65,11 +65,12 @@ remotes::install_github("dataobservatory-eu/dataset")
 library(dataset)
 df <- dataset_df(
   country = defined(
-    c("AD", "LI"), 
-    label = "Country", 
-    namespace = "https://dd.eionet.europa.eu/vocabulary/eurostat/geo/$1"),
+    c("AD", "LI"),
+    label = "Country",
+    namespace = "https://www.geonames.org/countries/$1/"
+  ),
   gdp = defined(c(3897, 7365),
-    label = "GDP", 
+    label = "GDP",
     unit = "million euros"
   ),
   dataset_bibentry = dublincore(
@@ -82,8 +83,8 @@ print(df)
 #> Doe (2025): GDP Dataset [dataset]
 #>   rowid     country   gdp       
 #>   <defined> <defined> <defined>
-#> 1 eg:1      AD        3897     
-#> 2 eg:2      LI        7365
+#> 1 obs1      AD        3897     
+#> 2 obs2      LI        7365
 ```
 
 Export as RDF triples:
@@ -105,10 +106,10 @@ dataset_to_triples(df, format = "nt")
 
 <div class="smaller">
 
-    #> [1] "<http://example.com/dataset#eg:1> <http://example.com/prop/country> <https://dd.eionet.europa.eu/vocabulary/eurostat/geo/AD> ."
-    #> [2] "<http://example.com/dataset#eg:2> <http://example.com/prop/country> <https://dd.eionet.europa.eu/vocabulary/eurostat/geo/LI> ."
-    #> [3] "<http://example.com/dataset#eg:1> <http://example.com/prop/gdp> \"3897\"^^<xsd:decimal> ."                                     
-    #> [4] "<http://example.com/dataset#eg:2> <http://example.com/prop/gdp> \"7365\"^^<xsd:decimal> ."
+    #> [1] "<http://example.com/dataset#obsobs1> <http://example.com/prop/country> <https://www.geonames.org/countries/AD/> ."
+    #> [2] "<http://example.com/dataset#obsobs2> <http://example.com/prop/country> <https://www.geonames.org/countries/LI/> ."
+    #> [3] "<http://example.com/dataset#obsobs1> <http://example.com/prop/gdp> \"3897\"^^<xsd:decimal> ."                     
+    #> [4] "<http://example.com/dataset#obsobs2> <http://example.com/prop/gdp> \"7365\"^^<xsd:decimal> ."
 
 </div>
 
@@ -126,7 +127,7 @@ provenance(df)
     #> [4] "_:doejane <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Agent> ."                                              
     #> [5] "<https://doi.org/10.32614/CRAN.package.dataset> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#SoftwareAgent> ."
     #> [6] "<http://example.com/creation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> ."                       
-    #> [7] "<http://example.com/creation> <http://www.w3.org/ns/prov#generatedAtTime> \"2025-08-23T12:01:26Z\"^^<xsd:dateTime> ."
+    #> [7] "<http://example.com/creation> <http://www.w3.org/ns/prov#generatedAtTime> \"2025-08-25T21:44:14Z\"^^<xsd:dateTime> ."
 
 </div>
 

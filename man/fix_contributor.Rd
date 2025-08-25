@@ -18,13 +18,4 @@ Format a list of \code{utils::person} objects into a compact string, merging rol
 per person and normalizing names. Contributors without explicit roles are
 assigned \code{"ctb"}. If \code{NULL} or \code{":unas"} is supplied, returns \code{":unas"}.
 }
-\examples{
-fix_contributor(person("Jane", "Doe", role = c("dtm", "ctb")))
-fix_contributor(list(
-  person("Jane", "Doe", role = "ctb"),
-  person("John", "Smith")
-))
-fix_contributor(":unas")
-
-}
 \keyword{internal}

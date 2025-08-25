@@ -89,7 +89,7 @@ dataset_to_triples <- function(x,
   row.names(out) <- NULL
 
   # Return either data.frame or N-Triples
-  if (format %in% c("nt", "ntriples", "N-Triples"))  {
+  if (format %in% c("nt", "ntriples", "N-Triples")) {
     triples_to_ntriples(out)
   } else {
     out

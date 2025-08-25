@@ -136,7 +136,7 @@ You can also define variables that store codes (like country codes) with a names
 country <- defined(
   c("AD", "LI", "SM"),
   label = "Country name",
-  concept = "http://dd.eionet.europa.eu/vocabulary/eurostat/geo/",
+  concept = "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
   namespace = "https://www.geonames.org/countries/$1/"
 )
 ```

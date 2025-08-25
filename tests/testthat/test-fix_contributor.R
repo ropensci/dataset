@@ -24,7 +24,7 @@ test_that("merges multiple roles for the same person", {
 
 test_that("handles a list of persons with mixed roles", {
   p1 <- person(given = "Jane", family = "Doe", role = "dtm")
-  p2 <- person(given = "John", family = "Smith")  # defaults to ctb
+  p2 <- person(given = "John", family = "Smith") # defaults to ctb
   expect_equal(
     fix_contributor(list(p1, p2)),
     "{Jane Doe [dtm]} and {John Smith [ctb]}"
@@ -44,10 +44,9 @@ test_that("clean_person_name handles simple strings", {
 test_that("map_role_to_schema maps known roles", {
   expect_equal(map_role_to_schema("cre"), "creator")
   expect_equal(map_role_to_schema("ctb"), "contributor")
-  expect_equal(map_role_to_schema("dtm"), "editor")  # or whatever mapping you want
+  expect_equal(map_role_to_schema("dtm"), "editor") # or whatever mapping you want
 })
 
 test_that("map_role_to_schema defaults to 'contributor' for unknown roles", {
   expect_equal(map_role_to_schema("xyz"), "contributor")
 })
-

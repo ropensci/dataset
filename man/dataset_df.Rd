@@ -102,7 +102,7 @@ my_dataset <- dataset_df(
     unit = "million dollars",
     concept = "http://data.europa.eu/83i/aa/GDP"
   ),
- identifier = c(
+  identifier = c(
     obs = "https://dataobservatory-eu.github.io/dataset-template#"
   ),
   dataset_bibentry = dublincore(

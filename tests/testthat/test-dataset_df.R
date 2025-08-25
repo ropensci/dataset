@@ -152,4 +152,3 @@ test_that("dataset_df handles empty input gracefully", {
 test_that("dataset_df rejects invalid variable types", {
   expect_error(dataset_df(a = new.env()), "must be vectors")
 })
-

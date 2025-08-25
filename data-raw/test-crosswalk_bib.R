@@ -15,8 +15,10 @@ test_that("crosswalk_bib works with minimal dublincore", {
 })
 
 test_that("crosswalk_bib propagates relation attribute", {
-  rel <- related_create("https://doi.org/10.5678/def",
-                        "References", "DOI")
+  rel <- related_create(
+    "https://doi.org/10.5678/def",
+    "References", "DOI"
+  )
   dc <- dublincore(
     title = "Crosswalk Relation",
     creator = person("Jane", "Doe"),
@@ -32,7 +34,8 @@ test_that("crosswalk_bib propagates relation attribute", {
 
 test_that("crosswalk_bib maps subject correctly", {
   s1 <- subject_create("Climate Change",
-                       schemeURI = "http://id.loc.gov/subjects")
+    schemeURI = "http://id.loc.gov/subjects"
+  )
   dc <- dublincore(
     title = "Climate Crosswalk",
     creator = person("Eve", "Rivera"),
@@ -47,8 +50,8 @@ test_that("crosswalk_bib maps roles correctly", {
   dc <- dublincore(
     title = "Role Example",
     creator = list(
-      person("Jane", "Doe", role="cre"),
-      person("John", "Smith", role="ctb")
+      person("Jane", "Doe", role = "cre"),
+      person("John", "Smith", role = "ctb")
     ),
     publisher = "Open Data Inst.",
     description = "Role test"
@@ -59,4 +62,3 @@ test_that("crosswalk_bib maps roles correctly", {
   expect_equal(sch$creator[[1]]$role, "creator")
   expect_equal(sch$creator[[2]]$role, "contributor")
 })
-

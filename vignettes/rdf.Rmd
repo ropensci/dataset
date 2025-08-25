@@ -49,9 +49,10 @@ small_geo <- dataset_df(
     label = "Geopolitical entity",
     concept = "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
     namespace = "https://www.geonames.org/countries/$1/"
-  ), 
+  ),
   identifier = c(
-    obs = "https://dataset.dataobservatory.eu/examples/dataset.html#")
+    obs = "https://dataset.dataobservatory.eu/examples/dataset.html#"
+  )
 )
 ```
 
@@ -170,7 +171,7 @@ small_country_dataset <- dataset_df(
   ),
   identifier = c(
     obs = "https://dataset.dataobservatory.eu/examples/dataset.html#"
-    ), 
+  ),
   dataset_bibentry = dublincore(
     title = "Small Country Dataset",
     creator = person("Jane", "Doe"),
@@ -184,7 +185,7 @@ small_country_dataset <- dataset_df(
 
 ```{r smallcountrydfnt}
 small_country_df_nt <- dataset_to_triples(
-  small_country_dataset, 
+  small_country_dataset,
   format = "nt"
 )
 ```
@@ -201,7 +202,7 @@ The following lines read as:
 :::: smaller
 ```{r smallcountrydfntsample}
 ## See rows 1,11,21
-small_country_df_nt[c(1,11,21,31,41)]
+small_country_df_nt[c(1, 11, 21, 31, 41)]
 ```
 ::::
 
@@ -216,7 +217,8 @@ in practice, a bare namespace such as `/dataset#` is more conventional.*
 # We write to a temporary file our Ntriples created earlier
 temp_file <- tempfile(fileext = ".nt")
 writeLines(small_country_df_nt,
-           con = temp_file)
+  con = temp_file
+)
 
 rdf_graph <- rdf()
 rdf_parse(rdf_graph, doc = temp_file, format = "ntriples")

@@ -8,9 +8,10 @@ datacite_to_triples <- function(dc_list,
   base <- "http://datacite.org/schema/kernel-4/"
   triples <- character()
 
-  triples <- c(triples, n_triple(dataset_id,
-                                 paste0(base, "title"), dc_list$title)
-               )
+  triples <- c(triples, n_triple(
+    dataset_id,
+    paste0(base, "title"), dc_list$title
+  ))
 
   if (!is.null(dc_list$author)) {
     triples <- c(triples, n_triple(
@@ -21,33 +22,43 @@ datacite_to_triples <- function(dc_list,
   }
 
   if (!is.null(dc_list$contributor)) {
-    triples <- c(triples, n_triple(dataset_id,
-                                   paste0(base, "contributor"),
-                                   dc_list$contributor))
+    triples <- c(triples, n_triple(
+      dataset_id,
+      paste0(base, "contributor"),
+      dc_list$contributor
+    ))
   }
 
   if (!is.null(dc_list$identifier)) {
-    triples <- c(triples, n_triple(dataset_id,
-                                   paste0(base, "identifier"),
-                                   dc_list$identifier))
+    triples <- c(triples, n_triple(
+      dataset_id,
+      paste0(base, "identifier"),
+      dc_list$identifier
+    ))
   }
 
   if (!is.null(dc_list$publisher)) {
-    triples <- c(triples, n_triple(dataset_id,
-                                   paste0(base, "publisher"),
-                                   dc_list$publisher))
+    triples <- c(triples, n_triple(
+      dataset_id,
+      paste0(base, "publisher"),
+      dc_list$publisher
+    ))
   }
 
   if (!is.null(dc_list$publicationyear)) {
-    triples <- c(triples, n_triple(dataset_id,
-                                   paste0(base, "publicationYear"),
-                                   dc_list$publicationyear))
+    triples <- c(triples, n_triple(
+      dataset_id,
+      paste0(base, "publicationYear"),
+      dc_list$publicationyear
+    ))
   }
 
   if (!is.null(dc_list$language)) {
-    triples <- c(triples, n_triple(dataset_id,
-                                   paste0(base, "language"),
-                                   dc_list$language))
+    triples <- c(triples, n_triple(
+      dataset_id,
+      paste0(base, "language"),
+      dc_list$language
+    ))
   }
 
   if (!is.null(dc_list$rights)) {
@@ -55,9 +66,11 @@ datacite_to_triples <- function(dc_list,
   }
 
   if (!is.null(dc_list$description)) {
-    triples <- c(triples, n_triple(dataset_id,
-                                   paste0(base, "descriptions"),
-                                   dc_list$description))
+    triples <- c(triples, n_triple(
+      dataset_id,
+      paste0(base, "descriptions"),
+      dc_list$description
+    ))
   }
 
   if (!is.null(dc_list$subject)) {
@@ -77,22 +90,28 @@ datacite_to_triples <- function(dc_list,
       subj_value <- as.character(subj_value)
     }
 
-    triples <- c(triples, n_triple(dataset_id,
-                                   paste0(base, "subjects"),
-                                   subj_value))
+    triples <- c(triples, n_triple(
+      dataset_id,
+      paste0(base, "subjects"),
+      subj_value
+    ))
   }
 
 
   if (!is.null(dc_list$format)) {
-    triples <- c(triples, n_triple(dataset_id,
-                                   paste0(base, "formats"),
-                                   dc_list$format))
+    triples <- c(triples, n_triple(
+      dataset_id,
+      paste0(base, "formats"),
+      dc_list$format
+    ))
   }
 
   if (!is.null(dc_list$version)) {
-    triples <- c(triples, n_triple(dataset_id,
-                                   paste0(base, "version"),
-                                   dc_list$version))
+    triples <- c(triples, n_triple(
+      dataset_id,
+      paste0(base, "version"),
+      dc_list$version
+    ))
   }
 
   # --- Related identifiers ---
@@ -105,22 +124,30 @@ datacite_to_triples <- function(dc_list,
       for (ri in rel_attr) {
         triples <- c(
           triples,
-          n_triple(dataset_id,
-                   paste0(base, "relatedIdentifier"),
-                   ri$relatedIdentifier),
-          n_triple(dataset_id,
-                   paste0(base, "relationType"),
-                   ri$relationType),
-          n_triple(dataset_id,
-                   paste0(base, "relatedIdentifierType"),
-                   ri$relatedIdentifierType)
+          n_triple(
+            dataset_id,
+            paste0(base, "relatedIdentifier"),
+            ri$relatedIdentifier
+          ),
+          n_triple(
+            dataset_id,
+            paste0(base, "relationType"),
+            ri$relationType
+          ),
+          n_triple(
+            dataset_id,
+            paste0(base, "relatedIdentifierType"),
+            ri$relatedIdentifierType
+          )
         )
         if (!is.null(ri$resourceTypeGeneral) && nzchar(ri$resourceTypeGeneral)) {
           triples <- c(
             triples,
-            n_triple(dataset_id,
-                     paste0(base, "resourceTypeGeneral"),
-                     ri$resourceTypeGeneral)
+            n_triple(
+              dataset_id,
+              paste0(base, "resourceTypeGeneral"),
+              ri$resourceTypeGeneral
+            )
           )
         }
       }
@@ -129,9 +156,11 @@ datacite_to_triples <- function(dc_list,
     dc_list$relatedidentifier != ":unas") {
     triples <- c(
       triples,
-      n_triple(dataset_id,
-               paste0(base, "relatedIdentifier"),
-               dc_list$relatedidentifier)
+      n_triple(
+        dataset_id,
+        paste0(base, "relatedIdentifier"),
+        dc_list$relatedidentifier
+      )
     )
   }
 
