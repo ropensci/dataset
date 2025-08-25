@@ -9,19 +9,12 @@
 #'
 #' @return A single character string, e.g. `"{Jane Doe [dtm, ctb]} and
 #'  {John Smith [ctb]}"`.
-#'
-#' @examples
-#' fix_contributor(person("Jane", "Doe", role = c("dtm", "ctb")))
-#' fix_contributor(list(
-#'   person("Jane", "Doe", role = "ctb"),
-#'   person("John", "Smith")
-#' ))
-#' fix_contributor(":unas")
-#'
 #' @keywords internal
 fix_contributor <- function(contributors = NULL) {
   if (is.null(contributors) ||
-      (is.character(contributors) && length(contributors) == 1 && contributors == ":unas")) {
+      (is.character(contributors)
+       && length(contributors) == 1
+       && contributors == ":unas")) {
     return(":unas")
   }
 
