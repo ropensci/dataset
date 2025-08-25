@@ -65,3 +65,37 @@ test_that("id_to_column preserves dataset_df metadata", {
   expect_equal(subject(out)$valueURI, "http://example.org/test")
   expect_equal(attr(out, "prov")$generated, "now")
 })
+
+test_that("id_to_column works on dataset_df with custom ids", {
+  df <- dataset_df(a = 1:2)
+  out <- id_to_column(df, prefix = "ex:", ids = c("x", "y"))
+  expect_equal(out$rowid, c("ex:x", "ex:y"))
+})
+
+test_that("id_to_column handles prefix = NULL with existing rowid", {
+  df <- data.frame(rowid = c("old1", "old2"), a = 1:2)
+  out <- id_to_column(df, prefix = NULL)
+  # Should replace rowid, no prefix applied
+  expect_equal(out$rowid, c("1", "2"))
+})
+
+test_that("id_to_column works with dataset_df with no provenance", {
+  df <- dataset_df(
+    a = 1:2,
+    dataset_bibentry = dublincore(title = "NoProv", creator = person("X", "Y"))
+  )
+  # Explicitly remove provenance to test NULL handling
+  attr(df, "prov") <- NULL
+  out <- id_to_column(df)
+  expect_s3_class(out, "dataset_df")
+  # Rowids should still be present
+  expect_equal(out$rowid, c("eg:1", "eg:2"))
+})
+
+test_that("id_to_column final return path is exercised", {
+  df <- data.frame(a = 1:2)
+  # No rowid column means it should go through lhs/rhs binding and end with tmp
+  out <- id_to_column(df, prefix = "z:")
+  expect_equal(out$rowid, c("z:1", "z:2"))
+  expect_equal(names(out)[1], "rowid")
+})
