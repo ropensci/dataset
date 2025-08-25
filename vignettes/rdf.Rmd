@@ -96,7 +96,7 @@ cat(ntriples, sep = "\n")
 ```
 :::
 
-Each row of your dataset becomes a **subject**, each variable a **predicate**, and each value either a **URI** or a typed literal (like a date or number) — depending on how it's defined. The first statement in the example defines the intersection of the first row (observation, identified by the `rowid`) `dataset#eg:1` and the column [reference area](http://purl.org/linked-data/sdmx/2009/dimension#refArea) defined by the URI as [Andorra](https://dd.eionet.europa.eu/vocabulary/eurostat/geo/AD).The advantage of this approach is that the row and column definitions as well as coded cell values have a permanent metadata definition.
+Each row of your dataset becomes a **subject**, each variable a **predicate**, and each value either a **URI** or a typed literal (like a date or number) — depending on how it's defined. The first statement in the example defines the intersection of the first row (observation, identified by the `rowid`) `dataset#eg:1` and the column [reference area](http://purl.org/linked-data/sdmx/2009/dimension#refArea) defined by the URI as [Andorra](https://www.geonames.org/countries/AD/).The advantage of this approach is that the row and column definitions as well as coded cell values have a permanent metadata definition.
 
 ### RDF triples enable interoperability
 

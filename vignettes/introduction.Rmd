@@ -68,7 +68,7 @@ gdp
 geo
 ```
 
-In this case, we define `geo` as the geopolitical entity <http://dd.eionet.europa.eu/vocabulary/eurostat/geo/>, and we know that the `AD` value can resolve to Andorra: <https://www.geonames.org/countries/AD/>. These vectors now carry metadata you can inspect directly — including their label, unit, and concept URI — which will be preserved even after transformation or storage.
+In this case, we define `geo` as the geopolitical entity <http://purl.org/linked-data/sdmx/2009/dimension#refArea>, and we know that the `AD` value can resolve to Andorra: <https://www.geonames.org/countries/AD/>. These vectors now carry metadata you can inspect directly — including their label, unit, and concept URI — which will be preserved even after transformation or storage.
 
 ## Example: creating a dataset from a metadata-enriched data frame
 
