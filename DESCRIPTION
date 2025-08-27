@@ -30,8 +30,8 @@ Description: The 'dataset' package helps create semantically rich,
     and reuse in line with ISO and W3C standards.
 License: GPL (>= 3)
 Encoding: UTF-8
-URL: https://dataset.dataobservatory.eu/
-BugReports: https://github.com/dataobservatory-eu/dataset/issues/
+URL: https://docs.ropensci.org/dataset, https://github.com/ropensci/dataset, https://dataset.dataobservatory.eu
+BugReports: https://github.com/ropensci/dataset/issues
 Roxygen: list(markdown = TRUE)
 LazyData: true
 Imports: 

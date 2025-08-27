@@ -4,8 +4,9 @@
   "identifier": "dataset",
   "description": "The 'dataset' package helps create semantically rich, machine-readable, and interoperable datasets in R. It extends tidy data frames with metadata that preserves meaning, improves interoperability, and makes datasets easier to publish, exchange, and reuse in line with ISO and W3C standards.",
   "name": "dataset: Create Data Frames for Exchange and Reuse",
-  "codeRepository": "https://dataset.dataobservatory.eu/",
-  "issueTracker": "https://github.com/dataobservatory-eu/dataset/issues/",
+  "relatedLink": ["https://docs.ropensci.org/dataset", "https://dataset.dataobservatory.eu"],
+  "codeRepository": "https://github.com/ropensci/dataset",
+  "issueTracker": "https://github.com/ropensci/dataset/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "0.4.0",
   "programmingLanguage": {
@@ -235,7 +236,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "882.607KB",
+  "fileSize": "882.666KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -250,12 +251,12 @@
         }
       ],
       "name": "dataset: Create Data Frames for Exchange and Reuse",
-      "url": "https://dataset.dataobservatory.eu/",
+      "url": "https://docs.ropensci.org/dataset",
       "description": "R package version 0.4.0"
     },
     {
       "@type": "CreativeWork",
-      "datePublished": "2024",
+      "datePublished": "2025",
       "author": [
         {
           "@type": "Person",
@@ -266,7 +267,7 @@
       "name": "The dataset R Package: Create Data Frames that are Easier to Exchange and Reuse",
       "identifier": "10.32614/CRAN.package.dataset",
       "url": "https://dataset.dataobservatory.eu/index.html",
-      "description": "R package version 0.3.4",
+      "description": "R package version 0.4.0",
       "@id": "https://doi.org/10.32614/CRAN.package.dataset",
       "sameAs": "https://doi.org/10.32614/CRAN.package.dataset"
     }

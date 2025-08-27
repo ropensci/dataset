@@ -1,23 +1,21 @@
-url: https://dataset.dataobservatory.eu
+url: https://docs.ropensci.org/dataset
+
 template:
-  bootstrap: 5
-  bslib:
-    base_font: {google: "Roboto"}
-    heading_font: {google: "Roboto Slab"}
-    code_font: {google: "JetBrains Mono"}
+  bootstrap: 5   # keep minimal; rotemplate handles branding
 
 home:
   links:
-  - text: "dataset Package Website"
+  - text: "Project site"
     href: https://dataset.dataobservatory.eu
+  - text: "GitHub repository"
+    href: https://github.com/ropensci/dataset
 
 authors:
   Daniel Antal:
     href: https://reprex.nl/authors/daniel_antal/
   Reprex:
     href: https://reprex.nl/
-    html: <img src="https://reprex.nl/authors/admin/avatar_hud66277e7f64fbf44513e7a4881e2a94f_35557_270x270_fill_lanczos_center_2.png"
-      height="24" alt="Reprex B.V. logo" />
+    html: <img src="https://reprex.nl/authors/admin/avatar_hud66277e7f64fbf44513e7a4881e2a94f_35557_270x270_fill_lanczos_center_2.png" height="24" alt="Reprex B.V. logo" />
 
 navbar:
   structure:
@@ -54,37 +52,26 @@ navbar:
     github:
       icon: fab fa-github
       aria-label: "GitHub repository"
-      href: https://github.com/dataobservatory-eu/dataset/
+      href: https://github.com/ropensci/dataset
 
 articles:
   - title: "Introduction"
-    contents:
-      - introduction
-      - design
+    contents: [introduction, design]
   - title: "Core concepts"
-    contents:
-      - defined
-      - dataset_df
+    contents: [defined, dataset_df]
   - title: "Metadata & citation"
-    contents:
-      - bibrecord
+    contents: [bibrecord]
   - title: "Dataset exchanges"
-    contents:
-      - rdf
-      - example-dataset
+    contents: [rdf, example-dataset]
 
 reference:
   - title: "Dataset"
     desc: >
-      Work with DataSet objects that resemble the [W3C](https://www.w3.org/TR/vocab-data-cube/) and SDMX datacube model.
-    contents:
-      - dataset_df
-      - bind_defined_rows
+      Work with DataSet objects that resemble the W3C and SDMX datacube model.
+    contents: [dataset_df, bind_defined_rows]
   - title: "Defined"
     desc: >
-      A new labelled subclass that retains the unit of measure, definition and
-          namespace of the variable. Constructor and helper functions to access
-          or assign new values to the concept, namespace, and unit attributes.
+      A labelled subclass that retains unit, definition and namespace.
     contents:
       - defined
       - var_label
@@ -101,21 +88,11 @@ reference:
       - vec_cast.double.haven_labelled_defined
   - title: "Bibliography functions"
     desc: >
-      Conctructors for the extended bibentry classes that modernise the old R
-      bibliography entries to make them compatible and interoperable with the
-      international DCTERMS library and DataCite data repository standards.
-      The bibliographic metadata can be converted to bibentry, list, dataset_df,
-      or N-Triples standard RDF text serialisation formats.
-    contents:
-      - bibrecord
-      - datacite
-      - dublincore
+      Constructors for extended bibentry classes (DataCite / DCTERMS).
+    contents: [bibrecord, datacite, dublincore]
   - title: "Bibliography helpers"
     desc: >
-      These functions allow the direct changing, updating, reading of the
-      bibliography attributes of a dataset_df object. These attributes can be
-      constructed separately with the datacite() or dublincore() constructors,
-      or created together with a dataset_df object.
+      Helpers to read/update bibliography attributes of dataset_df.
     contents:
       - get_bibentry
       - dataset_title
@@ -133,7 +110,7 @@ reference:
       - geolocation
   - title: "RDF Serialisation"
     desc: >
-      Describe the data or its metadata in the Resource Description Framework
+      Describe data/metadata in RDF.
     contents:
       - describe
       - provenance
@@ -144,13 +121,6 @@ reference:
       - id_to_column
   - title: "Replication Datasets"
     desc: >
-      The orange_df is an enrichment of the Orange dataset for demonstration
-         purposes. The GDP dataset is a simple dataset to demonstrate the
-         process of metadata enrichment.
-    contents:
-       - orange_df
-       - gdp
+      Enriched Orange and simple GDP demo datasets.
+    contents: [orange_df, gdp]
 
-extra_files:
-  - examples/dataset.html
-  - examples/dataset.ttl

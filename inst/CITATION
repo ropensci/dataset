@@ -4,11 +4,11 @@ citation(auto = meta)
 bibentry(bibtype = "Misc",
          title = "The dataset R Package: Create Data Frames that are Easier to Exchange and Reuse",
          author = c(person(given ="Daniel", family = "Antal", role = "aut")),
-         year = "2024",
-         month = "12",
-         day = "23",
-         note = "R package version 0.3.4",
+         year = "2025",
+         month = "8",
+         day = "26",
+         note = "R package version 0.4.0",
          publisher = "Comprehensive R Archive Network",
-         url = "https://dataset.dataobservatory.eu/index.html",
+         url = "https://docs.ropensci.org/dataset",
          doi = "10.32614/CRAN.package.dataset")
 

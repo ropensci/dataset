@@ -18,8 +18,12 @@ rlang::check_installed("here")
 
 <!-- badges: start -->
 
-[![rhub](https://github.com/dataobservatory-eu/dataset/actions/workflows/rhub.yaml/badge.svg)](https://github.com/dataobservatory-eu/dataset/actions/workflows/rhub.yaml) [![lifecycle](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental) [![Project Status: WIP](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip) [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/dataset)](https://cran.r-project.org/package=dataset) [![CRAN_time_from_release](https://www.r-pkg.org/badges/ago/dataset)](https://cran.r-project.org/package=dataset) [![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/681_status.svg)](https://github.com/ropensci/software-review/issues/681) [![DOI](https://zenodo.org/badge/DOI/10.32614/CRAN.package.dataset.svg)](https://zenodo.org/record/6950435#.YukDAXZBzIU) [![devel-version](https://img.shields.io/badge/devel%20version-0.4.0-blue.svg)](https://github.com/dataobservatory-eu/dataset) [![dataobservatory](https://img.shields.io/badge/ecosystem-dataobservatory.eu-3EA135.svg)](https://dataobservatory.eu/) [![Codecov test coverage](https://codecov.io/gh/dataobservatory-eu/dataset/graph/badge.svg)](https://app.codecov.io/gh/dataobservatory-eu/dataset/)
-
+[![rhub](https://github.com/ropensci/dataset/actions/workflows/rhub.yaml/badge.svg)](https://github.com/ropensci/dataset/actions/workflows/rhub.yaml)
+[![devel-version](https://img.shields.io/badge/devel%20version-0.4.0-blue.svg)](https://github.com/ropensci/dataset)
+[![Codecov test coverage](https://codecov.io/gh/dataobservatory-eu/dataset/graph/badge.svg)](https://app.codecov.io/gh/dataobservatory-eu/dataset/)
+[![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/dataset)](https://cran.r-project.org/package=dataset) [![CRAN_time_from_release](https://www.r-pkg.org/badges/ago/dataset)](https://cran.r-project.org/package=dataset) [![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/681_status.svg)](https://github.com/ropensci/software-review/issues/681) [![DOI](https://img.shields.io/badge/DOI-10.32614%2FCRAN.package.dataset-blue)](https://doi.org/10.32614/CRAN.package.dataset)
+ [![dataobservatory](https://img.shields.io/badge/ecosystem-dataobservatory.eu-3EA135.svg)](https://dataobservatory.eu/) 
 <!-- badges: end -->
 
 # Overview
