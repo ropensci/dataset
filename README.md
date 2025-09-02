@@ -5,10 +5,12 @@
 
 <!-- badges: start -->
 
+<!-- badges: start -->
+
 [![rhub](https://github.com/ropensci/dataset/actions/workflows/rhub.yaml/badge.svg)](https://github.com/ropensci/dataset/actions/workflows/rhub.yaml)
 [![devel-version](https://img.shields.io/badge/devel%20version-0.4.0-blue.svg)](https://github.com/ropensci/dataset)
 [![Codecov test
-coverage](https://codecov.io/gh/dataobservatory-eu/dataset/graph/badge.svg)](https://app.codecov.io/gh/dataobservatory-eu/dataset/)
+coverage](https://codecov.io/gh/ropensci/dataset/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ropensci/dataset?branch=main)
 [![Project Status:
 Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/dataset)](https://cran.r-project.org/package=dataset)
@@ -125,7 +127,7 @@ provenance(df)
     #> [4] "_:doejane <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Agent> ."                                              
     #> [5] "<https://doi.org/10.32614/CRAN.package.dataset> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#SoftwareAgent> ."
     #> [6] "<http://example.com/creation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> ."                       
-    #> [7] "<http://example.com/creation> <http://www.w3.org/ns/prov#generatedAtTime> \"2025-08-27T17:55:55Z\"^^<xsd:dateTime> ."
+    #> [7] "<http://example.com/creation> <http://www.w3.org/ns/prov#generatedAtTime> \"2025-09-02T07:19:30Z\"^^<xsd:dateTime> ."
 
 </div>
 
