@@ -68,6 +68,43 @@ test_that("defined() attributes can be retrieved", {
   expect_equal(as.numeric(numeric_vec), 1:5)
 })
 
+#-------------------------- logical ------------------------------
+
+test_that("defined.logical() works with metadata and labels", {
+  x <- defined(
+    x = c(TRUE, FALSE, TRUE),
+    label = "Flag",
+    unit = "boolean",
+    concept = "https://example.org/flag",
+    namespace = "test"
+  )
+
+  expect_true(is.defined(x))
+  expect_s3_class(x, "haven_labelled_defined")
+  expect_s3_class(x, "logical")
+  expect_equal(
+    attr(x, "concept"),
+    "https://example.org/flag"
+  )
+
+
+  expect_equal(var_label(x), "Flag")
+  expect_equal(var_unit(x), "boolean")
+  expect_equal(var_concept(x), "https://example.org/flag")
+  expect_equal(var_namespace(x), "test")
+})
+
+test_that("defined.logical() forbids value labels", {
+  expect_error(
+    defined(
+      x      = c(TRUE, FALSE),
+      labels = c("no" = FALSE, "yes" = TRUE)
+    ),
+    "value labels are not supported for logical vectors"
+  )
+})
+
+#-------------------- subsetting ------------------------
 test_that("Subsetting defined vectors works correctly", {
   vec <- defined(100:110, label = "Measurement", unit = "kg")
   sub <- vec[1:3]
@@ -202,8 +239,14 @@ test_that("c() throws error on mismatched namespaces", {
 })
 
 test_that("c() throws error on mismatched value labels", {
-  a <- defined(1:3, label = "Sex", labels = c("M" = 1, "F" = 2))
-  b <- defined(4:6, label = "Sex", labels = c("Male" = 1, "Female" = 2))
+  a <- defined(1:3,
+    label = "Sex",
+    labels = c("M" = 1, "F" = 2)
+  )
+  b <- defined(4:6,
+    label = "Sex",
+    labels = c("Male" = 1, "Female" = 2)
+  )
 
   expect_error(
     c(a, b),

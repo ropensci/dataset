@@ -17,45 +17,41 @@ as_character(x, ...)
 
 \item{...}{Reserved for future use.}
 
-\item{preserve_attributes}{Logical. If \code{TRUE}, retains \code{unit}, \code{concept}, and
-\code{namespace} attributes. Defaults to \code{FALSE}.}
+\item{preserve_attributes}{Logical; whether to retain semantic metadata.
+Defaults to \code{FALSE}.}
 }
 \value{
-A character vector.
+A character vector (plain or with attributes).
 }
 \description{
 \code{as_character()} is the recommended method to convert a
-\code{\link[=defined]{defined()}} vector to a character type. It is metadata-aware and
-ensures that the underlying data is character before coercion.
+\code{\link[=defined]{defined()}} vector into a character vector. It is metadata-aware
+and provides explicit control over whether semantic attributes are preserved.
 
-Base R's \code{as.character()} method applied to \code{defined} vectors
-simply strips the class and returns the values as a plain character vector.
-This is equivalent to calling \code{\link[=as_character]{as_character()}} with \code{preserve_attributes = FALSE}.
+Base R \code{as.character()} always strips the class and metadata.
 }
 \details{
 If \code{preserve_attributes = TRUE}, the returned character vector retains
-semantic metadata such as \code{unit}, \code{concept}, and \code{namespace}, though the
-\code{"defined"} class itself is removed. If \code{preserve_attributes = FALSE}
-(default), a plain character vector is returned with all attributes stripped.
+metadata attributes (\code{unit}, \code{concept}, \code{namespace}, \code{label}). The
+\code{"defined"} class is always removed.
 
-For numeric-based \code{defined} vectors, \code{as_character()} throws an informative
-error to avoid accidental coercion of non-character data.
+If \code{preserve_attributes = FALSE} (default), a plain character vector is
+returned with \emph{all} metadata stripped.
 
-Note: \code{as.character()} (base R) is supported but simply returns the raw
-values, and does not preserve or warn about metadata loss.
+Base R's \code{as.character()} always drops all attributes and returns plain
+character values. It is equivalent to:
+\code{as_character(x, preserve_attributes = FALSE)}.
 }
 \examples{
-# Recommended use
-fruits <- defined(c("apple", "avocado", "kiwi"), label = "Fruit", unit = "kg")
-as_character(fruits, preserve_attributes = TRUE)
+x <- defined(c("apple", "banana"), label = "Fruit", unit = "kg")
 
-# Strip metadata
-as_character(fruits, preserve_attributes = FALSE)
+# Recommended:
+as_character(x)
 
-# Equivalent base R fallback
-as.character(fruits)
+# Preserve metadata:
+as_character(x, preserve_attributes = TRUE)
 
-}
-\seealso{
-\code{\link[=strip_defined]{strip_defined()}}, \code{\link[=as_numeric]{as_numeric()}}
+# Base R:
+as.character(x)
+
 }

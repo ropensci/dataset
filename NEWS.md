@@ -1,3 +1,30 @@
+# dataset 0.4.1
+
+This release strengthens the handling of semantically enriched vectors and improves coercion across base R and tidyverse workflows.
+
+## Enhancements
+
+- New S3 methods for semantically enriched logical, `Date`, and `POSIXct` types.
+- Expanded coercion support:
+  - `as_numeric()`, `as_character()`, `as_logical()`, `as_factor()`
+  - Optional preservation of semantic metadata (`label`, `unit`, `concept`, `namespace`).
+- Rewritten coercion logic for all `defined()` vector types, ensuring stable and predictable behaviour.
+
+## dataset_df improvements
+
+- `as.data.frame.dataset_df()` and `as_tibble.dataset_df()`:
+- Correct handling of numeric, character, factor, and date-time columns.
+- Label-aware coercion for categorical variables.
+- Clear separation between attribute stripping and preservation.
+
+## Testing and robustness
+
+- Significant increase in test coverage, including tests for all coercion paths, metadata stripping, and temporal types.
+- Improved error messaging for invalid type coercion.
+- More consistent printing and formatting of `defined` vectors.
+
+This update improves reliability, consistency, and interoperability of semantically enriched datasets in R.
+
 # dataset 0.4.0
 
 A new CRAN release with much improved unit testing and documentation to 

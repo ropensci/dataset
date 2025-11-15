@@ -1,37 +1,60 @@
-#' Create a semantically well-defined, labelled vector
+#' Create a semantically enriched vector with variable-level metadata
 #'
-#' `defined()` constructs a vector enriched with semantic metadata such as a
-#' label, unit of measurement, concept URI, and optional namespace.
-#' These vectors behave like base R vectors but retain metadata during
-#' subsetting, comparison, and printing.
+#' `defined()` constructs a vector that behaves like a base R vector but carries
+#' semantic metadata used for documentation, validation, and interoperability.
+#' The resulting object inherits from [`haven::labelled()`] (for numeric,
+#' character, and factor data) or from base date/time classes, and adds:
 #'
-#' The resulting object inherits from [haven::labelled()] and integrates with
-#' tidyverse workflows, enabling downstream conversion to RDF and other
-#' standards.
+#' * a human-readable variable label,
+#' * an optional unit of measurement,
+#' * a **concept URI** identifying the meaning of the variable
+#'   (formerly called *definition*),
+#' * an optional namespace used for value-level URI expansion,
+#' * optional labelled values (where supported).
 #'
-#' @param x A vector of type character, numeric, Date, factor, or a `labelled`
-#'   object.
-#' @param labels An optional named vector of value labels. Only a subset of
-#'   values may be labelled.
-#' @param label A short human-readable label (string of length 1).
-#' @param unit Unit of measurement (e.g., "kg", "hours"). Must be a string of
-#'   length 1 or `NULL`.
-#' @param concept A URI or concept name representing the meaning of the
-#'   variable.
-#' @param namespace Optional string or named character vector, used for
-#'   value-level URI expansion.
-#' @param ... Reserved for future use.
+#' The `concept` attribute is a general semantic anchor and may refer to:
+#' a measure or dimension concept (SDMX-style), a property IRI (e.g. Wikibase),
+#' or any URI that defines or describes the variable.
 #'
-#' @return A vector of class `"defined"` (technically
-#' `haven_labelled_defined`), which behaves like a standard vector with
-#' additional semantic metadata and is inherited from [haven::labelled()].
-#' @importFrom haven labelled
-#' @importFrom labelled to_labelled is.labelled
-#' @import vctrs
-#' @importFrom utils head tail
-#' @seealso `browseVignettes("dataset")`
-#' @seealso [is.defined()], [as_numeric()], [as_character()], [as_factor()],
-#'   [strip_defined()]
+#' `defined()` vectors preserve their metadata during subsetting, printing,
+#' summarizing, comparisons, and many tidyverse operations. They integrate
+#' smoothly with [`dataset_df()`] objects and can be safely flattened via
+#' [`as.data.frame()`], [`as_tibble()`], or coercion helpers such as
+#' [`as_numeric()`] and [`as_character()`].
+#'
+#' @section Supported input types:
+#' * numeric (integer or double)
+#' * character
+#' * factor (converted via [`labelled::to_labelled()`])
+#' * [`Date`]
+#' * [`POSIXct`]
+#' * [`haven::labelled()`]
+#' * logical (with restrictions: logical vectors **cannot** have value labels)
+#'
+#' @param x A vector to annotate.
+#' @param labels Optional named vector of value labels. Only supported for
+#'   numeric or character vectors (not for logical).
+#' @param label A short human-readable variable label (character of length 1).
+#' @param unit Unit of measurement (character length 1) or `NULL`.
+#' @param concept A URI or identifier describing the meaning or definition
+#'   of the variable. This replaces the deprecated `definition` argument.
+#' @param namespace Optional string or named character vector used to generate
+#'   value-level URIs via substitution (`$1` macro).
+#' @param ... For backward compatibility; the deprecated `definition`
+#'   argument is still accepted and mapped to `concept`.
+#'
+#' @return A vector of class `"haven_labelled_defined"` or `"datetime_defined"`,
+#'   depending on the input type.
+#'
+#' @importFrom labelled is.labelled
+#'
+#' @seealso
+#'   [`is.defined()`],
+#'   [`as_numeric()`],
+#'   [`as_character()`],
+#'   [`as_logical()`],
+#'   [`strip_defined()`],
+#'   [`dataset_df()`]
 #'
 #' @examples
 #' gdp_vector <- defined(
@@ -41,19 +64,13 @@
 #'   concept = "http://data.europa.eu/83i/aa/GDP"
 #' )
 #'
-#' # To check the s3 class of the vector:
 #' is.defined(gdp_vector)
-#'
-#' # To print the defined vector:
 #' print(gdp_vector)
-#'
-#' # To summarise the defined vector:
 #' summary(gdp_vector)
-#'
-#' # Subsetting work as expected:
 #' gdp_vector[1:2]
+#'
 #' @export
-
+# Main generic ---------------------------------------------------------------
 defined <- function(x,
                     labels = NULL,
                     label = NULL,
@@ -62,24 +79,69 @@ defined <- function(x,
                     namespace = NULL,
                     ...) {
   dots <- list(...)
+
+  # ------------------------------------------------------------------
+  # DEPRECATED ARGUMENT SUPPORT
+  # ------------------------------------------------------------------
   if (!is.null(dots$definition)) {
-    warning("`definition` is deprecated; please use `concept` instead.", call. = FALSE)
+    warning("`definition` is deprecated; use `concept` instead.", call. = FALSE)
     if (is.null(concept)) {
       concept <- dots$definition
     }
   }
 
+  # ------------------------------------------------------------------
+  # ARGUMENT VALIDATION
+  # ------------------------------------------------------------------
+  if (!is.null(label) && (!is.character(label) || length(label) != 1)) {
+    stop("`label` must be a character(1) or NULL.", call. = FALSE)
+  }
+
   if (!is.null(unit) && (!is.character(unit) || length(unit) != 1)) {
-    stop("`unit` must be a single character string or NULL", call. = FALSE)
-  }
-  if (!is.null(namespace) && (!is.character(namespace) || is.null(names(namespace)) && length(namespace) != 1)) {
-    stop("`namespace` must be a named character vector or a single string", call. = FALSE)
+    stop("`unit` must be a character(1) or NULL.", call. = FALSE)
   }
 
+  if (!is.null(concept) && (!is.character(concept) || length(concept) != 1)) {
+    stop("`concept` must be a character(1) or NULL.", call. = FALSE)
+  }
+
+  if (!is.null(namespace) &&
+    (!is.character(namespace) || length(namespace) != 1)) {
+    stop("`namespace` must be a character(1) or NULL.", call. = FALSE)
+  }
+
+
+  # ------------------------------------------------------------------
+  # DISPATCH BY TYPE
+  # ------------------------------------------------------------------
+
+  # LOGICAL -----------------------------------------------------------
+  if (is.logical(x)) {
+    if (!is.null(labels)) {
+      stop(
+        "defined(logical): value labels are not supported for logical vectors.\n",
+        "Use factor or character instead.",
+        call. = FALSE
+      )
+    }
+
+    tmp <- x
+    attr(tmp, "label") <- label
+    attr(tmp, "unit") <- unit
+    attr(tmp, "concept") <- concept
+    attr(tmp, "namespace") <- namespace
+    class(tmp) <- c("haven_labelled_defined", "logical")
+
+    return(tmp)
+  }
+
+  # NUMERIC / INTEGER ------------------------------------------------
   if (is.numeric(x)) {
-    x <- vctrs::vec_data(x)
-    labels <- vec_cast_named(labels, x, x_arg = "labels", to_arg = "x")
-    return(new_labelled_defined(x,
+    x_raw <- vctrs::vec_data(x)
+    labels <- vec_cast_named(labels, x_raw, x_arg = "labels", to_arg = "x")
+
+    return(new_labelled_defined(
+      x_raw,
       labels = labels,
       label = label,
       unit = unit,
@@ -88,8 +150,10 @@ defined <- function(x,
     ))
   }
 
+  # CHARACTER ---------------------------------------------------------
   if (is.character(x)) {
-    return(new_labelled_defined(x,
+    return(new_labelled_defined(
+      x,
       labels = labels,
       label = label,
       unit = unit,
@@ -98,34 +162,58 @@ defined <- function(x,
     ))
   }
 
-  if (inherits(x, "Date")) {
-    return(new_datetime_defined(x,
-      label = label,
-      unit = unit,
-      concept = concept,
-      namespace = namespace
-    ))
-  }
-
+  # FACTOR ------------------------------------------------------------
   if (is.factor(x)) {
-    labelled_x <- to_labelled(x)
+    labelled_x <- labelled::to_labelled(x)
     var_unit(labelled_x) <- unit
     var_concept(labelled_x) <- concept
     var_namespace(labelled_x) <- namespace
+
     class(labelled_x) <- c("haven_labelled_defined", class(labelled_x))
     return(labelled_x)
   }
 
+  # HAVEN LABELLED ----------------------------------------------------
   if (is.labelled(x)) {
-    var_unit(x) <- unit
-    var_concept(x) <- concept
-    var_namespace(x) <- namespace
-    class(x) <- c("haven_labelled_defined", class(x))
-    return(x)
+    x2 <- x
+    var_unit(x2) <- unit
+    var_concept(x2) <- concept
+    var_namespace(x2) <- namespace
+
+    class(x2) <- c("haven_labelled_defined", class(x2))
+    return(x2)
   }
 
-  stop("Unsupported input type to defined().", call. = FALSE)
+  # DATE --------------------------------------------------------------
+  if (inherits(x, "Date")) {
+    tmp <- x
+    attr(tmp, "label") <- label
+    attr(tmp, "unit") <- unit
+    attr(tmp, "concept") <- concept
+    attr(tmp, "namespace") <- namespace
+    class(tmp) <- c("haven_labelled_defined", "Date")
+    return(tmp)
+  }
+
+  # POSIXct -----------------------------------------------------------
+  if (inherits(x, "POSIXct")) {
+    tmp <- x
+    attr(tmp, "label") <- label
+    attr(tmp, "unit") <- unit
+    attr(tmp, "concept") <- concept
+    attr(tmp, "namespace") <- namespace
+    class(tmp) <- c("haven_labelled_defined", "POSIXct", "POSIXt")
+    return(tmp)
+  }
+
+  # UNSUPPORTED -------------------------------------------------------
+  stop(
+    "defined(x): `x` must be logical, numeric, character, factor, Date, ",
+    "POSIXct, or a labelled vector.",
+    call. = FALSE
+  )
 }
+
 
 
 #' @rdname defined

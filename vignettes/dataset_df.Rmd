@@ -14,20 +14,20 @@ knitr::opts_chunk$set(
 )
 ```
 
-The `dataset` package extends R’s native data structures with machine-readable metadata. It follows a *semantic early-binding* approach: metadata is embedded as soon as the data is created, making datasets suitable for long-term reuse, FAIR-compliant publishing, and integration into semantic web systems.  
+The `dataset` package extends R’s native data structures with machine-readable metadata. It follows a *semantic early-binding* approach: metadata is embedded as soon as the data is created, making datasets suitable for long-term reuse, FAIR-compliant publishing, and integration into semantic web systems.
 
-In R, a `data.frame` is defined as a tightly coupled collection of variables that share many of the properties of matrices and lists, and it serves as the fundamental data structure for most of R’s modeling software. Users of the R ecosystem often use the term *data frame* interchangeably with *dataset*. However, the standards used in libraries, repositories, and statistical systems for publishing, exchanging, and reusing datasets require metadata that even “tidy” data frames do not provide.  
+In R, a `data.frame` is defined as a tightly coupled collection of variables that share many of the properties of matrices and lists, and it serves as the fundamental data structure for most of R’s modeling software. Users of the R ecosystem often use the term *data frame* interchangeably with *dataset*. However, the standards used in libraries, repositories, and statistical systems for publishing, exchanging, and reusing datasets require metadata that even “tidy” data frames do not provide.
 
-This vignette introduces the `dataset_df` class and the `dataset_df()` constructor, which extend tidy data frames with a semantic layer. For details on semantically enriched vectors, see `vignette("defined", package = "dataset")`. Readers interested in the underlying ISO and W3C definitions of *dataset* will find them discussed in `vignette("design", package = "dataset")`.  
+This vignette introduces the `dataset_df` class and the `dataset_df()` constructor, which extend tidy data frames with a semantic layer. For details on semantically enriched vectors, see `vignette("defined", package = "dataset")`. Readers interested in the underlying ISO and W3C definitions of *dataset* will find them discussed in `vignette("design", package = "dataset")`.
 
-## Purpose  
+## Purpose
 
-The `dataset_df()` function helps you create **semantically rich datasets** that meet the interoperability, exchange, and reuse requirements of libraries, repositories, and statistical systems. It defines a new S3 class, inherited from the modernised data frame of `tibble::tibble()`, that retains compatibility with existing workflows but is easier to:  
+The `dataset_df()` function helps you create **semantically rich datasets** that meet the interoperability, exchange, and reuse requirements of libraries, repositories, and statistical systems. It defines a new S3 class, inherited from the modernised data frame of `tibble::tibble()`, that retains compatibility with existing workflows but is easier to:
 
-- understand by humans,  
-- validate and process by machines,  
-- deposit, exchange, and publish,  
-- share across tools, teams, and domains.
+-   understand by humans,\
+-   validate and process by machines,\
+-   deposit, exchange, and publish,\
+-   share across tools, teams, and domains.
 
 This vignette walks you through creating such a dataset using a subset of the *GDP and main aggregates – international data cooperation annual data* dataset from Eurostat\
 (DOI: [https://doi.org/10.2908/NAIDA_10_GDP).](https://doi.org/10.2908/NAIDA_10_GDP).)
@@ -219,6 +219,42 @@ The combined dataset behaves like a regular tibble but retains its metadata. If 
 ```{r backwardcompatibility}
 attributes(as.data.frame(joined_dataset))
 ```
+
+### Coercion inside `dataset_df` conversion
+
+When converting a `dataset_df` to a base `data.frame`:
+
+```{r coercion}
+as.data.frame(small_country_dataset)
+```
+
+the following rules apply:
+
+-   **By default**, all semantic attributes are stripped (`label`, `unit`, `concept`, `namespace`).
+
+-   Categorical variables (with labels) become **character vectors**.
+
+-   Numeric `defined()` vectors become **numeric**.
+
+-   Date / POSIXct vectors keep their underlying date/time values.
+
+-   The `haven_labelled_defined` class is always removed.
+
+-   Dataset-level metadata (`dataset_bibentry`, `prov`, `subject`) is preserved.
+
+-   You can retain semantic attributes via:
+
+```{r richdataframe}
+as.data.frame(small_country_dataset, 
+              strip_attributes = FALSE)
+```
+
+`as_tibble()` behaves the same way as `as.data.frame()` but returns a tibble:
+
+```{r tibble}
+as_tibble(small_country_dataset)
+```
+
 
 ## Conclusion
 

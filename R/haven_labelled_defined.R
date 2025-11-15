@@ -1,0 +1,38 @@
+#' Semantic labelled vector class
+#'
+#' @name haven_labelled_defined
+#'
+#' @description
+#' The class \code{haven_labelled_defined} represents a semantically
+#' enriched labelled vector created by \code{\link{defined}}.
+#'
+#' Objects of this class inherit from:
+#'
+#' \itemize{
+#'   \item \code{\link[haven:labelled]{haven::labelled}} for numeric,
+#'     character, and factor data;
+#'   \item \code{Date} for temporal dates;
+#'   \item \code{POSIXct} and \code{POSIXt} for timestamps;
+#'   \item \code{logical} for boolean data.
+#' }
+#'
+#' The class tag enables S3 method dispatch for:
+#'
+#' \itemize{
+#'   \item \code{\link{as_character}}
+#'   \item \code{\link{as_numeric}}
+#'   \item \code{\link{as_logical}}
+#'   \item \code{as.Date}
+#'   \item \code{as.POSIXct}
+#'   \item \code{\link{print.haven_labelled_defined}}
+#'   \item \code{\link{summary.haven_labelled_defined}}
+#' }
+#'
+#' Users normally do not construct this class directly; it is returned
+#' as the result of calling \code{\link{defined}}.
+#'
+#' @return No value is returned. This documentation page exists so that
+#'   the class can be referenced in help topics.
+#'
+#' @keywords internal
+NULL

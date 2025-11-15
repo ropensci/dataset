@@ -4,7 +4,7 @@
 \alias{defined}
 \alias{is.defined}
 \alias{summary.haven_labelled_defined}
-\title{Create a semantically well-defined, labelled vector}
+\title{Create a semantically enriched vector with variable-level metadata}
 \usage{
 defined(
   x,
@@ -21,43 +21,69 @@ is.defined(x)
 \method{summary}{haven_labelled_defined}(object, ...)
 }
 \arguments{
-\item{x}{A vector of type character, numeric, Date, factor, or a \code{labelled}
-object.}
+\item{x}{A vector to annotate.}
 
-\item{labels}{An optional named vector of value labels. Only a subset of
-values may be labelled.}
+\item{labels}{Optional named vector of value labels. Only supported for
+numeric or character vectors (not for logical).}
 
-\item{label}{A short human-readable label (string of length 1).}
+\item{label}{A short human-readable variable label (character of length 1).}
 
-\item{unit}{Unit of measurement (e.g., "kg", "hours"). Must be a string of
-length 1 or \code{NULL}.}
+\item{unit}{Unit of measurement (character length 1) or \code{NULL}.}
 
-\item{concept}{A URI or concept name representing the meaning of the
-variable.}
+\item{concept}{A URI or identifier describing the meaning or definition
+of the variable. This replaces the deprecated \code{definition} argument.}
 
-\item{namespace}{Optional string or named character vector, used for
-value-level URI expansion.}
+\item{namespace}{Optional string or named character vector used to generate
+value-level URIs via substitution (\verb{$1} macro).}
 
-\item{...}{Reserved for future use.}
+\item{...}{For backward compatibility; the deprecated \code{definition}
+argument is still accepted and mapped to \code{concept}.}
 
 \item{object}{An R object to be summarised.}
 }
 \value{
-A vector of class \code{"defined"} (technically
-\code{haven_labelled_defined}), which behaves like a standard vector with
-additional semantic metadata and is inherited from \code{\link[haven:labelled]{haven::labelled()}}.
+A vector of class \code{"haven_labelled_defined"} or \code{"datetime_defined"},
+depending on the input type.
 }
 \description{
-\code{defined()} constructs a vector enriched with semantic metadata such as a
-label, unit of measurement, concept URI, and optional namespace.
-These vectors behave like base R vectors but retain metadata during
-subsetting, comparison, and printing.
+\code{defined()} constructs a vector that behaves like a base R vector but carries
+semantic metadata used for documentation, validation, and interoperability.
+The resulting object inherits from \code{\link[haven:labelled]{haven::labelled()}} (for numeric,
+character, and factor data) or from base date/time classes, and adds:
 }
 \details{
-The resulting object inherits from \code{\link[haven:labelled]{haven::labelled()}} and integrates with
-tidyverse workflows, enabling downstream conversion to RDF and other
-standards.
+\itemize{
+\item a human-readable variable label,
+\item an optional unit of measurement,
+\item a \strong{concept URI} identifying the meaning of the variable
+(formerly called \emph{definition}),
+\item an optional namespace used for value-level URI expansion,
+\item optional labelled values (where supported).
 }
+
+The \code{concept} attribute is a general semantic anchor and may refer to:
+a measure or dimension concept (SDMX-style), a property IRI (e.g. Wikibase),
+or any URI that defines or describes the variable.
+
+\code{defined()} vectors preserve their metadata during subsetting, printing,
+summarizing, comparisons, and many tidyverse operations. They integrate
+smoothly with \code{\link[=dataset_df]{dataset_df()}} objects and can be safely flattened via
+\code{\link[=as.data.frame]{as.data.frame()}}, \code{\link[tibble:as_tibble]{tibble::as_tibble()}}, or coercion helpers such as
+\code{\link[=as_numeric]{as_numeric()}} and \code{\link[=as_character]{as_character()}}.
+}
+\section{Supported input types}{
+
+\itemize{
+\item numeric (integer or double)
+\item character
+\item factor (converted via \code{\link[labelled:to_labelled]{labelled::to_labelled()}})
+\item \code{\link{Date}}
+\item \code{\link{POSIXct}}
+\item \code{\link[haven:labelled]{haven::labelled()}}
+\item logical (with restrictions: logical vectors \strong{cannot} have value labels)
+}
+}
+
 \examples{
 gdp_vector <- defined(
   c(3897, 7365, 6753),
@@ -66,21 +92,17 @@ gdp_vector <- defined(
   concept = "http://data.europa.eu/83i/aa/GDP"
 )
 
-# To check the s3 class of the vector:
 is.defined(gdp_vector)
-
-# To print the defined vector:
 print(gdp_vector)
-
-# To summarise the defined vector:
 summary(gdp_vector)
-
-# Subsetting work as expected:
 gdp_vector[1:2]
+
 }
 \seealso{
-\code{browseVignettes("dataset")}
-
-\code{\link[=is.defined]{is.defined()}}, \code{\link[=as_numeric]{as_numeric()}}, \code{\link[=as_character]{as_character()}}, \code{\link[=as_factor]{as_factor()}},
-\code{\link[=strip_defined]{strip_defined()}}
+\code{\link[=is.defined]{is.defined()}},
+\code{\link[=as_numeric]{as_numeric()}},
+\code{\link[=as_character]{as_character()}},
+\code{\link[=as_logical]{as_logical()}},
+\code{\link[=strip_defined]{strip_defined()}},
+\code{\link[=dataset_df]{dataset_df()}}
 }

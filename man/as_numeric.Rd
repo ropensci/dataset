@@ -3,59 +3,31 @@
 \name{as_numeric}
 \alias{as_numeric}
 \alias{as_numeric.haven_labelled_defined}
-\alias{as.numeric.haven_labelled_defined}
 \title{Coerce a defined vector to numeric}
 \usage{
 as_numeric(x, ...)
 
-\method{as_numeric}{haven_labelled_defined}(x, preserve_attributes = FALSE, ...)
-
-\method{as.numeric}{haven_labelled_defined}(x, ...)
+\method{as_numeric}{haven_labelled_defined}(x, strip_attributes = TRUE, preserve_attributes = FALSE, ...)
 }
 \arguments{
 \item{x}{A vector created with \code{\link[=defined]{defined()}}.}
 
 \item{...}{Reserved for future use.}
 
-\item{preserve_attributes}{Logical. Whether to keep metadata attributes.
-Defaults to \code{FALSE}.}
+\item{strip_attributes}{Logical; whether to remove semantic metadata
+(\code{label}, \code{unit}, \code{concept}, \code{namespace}). Defaults to \code{TRUE}.}
+
+\item{preserve_attributes}{Legacy argument. If \code{TRUE}, overrides
+\code{strip_attributes = FALSE}. If \code{FALSE}, ignored.}
 }
 \value{
-A numeric vector (either bare or with metadata, depending on the
-\code{preserve_attributes} argument).
+A numeric vector with or without preserved attributes.
 }
 \description{
-\code{as_numeric()} is the recommended method to convert a \code{\link[=defined]{defined()}}
-vector to a numeric vector. It ensures the underlying data is numeric and can
-optionally preserve semantic metadata.
+\code{as_numeric()} converts a \code{\link[=defined]{defined()}} vector to a numeric vector.
+It validates that the underlying data are numeric, and optionally preserves
+or strips semantic metadata.
 
-Base R's \code{as.numeric()} does not support custom classes like \code{defined()}.
-This method drops all metadata and class information, returning a plain
-numeric vector. It is equivalent to \code{as_numeric(x, preserve_attributes = FALSE)}.
-}
-\details{
-If \code{preserve_attributes = TRUE}, the returned vector retains the \code{unit},
-\code{concept}, and \code{namespace} attributes, but is no longer of class \code{"defined"}.
-If \code{FALSE} (default), a base numeric vector is returned without metadata.
-
-For character-based \code{defined} vectors, an error is thrown to avoid invalid
-coercion.
-}
-\examples{
-gdp <- defined(c(3897L, 7365L), label = "GDP", unit = "million dollars")
-
-# Drop all metadata
-as_numeric(gdp)
-
-# Preserve unit and concept
-as_numeric(gdp, preserve_attributes = TRUE)
-
-# Equivalence to base coercion (without metadata)
-as.numeric(gdp)
-
-# Metadata-aware variant preferred in pipelines
-attr(as_numeric(gdp, TRUE), "unit")
-}
-\seealso{
-\code{\link[=as.character]{as.character()}}, \code{\link[=strip_defined]{strip_defined()}}
+This function supports \strong{both} the new argument \code{strip_attributes}
+and the backward-compatible \code{preserve_attributes = TRUE} used in older tests.
 }

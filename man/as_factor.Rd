@@ -2,29 +2,43 @@
 % Please edit documentation in R/as_factor.R
 \name{as_factor}
 \alias{as_factor}
+\alias{as.factor.haven_labelled_defined}
 \title{Coerce a defined vector to a factor}
 \usage{
 as_factor(x, ...)
+
+as.factor.haven_labelled_defined(x, ...)
 }
 \arguments{
 \item{x}{A vector created with \code{\link[=defined]{defined()}}.}
 
-\item{...}{Reserved for future extensions; not used.}
+\item{...}{Reserved for future extensions.}
+
+\item{preserve_attributes}{Logical; whether to retain semantic
+metadata on the factor. Defaults to \code{FALSE}.}
 }
 \value{
-A factor vector with levels derived from the value labels.
+A factor vector.
 }
 \description{
-Converts a \code{\link[=defined]{defined()}} vector with value labels into a
-factor using \code{\link[haven:as_factor]{haven::as_factor()}}. This allows categorical \code{defined}
-vectors to behave like standard factors in models and plotting.
+\code{as_factor()} converts a \code{\link[=defined]{defined()}} vector into a
+standard R factor. If value labels are present, conversion uses
+\code{\link[haven:as_factor]{haven::as_factor()}}, ensuring that labelled categories become
+factor levels. Otherwise, the underlying values are converted
+to a factor in a stable and predictable way.
+
+If \code{preserve_attributes = TRUE}, metadata attributes (\code{unit},
+\code{concept}, \code{namespace}) are retained but the \code{"defined"} class
+is not.
 }
 \examples{
 sex <- defined(
   c(0, 1, 1, 0),
-  label = "Sex",
+  label  = "Sex",
   labels = c("Female" = 0, "Male" = 1)
 )
+
 as_factor(sex)
+as_factor(sex, preserve_attributes = TRUE)
 
 }
