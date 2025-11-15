@@ -143,7 +143,7 @@ Using the `strip_attributes = FALSE` the rich attributes remain in the base R da
 
 You can also strip all these attributes, and choose `tbl_df` (if you have `tibble`) installed":
 
-```{r smalldf}
+```{r smalltbl}
 small_tbl <- as_tibble(
   small_dataset, 
   strip_attributes = TRUE)
