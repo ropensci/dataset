@@ -68,7 +68,7 @@ or any URI that defines or describes the variable.
 \code{defined()} vectors preserve their metadata during subsetting, printing,
 summarizing, comparisons, and many tidyverse operations. They integrate
 smoothly with \code{\link[=dataset_df]{dataset_df()}} objects and can be safely flattened via
-\code{\link[=as.data.frame]{as.data.frame()}}, \code{\link[tibble:as_tibble]{tibble::as_tibble()}}, or coercion helpers such as
+\code{\link[=as.data.frame]{as.data.frame()}}, \code{\link[=as_tibble]{as_tibble()}}, or coercion helpers such as
 \code{\link[=as_numeric]{as_numeric()}} and \code{\link[=as_character]{as_character()}}.
 }
 \section{Supported input types}{

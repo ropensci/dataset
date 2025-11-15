@@ -2,25 +2,77 @@
 % Please edit documentation in R/as.data.frame.R
 \name{as_tibble.dataset_df}
 \alias{as_tibble.dataset_df}
+\alias{as_tibble}
 \alias{as.tibble.dataset_df}
-\title{Convert a dataset_df to a tibble}
+\title{Coerce a \code{dataset_df} to a tibble}
 \usage{
-\method{as_tibble}{dataset_df}(x, ..., strip_attributes = TRUE)
+as_tibble(x, ...)
 
-as.tibble.dataset_df(x, ..., strip_attributes = TRUE)
+\method{as_tibble}{dataset_df}(x, ..., strip_attributes = TRUE, .name_repair = "check_unique")
+
+as.tibble.dataset_df(
+  x,
+  ...,
+  strip_attributes = TRUE,
+  .name_repair = "check_unique"
+)
 }
 \arguments{
-\item{x}{A \code{\link{dataset_df}}.}
+\item{x}{A \code{dataset_df} object.}
 
-\item{...}{Passed to \code{base::as.data.frame()}.}
+\item{...}{Additional arguments passed to \code{\link[=as.data.frame.dataset_df]{as.data.frame.dataset_df()}}.}
 
 \item{strip_attributes}{Logical: should column-level semantic metadata
 be stripped? Default: \code{TRUE}.}
+
+\item{.name_repair}{Treatment of problematic column names:
+\itemize{
+\item \code{"minimal"}: No name checks.
+\item \code{"unique"}: Enforce uniqueness.
+\item \code{"check_unique"}: (default) require unique names.
+\item \code{"universal"}: Make unique and syntactic.
+\item A function or purrr-style anonymous function, see \code{\link[rlang:as_function]{rlang::as_function()}}.
+}}
 }
 \value{
-A tibble with optional metadata stripping.
+A \code{\link[tibble:tibble]{tibble}} containing the data (and optionally some
+attributes) of the \code{dataset_df}.
 }
 \description{
-A thin wrapper around \code{as.data.frame.dataset_df()},
-returning a tibble.
+\code{\link[=as_tibble]{as_tibble()}} method for \code{dataset_df} objects.
+
+Converts a \code{dataset_df} into a tibble. By default, additional metadata
+attached to the object is removed unless \code{strip_attributes = FALSE} is
+specified.
 }
+\section{Metadata handling}{
+
+The \code{strip_attributes} argument controls which attributes of the \code{dataset_df}
+object are preserved. When \code{strip_attributes = TRUE} (the default), only
+column-level information is kept.
+}
+
+\section{About column names}{
+
+The \code{dataset_df} class may internally use reserved names for indexing,
+identifiers, or metadata. These are never exposed in the resulting tibble.
+Column names in the output tibble may be repaired according to
+\code{.name_repair}.
+}
+
+\examples{
+# Convert a dataset_df to a tibble
+x <- dataset_df(...)
+as_tibble(x)
+
+# Keep attributes
+as_tibble(x, strip_attributes = FALSE)
+
+}
+\seealso{
+\itemize{
+\item \code{\link[tibble:as_tibble]{tibble::as_tibble()}}
+\item \code{\link[=as.data.frame.dataset_df]{as.data.frame.dataset_df()}}
+}
+}
+\concept{tibble.methods}

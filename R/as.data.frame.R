@@ -125,22 +125,77 @@ as.data.frame.dataset_df <- function(x, ...,
   df
 }
 
-#' Convert a dataset_df to a tibble
+#' Coerce a `dataset_df` to a tibble
 #'
 #' @description
-#' A thin wrapper around `as.data.frame.dataset_df()`,
-#' returning a tibble.
+#' [as_tibble()] method for `dataset_df` objects.
 #'
+#' Converts a `dataset_df` into a tibble. By default, additional metadata
+#' attached to the object is removed unless `strip_attributes = FALSE` is
+#' specified.
+#'
+#' @rdname as_tibble.dataset_df
+#' @name as_tibble.dataset_df
+#'
+#' @return
+#' A [`tibble`][tibble::tibble()] containing the data (and optionally some
+#' attributes) of the `dataset_df`.
+#'
+#' @param x A `dataset_df` object.
 #' @inheritParams as.data.frame.dataset_df
+#' @param ... Additional arguments passed to [as.data.frame.dataset_df()].
+#' @param .name_repair Treatment of problematic column names:
+#'   * `"minimal"`: No name checks.
+#'   * `"unique"`: Enforce uniqueness.
+#'   * `"check_unique"`: (default) require unique names.
+#'   * `"universal"`: Make unique and syntactic.
+#'   * A function or purrr-style anonymous function, see [rlang::as_function()].
 #'
-#' @return A tibble with optional metadata stripping.
+#' @seealso
+#' * [tibble::as_tibble()]
+#' * [as.data.frame.dataset_df()]
 #'
-#' @importFrom tibble as_tibble
-#' @method as_tibble dataset_df
+#' @family tibble.methods
+#'
+#' @section Metadata handling:
+#' The `strip_attributes` argument controls which attributes of the `dataset_df`
+#' object are preserved. When `strip_attributes = TRUE` (the default), only
+#' column-level information is kept.
+#'
+#' @section About column names:
+#' The `dataset_df` class may internally use reserved names for indexing,
+#' identifiers, or metadata. These are never exposed in the resulting tibble.
+#' Column names in the output tibble may be repaired according to
+#' `.name_repair`.
+#'
+#' @examples
+#' # Convert a dataset_df to a tibble
+#' x <- dataset_df(...)
+#' as_tibble(x)
+#'
+#' # Keep attributes
+#' as_tibble(x, strip_attributes = FALSE)
+#'
 #' @export
-as_tibble.dataset_df <- function(x, ..., strip_attributes = TRUE) {
-  df <- as.data.frame.dataset_df(x, strip_attributes = strip_attributes, ...)
-  tibble::as_tibble(df)
+as_tibble <- function(x, ...) {
+  UseMethod("as_tibble")
+}
+
+#' @rdname as_tibble.dataset_df
+#' @export
+as_tibble.dataset_df <- function(
+    x,
+    ...,
+    strip_attributes = TRUE,
+    .name_repair = "check_unique"
+) {
+  df <- as.data.frame.dataset_df(
+    x,
+    strip_attributes = strip_attributes,
+    ...
+  )
+
+  tibble::as_tibble(df, .name_repair = .name_repair)
 }
 
 #' @rdname as_tibble.dataset_df
