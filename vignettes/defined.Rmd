@@ -189,28 +189,93 @@ gdp_1[gdp_1 > 5000]
 as.vector(gdp_1)
 as.list(gdp_1)
 ```
-
 ### Coerce to base R types
 
-Use `as_character()` to convert to a character vector.
+`defined()` vectors support a family of coercion helpers.  
+These methods avoid silent metadata loss and provide predictable conversions while respecting the underlying data type.
+
+All coercion functions follow the same principles:
+
+- **They operate on the underlying values**, not on labels.  
+- **Metadata is removed by default** unless explicitly preserved.  
+- **Errors are thrown when coercion would lose information** (e.g., converting character data to numeric).
+
+Below are the available coercion helpers.
+
+#### Character coercion
+
+`as_character()` converts the vector to a base R character vector.
+
+If value labels are present, they become the character representation; otherwise, the underlying values are coerced.
 
 ```{r coerce-char}
 as_character(country)
 as_character(c(gdp_1, gdp_2))
 ```
 
-Use `as_factor()` to convert a categorical variable to a `factor`:
+#### Factor coercion
+
+`as_factor()` converts the vector into a factor.
+
+- If value labels exist, they become factor levels.
+- If not, the underlying values determine the factor levels.
 
 ```{r coerce-factor}
 as_factor(country)
 ```
 
-Use `as_numeric()` to convert to a numeric vector.
+#### Numeric coercion
+
+`as_numeric()` converts numeric `defined` vectors to base R numeric.
+
+It throws an error if the underlying data is not numeric.
 
 ```{r coerce-num}
 as_numeric(c(gdp_1, gdp_2))
 ```
 
+
+#### Logical coercion
+
+`as_logical()` converts `defined` vectors whose underlying data is logical (`TRUE`/`FALSE`).
+
+Logical `defined` vectors cannot have value labels, ensuring consistent behaviour.
+
+```{r coerce-logical}
+flag <- defined(c(TRUE, FALSE, TRUE), label = "Example flag")
+as_logical(flag)
+```
+
+#### Date coercion
+
+`as_Date()` converts a `defined` vector that inherits from `Date` back into a standard R `Date` vector.
+
+Metadata is removed unless requested.
+
+```{r coerce-date}
+dates <- defined(
+  as.Date(c("2020-01-01", "2020-01-02")),
+  label = "Reference date"
+)
+as.Date(dates)
+```
+
+#### POSIXct coercion
+
+`as_POSIXct()` converts a POSIXct-based `defined` vector back into a base R `POSIXct` object.
+
+Time zones and the underlying numeric representation are always preserved.
+
+```{r coerce-posix}
+times <- defined(
+  as.POSIXct(c("2020-01-01 12:00:00", "2020-01-01 18:00:00")),
+  label = "Timestamp"
+)
+
+times 
+```
+
+These coercion helpers ensure that `defined` vectors behave predictably in modelling, exporting, and data cleaning workflows — while still preserving semantic metadata when necessary.
 
 ## Conclusion
 

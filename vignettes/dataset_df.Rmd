@@ -251,8 +251,8 @@ as.data.frame(small_country_dataset,
 
 `as_tibble()` behaves the same way as `as.data.frame()` but returns a tibble:
 
-```{r tibble}
-as_tibble(small_country_dataset)
+```{r astibble}
+as_tibble(orange_df)
 ```
 
 

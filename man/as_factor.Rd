@@ -2,12 +2,9 @@
 % Please edit documentation in R/as_factor.R
 \name{as_factor}
 \alias{as_factor}
-\alias{as.factor.haven_labelled_defined}
 \title{Coerce a defined vector to a factor}
 \usage{
 as_factor(x, ...)
-
-as.factor.haven_labelled_defined(x, ...)
 }
 \arguments{
 \item{x}{A vector created with \code{\link[=defined]{defined()}}.}
@@ -21,15 +18,14 @@ metadata on the factor. Defaults to \code{FALSE}.}
 A factor vector.
 }
 \description{
-\code{as_factor()} converts a \code{\link[=defined]{defined()}} vector into a
-standard R factor. If value labels are present, conversion uses
-\code{\link[haven:as_factor]{haven::as_factor()}}, ensuring that labelled categories become
-factor levels. Otherwise, the underlying values are converted
-to a factor in a stable and predictable way.
+\code{as_factor()} converts a \code{\link[=defined]{defined()}} vector into a standard R
+factor. If value labels are present, they are turned into factor levels
+via \code{\link[haven:as_factor]{haven::as_factor()}}. Otherwise, the underlying values are converted
+with \code{\link[base:factor]{base::factor()}}.
 
-If \code{preserve_attributes = TRUE}, metadata attributes (\code{unit},
-\code{concept}, \code{namespace}) are retained but the \code{"defined"} class
-is not.
+If \code{preserve_attributes = TRUE}, semantic metadata (\code{unit}, \code{concept},
+\code{namespace}) is copied to the resulting factor, but the
+\code{"haven_labelled_defined"} class itself is dropped.
 }
 \examples{
 sex <- defined(

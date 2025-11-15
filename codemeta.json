@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/ropensci/dataset",
   "issueTracker": "https://github.com/ropensci/dataset/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -236,7 +236,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "882.666KB",
+  "fileSize": "1668.606KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -252,7 +252,7 @@
       ],
       "name": "dataset: Create Data Frames for Exchange and Reuse",
       "url": "https://docs.ropensci.org/dataset",
-      "description": "R package version 0.4.0"
+      "description": "R package version 0.4.1"
     },
     {
       "@type": "CreativeWork",
@@ -266,7 +266,7 @@
       ],
       "name": "The dataset R Package: Create Data Frames that are Easier to Exchange and Reuse",
       "identifier": "10.32614/CRAN.package.dataset",
-      "url": "https://dataset.dataobservatory.eu/index.html",
+      "url": "https://docs.ropensci.org/dataset",
       "description": "R package version 0.4.0",
       "@id": "https://doi.org/10.32614/CRAN.package.dataset",
       "sameAs": "https://doi.org/10.32614/CRAN.package.dataset"

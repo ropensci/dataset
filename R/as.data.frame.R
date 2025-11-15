@@ -136,8 +136,8 @@ as.data.frame.dataset_df <- function(x, ...,
 #' @return A tibble with optional metadata stripping.
 #'
 #' @importFrom tibble as_tibble
-#' @export
 #' @method as_tibble dataset_df
+#' @export
 as_tibble.dataset_df <- function(x, ..., strip_attributes = TRUE) {
   df <- as.data.frame.dataset_df(x, strip_attributes = strip_attributes, ...)
   tibble::as_tibble(df)

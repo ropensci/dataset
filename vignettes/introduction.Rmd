@@ -13,7 +13,8 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-if (!requireNamespace("rdflib", quietly = TRUE)) {
+if (!requireNamespace("rdflib", 
+                      quietly = TRUE)) {
   stop("Please install 'rdflib' to run this vignette.")
 }
 ```
@@ -47,7 +48,7 @@ The `dataset` package addresses this by allowing you to define variables explici
 
 Semantically rich vectors are vectors in a data.frame that contain richer semantics than a simple column name; a long-form human-readable title; a machine- and human-readable variable definition; and if needed, an external resource that contains the codebook.
 
-```{r}
+```{r definegdpdataset}
 library(dataset)
 
 gdp <- defined(
@@ -90,7 +91,7 @@ small_dataset
 
 This dataset not only stores the variables and values, but also includes embedded metadata that supports precise interpretation and repository-level publication.
 
-```{r}
+```{r dublincoremetadata}
 as_dublincore(small_dataset)
 ```
 
@@ -112,8 +113,10 @@ triples
 This 3-column format (subject–predicate–object) is compatible with semantic web tools such as SPARQL, `rdflib`, and triple stores.
 
 ```{r ntexample}
-mycon <- tempfile("my_dataset", fileext = "nt")
-my_description <- describe(x = small_dataset, con = mycon)
+mycon <- tempfile("my_dataset", 
+                  fileext = "nt")
+my_description <- describe(x = small_dataset, 
+                           con = mycon)
 
 # Only three statements are shown:
 readLines(mycon)[c(4, 8, 12)]
@@ -123,6 +126,31 @@ readLines(mycon)[c(4, 8, 12)]
 ## Show two lines of provenance:
 provenance(small_dataset)[c(6, 7)]
 ```
+
+## Coercing back
+
+There may be use cases when your richer dataset needs to be simplified to as base R `data.frame` or a `tbf_df`. 
+
+We offer two coercion forms:
+
+```{r smalldf}
+small_df <- as.data.frame(small_dataset, 
+              strip_attributes = FALSE)
+
+attr(small_dataset, "subject")
+```
+Using the `strip_attributes = FALSE` the rich attributes remain in the base R data.frame. In most pipelines the attributes play no role, and you can retain it, and perhaps later load it back to a richer form.
+
+You can also strip all these attributes, and choose `tbl_df` (if you have `tibble`) installed":
+
+```{r smalldf}
+small_tbl <- as_tibble(
+  small_dataset, 
+  strip_attributes = TRUE)
+
+small_tbl
+```
+
 
 ## Summary
 

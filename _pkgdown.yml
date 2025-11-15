@@ -68,7 +68,11 @@ reference:
   - title: "Dataset"
     desc: >
       Work with DataSet objects that resemble the W3C and SDMX datacube model.
-    contents: [dataset_df, bind_defined_rows, as.data.frame, as_tibble.dataset_df]
+    contents:
+      - dataset_df
+      - bind_defined_rows
+      - as.data.frame.dataset_df
+      - as_tibble.dataset_df
   - title: "Defined"
     desc: >
       A labelled subclass that retains unit, definition and namespace.
@@ -82,12 +86,12 @@ reference:
       - as_numeric
       - as_character
       - as_factor
-      - as.Date
-      - as.POSIXct
+      - as_logical
+      - as.Date.haven_labelled_defined
+      - as.POSIXct.haven_labelled_defined
       - strip_defined
       - get_variable_concepts
       - c.haven_labelled_defined
-      - vec_cast.double.haven_labelled_defined
   - title: "Bibliography functions"
     desc: >
       Constructors for extended bibentry classes (DataCite / DCTERMS).
