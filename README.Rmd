@@ -128,6 +128,13 @@ We welcome contributions and discussion!
 -   Ideas, bug reports, and feedback are welcome via [GitHub issues](https://github.com/ropensci/dataset/issues).
 -  The design principles and ideas for futher development are explained in [Design Principles & Future Work Semantically Enriched, Standards-Aligned Datasets in R](https://dataset.dataobservatory.eu/articles/design.html).
 
+Please refer to this package as:
+
+Daniel Antal. (2025). _dataset: Create Data Frames that are Easier to Exchange and Reuse (0.4.1)_. The Comprehensive R Archive Network. <https://zenodo.org/records/17621464>, DOI: [	10.32614/CRAN.package.dataset](https:://doi.org/	10.32614/CRAN.package.dataset)
+
+See contributors on the website and in the DESCRIPTION file.
+
+
 ## Code of Conduct
 
 This project follows the [rOpenSci Code of Conduct](https://ropensci.org/code-of-conduct/). By participating, you are expected to uphold these guidelines.
