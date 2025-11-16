@@ -356,12 +356,14 @@ length.haven_labelled_defined <- function(x) {
 
 #' @export
 #' @importFrom vctrs vec_data
+#' @importFrom utils head
 head.haven_labelled_defined <- function(x, n = 6L, ...) {
   x[seq_len(min(n, length(x)))]
 }
 
 #' @export
 #' @importFrom vctrs vec_data
+#' @importFrom utils tail
 tail.haven_labelled_defined <- function(x, n = 6L, ...) {
   x[seq.int(to = length(x), length.out = min(n, length(x)))]
 }
