@@ -124,8 +124,8 @@ provenance(df)
 
 We welcome contributions and discussion!
 
--   Please see our [CONTRIBUTING.md](https://github.com/dataobservatory-eu/dataset/blob/main/CONTRIBUTING.md) guide.
--   Ideas, bug reports, and feedback are welcome via [GitHub issues](https://github.com/dataobservatory-eu/dataset/issues).
+-   Please see our [CONTRIBUTING.md](https://github.com/ropensci/dataset/blob/main/CONTRIBUTING.md) guide.
+-   Ideas, bug reports, and feedback are welcome via [GitHub issues](https://github.com/ropensci/dataset/issues).
 -  The design principles and ideas for futher development are explained in [Design Principles & Future Work Semantically Enriched, Standards-Aligned Datasets in R](https://dataset.dataobservatory.eu/articles/design.html).
 
 ## Code of Conduct

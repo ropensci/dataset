@@ -127,7 +127,7 @@ provenance(df)
     #> [4] "_:doejane <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Agent> ."                                              
     #> [5] "<https://doi.org/10.32614/CRAN.package.dataset> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#SoftwareAgent> ."
     #> [6] "<http://example.com/creation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> ."                       
-    #> [7] "<http://example.com/creation> <http://www.w3.org/ns/prov#generatedAtTime> \"2025-11-15T20:42:22Z\"^^<xsd:dateTime> ."
+    #> [7] "<http://example.com/creation> <http://www.w3.org/ns/prov#generatedAtTime> \"2025-11-16T08:47:24Z\"^^<xsd:dateTime> ."
 
 </div>
 
@@ -136,10 +136,10 @@ provenance(df)
 We welcome contributions and discussion!
 
 - Please see our
-  [CONTRIBUTING.md](https://github.com/dataobservatory-eu/dataset/blob/main/CONTRIBUTING.md)
+  [CONTRIBUTING.md](https://github.com/ropensci/dataset/blob/main/CONTRIBUTING.md)
   guide.
 - Ideas, bug reports, and feedback are welcome via [GitHub
-  issues](https://github.com/dataobservatory-eu/dataset/issues).
+  issues](https://github.com/ropensci/dataset/issues).
 - The design principles and ideas for futher development are explained
   in [Design Principles & Future Work Semantically Enriched,
   Standards-Aligned Datasets in

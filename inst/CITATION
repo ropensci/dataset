@@ -9,6 +9,6 @@ bibentry(bibtype = "Misc",
          day = "16",
          note = "R package version 0.4.1",
          publisher = "Comprehensive R Archive Network",
-         url = "https://docs.ropensci.org/dataset",
+         url = "https://dataset.dataobservatory.eu/",
          doi = "10.32614/CRAN.package.dataset")
 
