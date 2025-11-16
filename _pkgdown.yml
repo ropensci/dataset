@@ -89,6 +89,7 @@ reference:
       - as_logical
       - as.Date.haven_labelled_defined
       - as.POSIXct.haven_labelled_defined
+      - print.haven_labelled_defined
       - strip_defined
       - get_variable_concepts
       - c.haven_labelled_defined

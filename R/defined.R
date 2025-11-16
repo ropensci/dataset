@@ -55,6 +55,7 @@
 #'   [`as_logical()`],
 #'   [`strip_defined()`],
 #'   [`dataset_df()`]
+#'   [`print.haven_labelled_defined()`]
 #'
 #' @examples
 #' gdp_vector <- defined(
@@ -371,6 +372,20 @@ tail.haven_labelled_defined <- function(x, n = 6L, ...) {
 
 ## Print & Summary --------------------------------------------------
 
+#' Print a defined (haven_labelled_defined) vector
+#'
+#' @description
+#' Custom print method for [`haven_labelled_defined`] vectors created with
+#' [defined()]. It prints the variable name, label, and a short semantic
+#' summary before the underlying values.
+#'
+#' @param x A `haven_labelled_defined` vector.
+#' @param ... Passed on to [base::print()].
+#'
+#' @return `x`, invisibly.
+#'
+#' @seealso [defined()], [summary.haven_labelled_defined()]
+#'
 #' @export
 print.haven_labelled_defined <- function(x, ...) {
   has_def <- !is.null(var_concept(x)) && !is.na(var_concept(x)) && nzchar(var_concept(x))

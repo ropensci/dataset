@@ -2,9 +2,12 @@
 % Please edit documentation in R/as_factor.R
 \name{as_factor}
 \alias{as_factor}
+\alias{as_factor.haven_labelled_defined}
 \title{Coerce a defined vector to a factor}
 \usage{
 as_factor(x, ...)
+
+\method{as_factor}{haven_labelled_defined}(x, strip_attributes = TRUE, ...)
 }
 \arguments{
 \item{x}{A vector created with \code{\link[=defined]{defined()}}.}
@@ -14,7 +17,7 @@ as_factor(x, ...)
 \item{strip_attributes}{Logical; should semantic metadata attributes
 (such as \code{label}, \code{unit}, \code{definition}, and
 \code{namespace}) be removed from the returned vector?
-Defaults to \code{FALSE}.}
+Defaults to \code{TRUE}.}
 }
 \value{
 A factor vector.

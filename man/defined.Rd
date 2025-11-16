@@ -105,4 +105,5 @@ gdp_vector[1:2]
 \code{\link[=as_logical]{as_logical()}},
 \code{\link[=strip_defined]{strip_defined()}},
 \code{\link[=dataset_df]{dataset_df()}}
+\code{\link[=print.haven_labelled_defined]{print.haven_labelled_defined()}}
 }

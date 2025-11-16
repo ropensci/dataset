@@ -10,10 +10,6 @@
 #' external pipelines, but keep the default when working with defined
 #' vectors directly.
 #' @param x A vector created with [defined()].
-#' @param strip_attributes Logical; should semantic metadata attributes
-#'   (such as \code{label}, \code{unit}, \code{definition}, and
-#'   \code{namespace}) be removed from the returned vector?
-#'   Defaults to \code{FALSE}.
 #' @param ... Reserved for future extensions.
 #'
 #' @return A factor vector.
@@ -33,7 +29,12 @@ as_factor <- function(x, ...) {
   UseMethod("as_factor")
 }
 
+#' @rdname as_factor
 #' @export
+#' @param strip_attributes Logical; should semantic metadata attributes
+#'   (such as \code{label}, \code{unit}, \code{definition}, and
+#'   \code{namespace}) be removed from the returned vector?
+#'   Defaults to \code{TRUE}.
 #' @importFrom haven as_factor labelled
 #' @importFrom vctrs vec_data
 as_factor.haven_labelled_defined <- function(
