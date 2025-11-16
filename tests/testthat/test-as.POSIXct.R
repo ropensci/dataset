@@ -45,7 +45,11 @@ test_that("as.POSIXct.haven_labelled_defined respects
   target_tz <- "Europe/Budapest"
 
   # user explicitly requests a new time zone
+<<<<<<< HEAD
   out <- as.POSIXct(x, tz = target_tz, strip_attributes = FALSE)
+=======
+  out <- as.POSIXct(x, tz = target_tz)
+>>>>>>> 235e460ab03fb09bc418876b8fd6cbcf319d2ce8
 
   # what base R would do without the wrapper
   expected <- base::as.POSIXct(base_time, tz = target_tz)
@@ -61,7 +65,11 @@ test_that("as.POSIXct.haven_labelled_defined respects
   # 3) Time zone: whatever base R uses, we mirror
   expect_identical(attr(out, "tzone"), attr(expected, "tzone"))
 
+<<<<<<< HEAD
   # 4) Metadata: by default strip_attributes = TRUE, so we keep it
+=======
+  # 4) Metadata: by default strip_attributes = FALSE, so we keep it
+>>>>>>> 235e460ab03fb09bc418876b8fd6cbcf319d2ce8
   expect_identical(attr(out, "label"), "Timestamp")
   expect_identical(attr(out, "unit"),  "seconds")
 })
