@@ -61,7 +61,11 @@ test_that("as.POSIXct.haven_labelled_defined respects
   # 3) Time zone: whatever base R uses, we mirror
   expect_identical(attr(out, "tzone"), attr(expected, "tzone"))
 
+<<<<<<< HEAD
   # 4) Metadata: by default strip_attributes = TRUE, so we keep it
+=======
+  # 4) Metadata: by default strip_attributes = FALSE, so we keep it
+>>>>>>> 235e460ab03fb09bc418876b8fd6cbcf319d2ce8
   expect_identical(attr(out, "label"), "Timestamp")
   expect_identical(attr(out, "unit"),  "seconds")
 })
