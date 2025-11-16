@@ -27,14 +27,15 @@ test_that("as_character() without preserve_attributes drops
   expect_false(inherits(result, "haven_labelled_defined"))
 })
 
-test_that("as_character() with preserve_attributes keeps metadata", {
+test_that("as_character() with strip_attributes=FALSE
+          keeps metadata", {
   x <- defined(c("yes", "no"),
     label = "Binary",
     unit = "boolean",
     concept = "http://example.org/binary",
     namespace = "http://example.org/ns"
   )
-  result <- as_character(x, preserve_attributes = TRUE)
+  result <- as_character(x, strip_attributes = FALSE)
   expect_type(result, "character")
   expect_equal(attr(result, "unit"), "boolean")
   expect_equal(
@@ -61,7 +62,7 @@ test_that("as_character() strips ALL semantic attributes by default", {
   )
   attr(x, "extra_attr") <- "xyz"
 
-  out <- as_character(x) # default preserve_attributes = FALSE
+  out <- as_character(x) # default strip_attributes = TRUE
 
   expect_type(out, "character")
   expect_false(inherits(out, "haven_labelled_defined"))
@@ -76,7 +77,8 @@ test_that("as_character() strips ALL semantic attributes by default", {
   expect_null(attr(out, "extra_attr"))
 })
 
-test_that("as_character(preserve_attributes = TRUE) preserves only semantic attributes", {
+test_that("as_character(strip_attributes = FALSE) preserves
+          only semantic attributes", {
   x <- defined(
     c("red", "green"),
     label = "Color",
@@ -86,7 +88,7 @@ test_that("as_character(preserve_attributes = TRUE) preserves only semantic attr
   )
   attr(x, "extra_attr") <- "to_be_dropped"
 
-  out <- as_character(x, preserve_attributes = TRUE)
+  out <- as_character(x, strip_attributes = FALSE)
 
   expect_type(out, "character")
   expect_false(inherits(out, "haven_labelled_defined"))
@@ -101,7 +103,8 @@ test_that("as_character(preserve_attributes = TRUE) preserves only semantic attr
   expect_null(attr(out, "extra_attr"))
 })
 
-test_that("as.character() (base) always returns plain character with no attributes", {
+test_that("as.character() (base) always returns plain character
+          with no attributes", {
   x <- defined(
     c("yes", "no"),
     label = "Binary",

@@ -62,7 +62,7 @@ Column names in the output tibble may be repaired according to
 
 \examples{
 # Convert a dataset_df to a tibble
-x <- dataset_df(...)
+x <- dataset_df(orange_df)
 as_tibble(x)
 
 # Keep attributes

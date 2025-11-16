@@ -1,6 +1,5 @@
 ANZSRC
 BCP
-BibLaTeX
 Bibentry
 Boettinger
 C's
@@ -44,7 +43,6 @@ SPARQL
 Tidyverse
 URIs
 UoM
-WIP
 Wikibase
 Wilks
 XSD
@@ -82,6 +80,7 @@ nabular
 obs
 org
 pivotted
+purrr
 queryable
 rOpenSci
 rd
@@ -97,5 +96,6 @@ terminologic
 tibble
 tibbles
 tidyverse
+timezones
 ttl
 unlabeled

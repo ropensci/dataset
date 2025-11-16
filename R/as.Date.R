@@ -7,6 +7,11 @@
 #' This method preserves the underlying date values and, by default,
 #' also retains any semantic metadata attached to the variable.
 #'
+#' @details
+#' Use \code{strip_attributes = TRUE} when flattening or preparing data for
+#' external pipelines, but keep the default when working with defined
+#' vectors directly.
+#'
 #' Base R's [`as.Date()`] also works, as it dispatches to this method via
 #' S3. However, using `as.Date()` on defined vectors is considered safe
 #' because this method ensures metadata is handled predictably.

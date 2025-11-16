@@ -84,13 +84,13 @@ as.data.frame.dataset_df <- function(x, ...,
           # numeric: use semantic-aware numeric coercion
           col <- as_numeric(
             col,
-            preserve_attributes = !strip_attributes
+            strip_attributes = strip_attributes
           )
         } else {
           # fallback: character with semantic awareness
           col <- as_character(
             col,
-            preserve_attributes = !strip_attributes
+            strip_attributes = strip_attributes
           )
         }
       }
@@ -170,7 +170,7 @@ as.data.frame.dataset_df <- function(x, ...,
 #'
 #' @examples
 #' # Convert a dataset_df to a tibble
-#' x <- dataset_df(...)
+#' x <- dataset_df(orange_df)
 #' as_tibble(x)
 #'
 #' # Keep attributes

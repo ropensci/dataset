@@ -11,8 +11,10 @@ as_factor(x, ...)
 
 \item{...}{Reserved for future extensions.}
 
-\item{preserve_attributes}{Logical; whether to retain semantic
-metadata on the factor. Defaults to \code{FALSE}.}
+\item{strip_attributes}{Logical; should semantic metadata attributes
+(such as \code{label}, \code{unit}, \code{definition}, and
+\code{namespace}) be removed from the returned vector?
+Defaults to \code{FALSE}.}
 }
 \value{
 A factor vector.
@@ -22,10 +24,11 @@ A factor vector.
 factor. If value labels are present, they are turned into factor levels
 via \code{\link[haven:as_factor]{haven::as_factor()}}. Otherwise, the underlying values are converted
 with \code{\link[base:factor]{base::factor()}}.
-
-If \code{preserve_attributes = TRUE}, semantic metadata (\code{unit}, \code{concept},
-\code{namespace}) is copied to the resulting factor, but the
-\code{"haven_labelled_defined"} class itself is dropped.
+}
+\details{
+Use \code{strip_attributes = TRUE} when flattening or preparing data for
+external pipelines, but keep the default when working with defined
+vectors directly.
 }
 \examples{
 sex <- defined(
@@ -35,6 +38,6 @@ sex <- defined(
 )
 
 as_factor(sex)
-as_factor(sex, preserve_attributes = TRUE)
+as_factor(sex, strip_attributes = FALSE)
 
 }

@@ -11,3 +11,4 @@ old-functions/
 tests - Shortcut.lnk
 appveyor.bak.yml
 review.md
+^dataset*.txt

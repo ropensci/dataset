@@ -9,6 +9,11 @@
 #' unless otherwise requested, retains the semantic metadata attached to the
 #' variable.
 #'
+#' @details
+#' Use \code{strip_attributes = TRUE} when flattening or preparing data for
+#' external pipelines, but keep the default when working with defined
+#' vectors directly.
+#'
 #' Users may also call base R's [`as.logical()`], which will dispatch to this
 #' method automatically via S3. However, `as_logical()` is preferred because
 #' it makes the semantics explicit and supports the `strip_attributes`
@@ -20,9 +25,6 @@
 #'   \code{namespace}) be removed from the returned vector?
 #'   Defaults to \code{FALSE}.
 #'
-#'   Use \code{strip_attributes = TRUE} when flattening or preparing data for
-#'   external pipelines, but keep the default when working with defined
-#'   vectors directly.
 #'
 #' @param ... Additional arguments (currently unused).
 #'

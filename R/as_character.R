@@ -11,14 +11,22 @@
 #' If `preserve_attributes = FALSE` (default), a plain character vector is
 #' returned with *all* metadata stripped.
 #'
+#' @details
+#' Use \code{strip_attributes = TRUE} when flattening or preparing data for
+#' external pipelines, but keep the default when working with defined
+#' vectors directly.
+#'
 #' Base R's `as.character()` always drops all attributes and returns plain
 #' character values. It is equivalent to:
-#' `as_character(x, preserve_attributes = FALSE)`.
+#' `as_character(x, strip_attributes = TRUE)`.
 #'
 #' @param x A vector created with [defined()].
-#' @param preserve_attributes Logical; whether to retain semantic metadata.
-#'   Defaults to `FALSE`.
-#' @param ... Reserved for future use.
+#' @param strip_attributes Logical; should semantic metadata attributes
+#'   (such as \code{label}, \code{unit}, \code{definition}, and
+#'   \code{namespace}) be removed from the returned vector?
+#'   Defaults to \code{FALSE}.
+#'
+#' @param ... Reserved for potential future use.
 #'
 #' @return A character vector (plain or with attributes).
 #'
@@ -29,7 +37,7 @@
 #' as_character(x)
 #'
 #' # Preserve metadata:
-#' as_character(x, preserve_attributes = TRUE)
+#' as_character(x, strip_attributes = FALSE)
 #'
 #' # Base R:
 #' as.character(x)
@@ -43,12 +51,12 @@ as_character <- function(x, ...) {
 #' @export
 as_character.haven_labelled_defined <- function(
     x,
-    preserve_attributes = FALSE,
+    strip_attributes = TRUE,
     ...) {
   base <- vctrs::vec_data(x)
   out <- as.character(base)
 
-  if (preserve_attributes) {
+  if (! strip_attributes) {
     attr(out, "label") <- attr(x, "label")
     attr(out, "unit") <- attr(x, "unit")
     attr(out, "concept") <- attr(x, "concept")

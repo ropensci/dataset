@@ -32,3 +32,4 @@
 ^examples/dataset.html
 ^examples/index.html
 ^examples/dataset.ttl
+^dataset*.txt
