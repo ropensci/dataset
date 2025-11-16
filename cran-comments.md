@@ -14,10 +14,12 @@ rOpenSci:
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
-## Resubmission
+## 0.4.1 sumbission
 
-This resubmission addresses the following URL check notes, which are all
-false negatives, but nevertheless must be addressed:
+This is a minor release that works better with Date and POSIXct types. 
+In some tests, the following false negative URLs may appear, which are 
+correct uses of example.com, the World Wide Web consortium's usage of 
+non-existing example URLs:
 
 Found the following (possibly) invalid URLs:
   URL: http://example.com/dataset#eg:1
