@@ -170,7 +170,7 @@ as.data.frame.dataset_df <- function(x, ...,
 #'
 #' @examples
 #' # Convert a dataset_df to a tibble
-#' x <- dataset_df(...)
+#' x <- dataset_df(orange_df)
 #' as_tibble(x)
 #'
 #' # Keep attributes

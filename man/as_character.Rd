@@ -8,16 +8,18 @@
 \usage{
 as_character(x, ...)
 
-\method{as_character}{haven_labelled_defined}(x, preserve_attributes = FALSE, ...)
+\method{as_character}{haven_labelled_defined}(x, strip_attributes = TRUE, ...)
 
 \method{as.character}{haven_labelled_defined}(x, ...)
 }
 \arguments{
 \item{x}{A vector created with \code{\link[=defined]{defined()}}.}
 
-\item{...}{Reserved for future use.}
+\item{...}{Reserved for potential future use.}
 
-\item{preserve_attributes}{Logical; whether to retain semantic metadata.
+\item{strip_attributes}{Logical; should semantic metadata attributes
+(such as \code{label}, \code{unit}, \code{definition}, and
+\code{namespace}) be removed from the returned vector?
 Defaults to \code{FALSE}.}
 }
 \value{
@@ -38,9 +40,13 @@ metadata attributes (\code{unit}, \code{concept}, \code{namespace}, \code{label}
 If \code{preserve_attributes = FALSE} (default), a plain character vector is
 returned with \emph{all} metadata stripped.
 
+Use \code{strip_attributes = TRUE} when flattening or preparing data for
+external pipelines, but keep the default when working with defined
+vectors directly.
+
 Base R's \code{as.character()} always drops all attributes and returns plain
 character values. It is equivalent to:
-\code{as_character(x, preserve_attributes = FALSE)}.
+\code{as_character(x, strip_attributes = TRUE)}.
 }
 \examples{
 x <- defined(c("apple", "banana"), label = "Fruit", unit = "kg")
@@ -49,7 +55,7 @@ x <- defined(c("apple", "banana"), label = "Fruit", unit = "kg")
 as_character(x)
 
 # Preserve metadata:
-as_character(x, preserve_attributes = TRUE)
+as_character(x, strip_attributes = FALSE)
 
 # Base R:
 as.character(x)

@@ -4,11 +4,18 @@
 \alias{as.POSIXct.haven_labelled_defined}
 \title{Coerce a defined POSIXct vector to a base R POSIXct}
 \usage{
-\method{as.POSIXct}{haven_labelled_defined}(x, strip_attributes = FALSE, ...)
+\method{as.POSIXct}{haven_labelled_defined}(x, tz = "", strip_attributes = TRUE, ...)
 }
 \arguments{
 \item{x}{A vector created with \code{\link[=defined]{defined()}} with underlying type
 \code{POSIXct}.}
+
+\item{tz}{a character string. The time zone specification to be used for
+the conversion, if one is required. System-specific timezones
+(see \code{\link[base:timezones]{base::timezones()}},
+but "" is the current time zone, and "GMT" is UTC (Universal Time,
+Coordinated). Invalid values are most commonly treated as UTC, on
+some platforms with a warning.}
 
 \item{strip_attributes}{Logical; should semantic metadata attributes
 (label, unit, definition, namespace) be removed? Defaults to
@@ -25,7 +32,11 @@ Coerces a \code{\link{haven_labelled_defined}} vector whose underlying type is
 
 This method preserves both the timestamp values and the original time zone.
 By default, semantic metadata is also retained.
-
+}
+\details{
+Use \code{strip_attributes = TRUE} when flattening or preparing data for
+external pipelines, but keep the default when working with defined
+vectors directly.\cr
 Base R's \code{\link[=as.POSIXct]{as.POSIXct()}} also works, as it dispatches to this method via
 S3. Using this method directly is preferred when metadata preservation
 matters.

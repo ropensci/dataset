@@ -38,7 +38,8 @@ test_that("as_factor() without labels returns numeric-like factor", {
   expect_equal(as.character(f), c("1", "2", "1", "3"))
 })
 
-test_that("as_factor() preserves metadata when preserve_attributes = TRUE", {
+test_that("as_factor() preserves metadata when
+          strip_attributes = FALSE", {
   x <- defined(
     c(0, 1, 0),
     label = "Yes/No",
@@ -48,7 +49,7 @@ test_that("as_factor() preserves metadata when preserve_attributes = TRUE", {
     namespace = "http://example.org/ns/"
   )
 
-  f <- as_factor(x, preserve_attributes = TRUE)
+  f <- as_factor(x, strip_attributes = FALSE)
 
   expect_s3_class(f, "factor")
   expect_equal(attr(f, "unit"), "boolean")
@@ -58,7 +59,7 @@ test_that("as_factor() preserves metadata when preserve_attributes = TRUE", {
 })
 
 test_that("as_factor() strips metadata when
-          preserve_attributes = FALSE", {
+          strip_attributes = TRUE", {
   x <- defined(
     c(1, 2, 1),
     label = "Test",
@@ -68,7 +69,7 @@ test_that("as_factor() strips metadata when
     namespace = "ns"
   )
 
-  f <- as_factor(x, preserve_attributes = FALSE)
+  f <- as_factor(x, strip_attributes = TRUE)
 
   expect_s3_class(f, "factor")
   expect_null(attr(f, "unit"))
@@ -146,3 +147,4 @@ test_that("as_factor() retains level order stability for
 
   expect_equal(levels(f), c("10", "20", "30"))
 })
+

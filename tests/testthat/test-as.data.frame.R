@@ -178,7 +178,9 @@ test_that("as.data.frame.dataset_df(strip_attributes = FALSE) keeps semantic att
 
   ds <- dataset_df(
     num  = defined(1:3, label = "Num", unit = "kg", concept = "x"),
-    chr  = defined(c("A", "B", "C"), label = "Letters", namespace = "http://ns"),
+    chr  = defined(c("A", "B", "C"),
+                   label = "Letters",
+                   namespace = "http://ns"),
     date = defined(d, label = "DateLabel", unit = "day"),
     time = defined(p, label = "TimeLabel", unit = "hour")
   )

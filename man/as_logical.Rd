@@ -17,11 +17,7 @@ as_logical(x, ...)
 \item{strip_attributes}{Logical; should semantic metadata attributes
 (such as \code{label}, \code{unit}, \code{definition}, and
 \code{namespace}) be removed from the returned vector?
-Defaults to \code{FALSE}.
-
-Use \code{strip_attributes = TRUE} when flattening or preparing data for
-external pipelines, but keep the default when working with defined
-vectors directly.}
+Defaults to \code{FALSE}.}
 }
 \value{
 A logical vector. If \code{strip_attributes = FALSE}, any semantic
@@ -35,6 +31,11 @@ This function is the recommended, semantic-aware interface for converting
 defined logical vectors. It preserves the underlying logical values and,
 unless otherwise requested, retains the semantic metadata attached to the
 variable.
+}
+\details{
+Use \code{strip_attributes = TRUE} when flattening or preparing data for
+external pipelines, but keep the default when working with defined
+vectors directly.
 
 Users may also call base R's \code{\link[=as.logical]{as.logical()}}, which will dispatch to this
 method automatically via S3. However, \code{as_logical()} is preferred because

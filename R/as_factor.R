@@ -5,14 +5,15 @@
 #' factor. If value labels are present, they are turned into factor levels
 #' via [haven::as_factor()]. Otherwise, the underlying values are converted
 #' with [base::factor()].
-#'
-#' If `preserve_attributes = TRUE`, semantic metadata (`unit`, `concept`,
-#' `namespace`) is copied to the resulting factor, but the
-#' `"haven_labelled_defined"` class itself is dropped.
-#'
+#' @details
+#' Use \code{strip_attributes = TRUE} when flattening or preparing data for
+#' external pipelines, but keep the default when working with defined
+#' vectors directly.
 #' @param x A vector created with [defined()].
-#' @param preserve_attributes Logical; whether to retain semantic
-#'   metadata on the factor. Defaults to `FALSE`.
+#' @param strip_attributes Logical; should semantic metadata attributes
+#'   (such as \code{label}, \code{unit}, \code{definition}, and
+#'   \code{namespace}) be removed from the returned vector?
+#'   Defaults to \code{FALSE}.
 #' @param ... Reserved for future extensions.
 #'
 #' @return A factor vector.
@@ -25,7 +26,7 @@
 #' )
 #'
 #' as_factor(sex)
-#' as_factor(sex, preserve_attributes = TRUE)
+#' as_factor(sex, strip_attributes = FALSE)
 #'
 #' @export
 as_factor <- function(x, ...) {
@@ -35,9 +36,10 @@ as_factor <- function(x, ...) {
 #' @export
 #' @importFrom haven as_factor labelled
 #' @importFrom vctrs vec_data
-as_factor.haven_labelled_defined <- function(x,
-                                             preserve_attributes = FALSE,
-                                             ...) {
+as_factor.haven_labelled_defined <- function(
+    x,
+    strip_attributes = TRUE,
+    ...) {
   vals <- vctrs::vec_data(x)
   lbls <- attr(x, "labels", exact = TRUE)
 
@@ -54,7 +56,7 @@ as_factor.haven_labelled_defined <- function(x,
 
   # (We don't touch class(fac): it's already a plain factor)
   # Optionally copy semantic metadata
-  if (preserve_attributes) {
+  if (!strip_attributes) {
     attr(fac, "unit")      <- attr(x, "unit",      exact = TRUE)
     attr(fac, "concept")   <- attr(x, "concept",   exact = TRUE)
     attr(fac, "namespace") <- attr(x, "namespace", exact = TRUE)
