@@ -166,7 +166,7 @@ A minor correction to avoid vignettes downloading data from the Eurostat data wa
 
 # dataset 0.1.3.
 
-* Vignette articles started to develop and consult the development plan of the project. See  [From dataset To RDF](https://dataset.dataobservatory.eu/articles/rdf.html), _Export and Publish A dataset Object_, _Datasets with FAIR metadata_, all [comments](https://github.com/dataobservatory-eu/dataset/issues/) are welcome.
+* Vignette articles started to develop and consult the development plan of the project. See  [From dataset To RDF](https://dataset.dataobservatory.eu/articles/rdf.html), _Export and Publish A dataset Object_, _Datasets with FAIR metadata_.
 * New functions: `download_dataset()`, `datacite()`, and the `dataset()` constructor.
 
 # dataset 0.1.2.
