@@ -45,15 +45,7 @@ test_that("as.POSIXct.haven_labelled_defined respects
   target_tz <- "Europe/Budapest"
 
   # user explicitly requests a new time zone
-<<<<<<< HEAD
   out <- as.POSIXct(x, tz = target_tz, strip_attributes = FALSE)
-=======
-<<<<<<< HEAD
-  out <- as.POSIXct(x, tz = target_tz, strip_attributes = FALSE)
-=======
-  out <- as.POSIXct(x, tz = target_tz)
->>>>>>> 235e460ab03fb09bc418876b8fd6cbcf319d2ce8
->>>>>>> 0d9b7807b5ca8c5aa29ca2b75c33ab72055c5882
 
   # what base R would do without the wrapper
   expected <- base::as.POSIXct(base_time, tz = target_tz)
