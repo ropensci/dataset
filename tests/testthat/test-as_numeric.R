@@ -21,7 +21,8 @@ test_that("as_numeric() drops metadata by default (strip_attributes = TRUE)", {
 })
 
 
-test_that("as_numeric() preserves metadata when preserve_attributes = TRUE", {
+test_that("as_numeric() preserves metadata when
+          strip_attributes = FALSE", {
   gdp <- defined(
     c(1000L, 2000L),
     label = "GDP",
@@ -30,7 +31,7 @@ test_that("as_numeric() preserves metadata when preserve_attributes = TRUE", {
     namespace = "http://ns/"
   )
 
-  num <- as_numeric(gdp, preserve_attributes = TRUE)
+  num <- as_numeric(gdp, strip_attributes = FALSE)
 
   expect_equal(attr(num, "label"), "GDP")
   expect_equal(attr(num, "unit"), "million dollars")
@@ -56,20 +57,6 @@ test_that("as_numeric() preserves metadata when strip_attributes = FALSE", {
   expect_equal(attr(num, "label"), "GDP")
   expect_equal(attr(num, "unit"), "EUR")
   expect_equal(attr(num, "concept"), "c:gdp")
-})
-
-
-test_that("preserve_attributes overrides strip_attributes", {
-  x <- defined(
-    c(1, 2, 3),
-    label = "Test",
-    unit = "kg"
-  )
-
-  out <- as_numeric(x, strip_attributes = TRUE, preserve_attributes = TRUE)
-
-  expect_equal(attr(out, "label"), "Test")
-  expect_equal(attr(out, "unit"), "kg")
 })
 
 
@@ -167,7 +154,8 @@ test_that("as_numeric() drops metadata by default", {
   expect_false(inherits(num, "defined"))
 })
 
-test_that("as_numeric(preserve_attributes = TRUE) keeps only semantic attributes", {
+test_that("as_numeric(strip_attributes = FALSE) keeps
+          only semantic attributes", {
   x <- defined(
     1:3,
     label = "Count",
@@ -178,7 +166,7 @@ test_that("as_numeric(preserve_attributes = TRUE) keeps only semantic attributes
   # add an extra, non-semantic attribute to x
   attr(x, "extra_attr") <- "should_not_survive"
 
-  out <- as_numeric(x, preserve_attributes = TRUE)
+  out <- as_numeric(x, strip_attributes =  FALSE)
 
   expect_type(out, "integer")
   expect_false(inherits(out, "haven_labelled_defined"))
@@ -202,7 +190,7 @@ test_that("as_numeric() strips ALL semantic attributes by default", {
     namespace = "http://example.org/ns"
   )
 
-  out <- as_numeric(x) # default preserve_attributes = FALSE
+  out <- as_numeric(x) # default strip_attributes = TRUE
 
   expect_type(out, "integer")
   expect_false(inherits(out, "haven_labelled_defined"))
