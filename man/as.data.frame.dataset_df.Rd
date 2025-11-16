@@ -42,3 +42,8 @@ each column, but this can be controlled via the
 
 Dataset-level metadata remains attached as inert attributes.
 }
+\examples{
+data(orange_df)
+as.data.frame(orange_df)
+
+}

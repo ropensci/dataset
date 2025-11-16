@@ -5,17 +5,30 @@
 #' It validates that the underlying data are numeric, and optionally preserves
 #' or strips semantic metadata.
 #'
-#' This function supports **both** the new argument `strip_attributes`
-#' and the backward-compatible `preserve_attributes = TRUE` used in older tests.
+#' @details
+#' Use \code{strip_attributes = TRUE} when flattening or preparing data for
+#' external pipelines, but keep the default when working with defined
+#' vectors directly.
+#'
+#' `as.numeric()` drops all metadata and returns only the numeric values in
+#' a vector.
 #'
 #' @param x A vector created with [defined()].
 #' @param strip_attributes Logical; whether to remove semantic metadata
 #'   (`label`, `unit`, `concept`, `namespace`). Defaults to `TRUE`.
-#' @param preserve_attributes Legacy argument. If `TRUE`, overrides
-#'   `strip_attributes = FALSE`. If `FALSE`, ignored.
 #' @param ... Reserved for future use.
 #'
 #' @return A numeric vector with or without preserved attributes.
+#' @examples
+#' x <- defined(
+#'      1:3,
+#'      label = "Count",
+#'      unit = "n",
+#'      concept = "http://example.org/count",
+#'      namespace = "http://example.org/ns"
+#' )
+#'
+#' as_numeric(x)
 #'
 #' @export
 as_numeric <- function(x, ...) {
@@ -26,13 +39,7 @@ as_numeric <- function(x, ...) {
 #' @export
 as_numeric.haven_labelled_defined <- function(x,
                                               strip_attributes = TRUE,
-                                              preserve_attributes = FALSE,
                                               ...) {
-  # Legacy compatibility:
-  # preserve_attributes = TRUE  →  strip_attributes = FALSE
-  if (isTRUE(preserve_attributes)) {
-    strip_attributes <- FALSE
-  }
 
   underlying <- vctrs::vec_data(x)
 

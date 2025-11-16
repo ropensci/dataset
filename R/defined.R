@@ -386,6 +386,15 @@ tail.haven_labelled_defined <- function(x, n = 6L, ...) {
 #'
 #' @seealso [defined()], [summary.haven_labelled_defined()]
 #'
+#' @examples
+#' sex <- defined(
+#'   c(0, 1, 1, 0),
+#'   label  = "Sex",
+#'   labels = c("Female" = 0, "Male" = 1)
+#' )
+#'
+#' print(sex)
+#'
 #' @export
 print.haven_labelled_defined <- function(x, ...) {
   has_def <- !is.null(var_concept(x)) && !is.na(var_concept(x)) && nzchar(var_concept(x))

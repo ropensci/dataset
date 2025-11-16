@@ -7,7 +7,7 @@
 \usage{
 as_numeric(x, ...)
 
-\method{as_numeric}{haven_labelled_defined}(x, strip_attributes = TRUE, preserve_attributes = FALSE, ...)
+\method{as_numeric}{haven_labelled_defined}(x, strip_attributes = TRUE, ...)
 }
 \arguments{
 \item{x}{A vector created with \code{\link[=defined]{defined()}}.}
@@ -16,9 +16,6 @@ as_numeric(x, ...)
 
 \item{strip_attributes}{Logical; whether to remove semantic metadata
 (\code{label}, \code{unit}, \code{concept}, \code{namespace}). Defaults to \code{TRUE}.}
-
-\item{preserve_attributes}{Legacy argument. If \code{TRUE}, overrides
-\code{strip_attributes = FALSE}. If \code{FALSE}, ignored.}
 }
 \value{
 A numeric vector with or without preserved attributes.
@@ -27,7 +24,24 @@ A numeric vector with or without preserved attributes.
 \code{as_numeric()} converts a \code{\link[=defined]{defined()}} vector to a numeric vector.
 It validates that the underlying data are numeric, and optionally preserves
 or strips semantic metadata.
+}
+\details{
+Use \code{strip_attributes = TRUE} when flattening or preparing data for
+external pipelines, but keep the default when working with defined
+vectors directly.
 
-This function supports \strong{both} the new argument \code{strip_attributes}
-and the backward-compatible \code{preserve_attributes = TRUE} used in older tests.
+\code{as.numeric()} drops all metadata and returns only the numeric values in
+a vector.
+}
+\examples{
+x <- defined(
+     1:3,
+     label = "Count",
+     unit = "n",
+     concept = "http://example.org/count",
+     namespace = "http://example.org/ns"
+)
+
+as_numeric(x)
+
 }

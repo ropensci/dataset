@@ -19,6 +19,16 @@ Custom print method for \code{\link{haven_labelled_defined}} vectors created wit
 \code{\link[=defined]{defined()}}. It prints the variable name, label, and a short semantic
 summary before the underlying values.
 }
+\examples{
+sex <- defined(
+  c(0, 1, 1, 0),
+  label  = "Sex",
+  labels = c("Female" = 0, "Male" = 1)
+)
+
+print(sex)
+
+}
 \seealso{
 \code{\link[=defined]{defined()}}, \code{\link[=summary.haven_labelled_defined]{summary.haven_labelled_defined()}}
 }

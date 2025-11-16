@@ -16,6 +16,10 @@
 #'
 #' @return A base R `data.frame` without the \code{dataset_df} class.
 #'
+#' @examples
+#' data(orange_df)
+#' as.data.frame(orange_df)
+#'
 #' @rdname as.data.frame.dataset_df
 #' @export
 as.data.frame.dataset_df <- function(x, ...,
