@@ -26,7 +26,7 @@ rlang::check_installed("here")
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/dataset)](https://cran.r-project.org/package=dataset)
 [![CRAN_time_from_release](https://www.r-pkg.org/badges/ago/dataset)](https://cran.r-project.org/package=dataset)
 [![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/681_status.svg)](https://github.com/ropensci/software-review/issues/681)
-[![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.dataset-blue)](https://doi.org/10.32614/CRAN.package.dataset)
+<!-- [![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.dataset-blue)](https://doi.org/10.32614/CRAN.package.dataset) --->
 [![dataobservatory](https://img.shields.io/badge/ecosystem-dataobservatory.eu-3EA135.svg)](https://dataobservatory.eu/)
 <!-- badges: end -->
 
