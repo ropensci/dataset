@@ -1,3 +1,8 @@
+# dataset 0.4.2
+
+Fixing a a brittle unit test that assumed a stable printed representation of 
+`utils::bibentry()`.
+
 # dataset 0.4.1
 
 This release strengthens the handling of semantically enriched vectors and improves coercion across base R and tidyverse workflows.
