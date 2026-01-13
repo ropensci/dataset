@@ -20,6 +20,9 @@ formatting, which changed in R-devel. The test has been revised to check
 package-specific behavior rather than base R print output, making it robust 
 across R versions.
 
+Furthermore, in the README there was an accidental whitespace in the DOI
+URL.
+
 No functional changes were made to the package API or implementation.
 
 

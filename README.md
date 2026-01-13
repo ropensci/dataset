@@ -17,7 +17,7 @@ Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repost
 [![CRAN_time_from_release](https://www.r-pkg.org/badges/ago/dataset)](https://cran.r-project.org/package=dataset)
 [![Status at rOpenSci Software Peer
 Review](https://badges.ropensci.org/681_status.svg)](https://github.com/ropensci/software-review/issues/681)
-[![DOI](https://img.shields.io/badge/DOI-10.32614%2FCRAN.package.dataset-blue)](https://doi.org/10.32614/CRAN.package.dataset)
+[![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.dataset-blue)](https://doi.org/10.32614/CRAN.package.dataset)
 [![dataobservatory](https://img.shields.io/badge/ecosystem-dataobservatory.eu-3EA135.svg)](https://dataobservatory.eu/)
 <!-- badges: end -->
 
@@ -80,7 +80,7 @@ df <- dataset_df(
   )
 )
 print(df)
-#> Doe (2025): GDP Dataset [dataset]
+#> Doe (2026): GDP Dataset [dataset]
 #>   rowid country   gdp 
 #>   <chr> <chr>   <dbl>
 #> 1 obs1  AD       3897
@@ -127,7 +127,7 @@ provenance(df)
     #> [4] "_:doejane <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Agent> ."                                              
     #> [5] "<https://doi.org/10.32614/CRAN.package.dataset> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#SoftwareAgent> ."
     #> [6] "<http://example.com/creation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> ."                       
-    #> [7] "<http://example.com/creation> <http://www.w3.org/ns/prov#generatedAtTime> \"2025-11-16T16:41:22Z\"^^<xsd:dateTime> ."
+    #> [7] "<http://example.com/creation> <http://www.w3.org/ns/prov#generatedAtTime> \"2026-01-13T13:02:48Z\"^^<xsd:dateTime> ."
 
 </div>
 

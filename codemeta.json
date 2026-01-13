@@ -4,11 +4,11 @@
   "identifier": "dataset",
   "description": "The 'dataset' package helps create semantically rich, machine-readable, and interoperable datasets in R. It extends tidy data frames with metadata that preserves meaning, improves interoperability, and makes datasets easier to publish, exchange, and reuse in line with ISO and W3C standards.",
   "name": "dataset: Create Data Frames for Exchange and Reuse",
-  "relatedLink": ["https://docs.ropensci.org/dataset", "https://dataset.dataobservatory.eu"],
+  "relatedLink": ["https://docs.ropensci.org/dataset/", "https://dataset.dataobservatory.eu"],
   "codeRepository": "https://github.com/ropensci/dataset",
   "issueTracker": "https://github.com/ropensci/dataset/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -236,11 +236,11 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "943.307KB",
+  "fileSize": "944.09KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
-      "datePublished": "2025",
+      "datePublished": "2026",
       "author": [
         {
           "@type": "Person",
@@ -251,12 +251,12 @@
         }
       ],
       "name": "dataset: Create Data Frames for Exchange and Reuse",
-      "url": "https://docs.ropensci.org/dataset",
-      "description": "R package version 0.4.1"
+      "url": "https://docs.ropensci.org/dataset/",
+      "description": "R package version 0.4.2"
     },
     {
       "@type": "CreativeWork",
-      "datePublished": "2025",
+      "datePublished": "2026",
       "author": [
         {
           "@type": "Person",
@@ -267,7 +267,7 @@
       "name": "The dataset R Package: Create Data Frames that are Easier to Exchange and Reuse",
       "identifier": "10.32614/CRAN.package.dataset",
       "url": "https://dataset.dataobservatory.eu/",
-      "description": "R package version 0.4.1",
+      "description": "R package version 0.4.2",
       "@id": "https://doi.org/10.32614/CRAN.package.dataset",
       "sameAs": "https://doi.org/10.32614/CRAN.package.dataset"
     }
