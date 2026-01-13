@@ -1,8 +1,14 @@
-test_that("S3 dispatch works for print.bibrecord", {
-  rec <- bibrecord(title = "X", author = person("A", "B"))
+test_that("print.bibrecord dispatches and adds contributor section", {
+  rec <- bibrecord(
+    title = "X",
+    author = person("A", "B"),
+    contributor = person("C", "D")
+  )
+
   out <- capture.output(print(rec))
-  expect_true(any(grepl("B A \\(2025\\)", out)))
+  expect_true(any(grepl("Contributors:", out)))
 })
+
 
 test_that("bibrecord() returns a bibentry-compatible object", {
   a <- person("Jane", "Doe", role = "cre")
