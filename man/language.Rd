@@ -74,7 +74,7 @@ In some cases<U+2014>especially for historical or moribund languages<U+2014>mult
 similar names may exist. In such cases, it is safer to use a specific
 language code (e.g., \code{"ang"} instead of \code{"English, Old"} and \code{"enm"}
 for \code{"English, Middle (1100-1500)"}). You can also
-refer directly to the definitions in \code{\link[ISOcodes:ISO_639]{ISOcodes::ISO_639_2}}
+refer directly to the definitions in \code{\link[ISOcodes:ISO_639_2]{ISOcodes::ISO_639_2}}
 for clarity.
 }
 \examples{
@@ -89,18 +89,18 @@ language(df) <- NULL # Sets ":unas"
 
 }
 \seealso{
-Other bibliographic helper functions: 
-\code{\link{contributor}()},
-\code{\link{creator}()},
-\code{\link{dataset_format}()},
-\code{\link{dataset_title}()},
-\code{\link{description}()},
-\code{\link{geolocation}()},
-\code{\link{get_bibentry}()},
-\code{\link{publication_year}()},
-\code{\link{publisher}()},
-\code{\link{relation}()},
-\code{\link{rights}()},
-\code{\link{subject}()}
+Other bibliographic helper functions:
+\code{\link[=contributor]{contributor()}},
+\code{\link[=creator]{creator()}},
+\code{\link[=dataset_format]{dataset_format()}},
+\code{\link[=dataset_title]{dataset_title()}},
+\code{\link[=description]{description()}},
+\code{\link[=geolocation]{geolocation()}},
+\code{\link[=get_bibentry]{get_bibentry()}},
+\code{\link[=publication_year]{publication_year()}},
+\code{\link[=publisher]{publisher()}},
+\code{\link[=relation]{relation()}},
+\code{\link[=rights]{rights()}},
+\code{\link[=subject]{subject()}}
 }
 \concept{bibliographic helper functions}

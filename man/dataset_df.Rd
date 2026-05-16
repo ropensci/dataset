@@ -6,6 +6,7 @@
 \alias{is.dataset_df}
 \alias{print.dataset_df}
 \alias{is_dataset_df}
+\alias{names.dataset_df}
 \title{Create a new \code{dataset_df} object}
 \usage{
 dataset_df(
@@ -34,6 +35,8 @@ is.dataset_df(x)
 \method{print}{dataset_df}(x, ...)
 
 is_dataset_df(x)
+
+\method{names}{dataset_df}(x)
 }
 \arguments{
 \item{...}{Vectors (columns) that should be included in the dataset.}
@@ -80,6 +83,7 @@ S3 methods for \code{dataset_df} include:
 \itemize{
 \item \code{print()} to display the dataset with metadata
 \item \code{summary()} to summarize both data and metadata
+\item \code{names()} to retrieve variable names using standard data frame semantics
 }
 
 For full details, see \code{vignette("dataset_df", package = "dataset")}.

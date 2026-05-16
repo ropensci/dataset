@@ -82,8 +82,8 @@ as.data.frame.dataset_df <- function(x, ...,
 
         if (!is.null(lbls)) {
           # labelled / categorical: go to character
-          fac <- as_factor(col)     # returns factor with correct levels
-          col <- as.character(fac)  # convert factor to characters
+          fac <- as_factor(col) # returns factor with correct levels
+          col <- as.character(fac) # convert factor to characters
         } else if (is.numeric(underlying)) {
           # numeric: use semantic-aware numeric coercion
           col <- as_numeric(
@@ -115,8 +115,8 @@ as.data.frame.dataset_df <- function(x, ...,
   })
 
   df <- as.data.frame(df,
-                      stringsAsFactors = stringsAsFactors,
-                      optional = optional
+    stringsAsFactors = stringsAsFactors,
+    optional = optional
   )
 
   # ---- preserve dataset-level metadata (inert) ----
@@ -188,10 +188,10 @@ as_tibble <- function(x, ...) {
 #' @rdname as_tibble.dataset_df
 #' @export
 as_tibble.dataset_df <- function(
-    x,
-    ...,
-    strip_attributes = TRUE,
-    .name_repair = "check_unique"
+  x,
+  ...,
+  strip_attributes = TRUE,
+  .name_repair = "check_unique"
 ) {
   df <- as.data.frame.dataset_df(
     x,

@@ -38,9 +38,10 @@ as_factor <- function(x, ...) {
 #' @importFrom haven as_factor labelled
 #' @importFrom vctrs vec_data
 as_factor.haven_labelled_defined <- function(
-    x,
-    strip_attributes = TRUE,
-    ...) {
+  x,
+  strip_attributes = TRUE,
+  ...
+) {
   vals <- vctrs::vec_data(x)
   lbls <- attr(x, "labels", exact = TRUE)
 
@@ -58,11 +59,10 @@ as_factor.haven_labelled_defined <- function(
   # (We don't touch class(fac): it's already a plain factor)
   # Optionally copy semantic metadata
   if (!strip_attributes) {
-    attr(fac, "unit")      <- attr(x, "unit",      exact = TRUE)
-    attr(fac, "concept")   <- attr(x, "concept",   exact = TRUE)
+    attr(fac, "unit") <- attr(x, "unit", exact = TRUE)
+    attr(fac, "concept") <- attr(x, "concept", exact = TRUE)
     attr(fac, "namespace") <- attr(x, "namespace", exact = TRUE)
   }
 
   fac
 }
-

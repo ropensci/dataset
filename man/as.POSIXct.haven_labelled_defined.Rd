@@ -21,7 +21,7 @@ some platforms with a warning.}
 (label, unit, definition, namespace) be removed? Defaults to
 \code{FALSE}.}
 
-\item{...}{Additional arguments passed to \code{\link[base:as.POSIXlt]{base::as.POSIXct()}}.}
+\item{...}{Additional arguments passed to \code{\link[base:as.POSIXct]{base::as.POSIXct()}}.}
 }
 \value{
 A \code{POSIXct} vector with timestamp values preserved.

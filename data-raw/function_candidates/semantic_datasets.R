@@ -1,6 +1,6 @@
 # --- 0) Packages
-library(dataset)  # your package
-library(utils)    # person()
+library(dataset) # your package
+library(utils) # person()
 
 # --- 1) Your three Europeana items (as provided)
 items <- data.frame(
@@ -31,8 +31,8 @@ items <- data.frame(
   ),
   date_literal = c("1930", "1924", "umbes.1905"),
   year = c("1930", "1924", NA_character_),
-  format_width  = c("tervik laius: 13.5 cm", "tervik kujutise laius: 9.0 cm", "tervik laius: 17.5 cm"),
-  format_height = c("tervik kõrgus: 8.4 cm",  "tervik kujutise kõrgus: 14.0 cm", "tervik pikkus: 12.5 cm"),
+  format_width = c("tervik laius: 13.5 cm", "tervik kujutise laius: 9.0 cm", "tervik laius: 17.5 cm"),
+  format_height = c("tervik kõrgus: 8.4 cm", "tervik kujutise kõrgus: 14.0 cm", "tervik pikkus: 12.5 cm"),
   subject_et = c("foto", "postkaart", "foto"),
   subject_en = c("photograph", "postcard", "photograph"),
   spatial_labels = c("Võru; Eesti; Meremäe", "Saksamaa", "Eesti"),
@@ -96,7 +96,7 @@ ds <- dataset_df(
   year = defined(items$year, label = "Year", concept = "http://www.europeana.eu/schemas/edm/year"),
 
   # Formats
-  format_width  = defined(items$format_width,  label = "Format width",  concept = "http://purl.org/dc/terms/format"),
+  format_width = defined(items$format_width, label = "Format width", concept = "http://purl.org/dc/terms/format"),
   format_height = defined(items$format_height, label = "Format height", concept = "http://purl.org/dc/terms/format"),
 
   # Subjects & spatial
@@ -106,16 +106,16 @@ ds <- dataset_df(
 
   # Links (EDM)
   landingPage = defined(items$landingPage, label = "Europeana landing page", concept = "http://www.europeana.eu/schemas/edm/landingPage"),
-  isShownAt   = defined(items$isShownAt,   label = "isShownAt", concept = "http://www.europeana.eu/schemas/edm/isShownAt"),
-  isShownBy   = defined(items$isShownBy,   label = "isShownBy", concept = "http://www.europeana.eu/schemas/edm/isShownBy"),
-  object      = defined(items$object,      label = "object",    concept = "http://www.europeana.eu/schemas/edm/object"),
-  rights      = defined(items$rights,      label = "rights",    concept = "http://www.europeana.eu/schemas/edm/rights"),
+  isShownAt = defined(items$isShownAt, label = "isShownAt", concept = "http://www.europeana.eu/schemas/edm/isShownAt"),
+  isShownBy = defined(items$isShownBy, label = "isShownBy", concept = "http://www.europeana.eu/schemas/edm/isShownBy"),
+  object = defined(items$object, label = "object", concept = "http://www.europeana.eu/schemas/edm/object"),
+  rights = defined(items$rights, label = "rights", concept = "http://www.europeana.eu/schemas/edm/rights"),
 
   # Provider attribution (URIs + labels)
   dataProvider_uri = defined(items$dataProvider_uri, label = "dataProvider (URI)", concept = "http://www.europeana.eu/schemas/edm/dataProvider"),
-  dataProvider     = defined(items$dataProvider,     label = "dataProvider (label)", concept = "http://www.europeana.eu/schemas/edm/dataProvider"),
-  provider_uri     = defined(items$provider_uri,     label = "provider (URI)", concept = "http://www.europeana.eu/schemas/edm/provider"),
-  provider         = defined(items$provider,         label = "provider (label)", concept = "http://www.europeana.eu/schemas/edm/provider"),
+  dataProvider = defined(items$dataProvider, label = "dataProvider (label)", concept = "http://www.europeana.eu/schemas/edm/dataProvider"),
+  provider_uri = defined(items$provider_uri, label = "provider (URI)", concept = "http://www.europeana.eu/schemas/edm/provider"),
+  provider = defined(items$provider, label = "provider (label)", concept = "http://www.europeana.eu/schemas/edm/provider"),
 
   # Type & identifier
   edm_type = defined(items$edm_type, label = "EDM Type", concept = "http://www.europeana.eu/schemas/edm/type"),
@@ -140,9 +140,7 @@ summary(ds)
 
 
 nt_file <- tempfile(fileext = ".nt")
-dataset_to_triples(ds, format="nt")
-g <- describe(ds, con = ttl_file)  # if your package supports RDF/XML, switch to .rdf
+dataset_to_triples(ds, format = "nt")
+g <- describe(ds, con = ttl_file) # if your package supports RDF/XML, switch to .rdf
 message("Wrote Turtle to: ", ttl_file)
 ttl_file
-
-

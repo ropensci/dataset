@@ -166,7 +166,7 @@ test_that("as_numeric(strip_attributes = FALSE) keeps
   # add an extra, non-semantic attribute to x
   attr(x, "extra_attr") <- "should_not_survive"
 
-  out <- as_numeric(x, strip_attributes =  FALSE)
+  out <- as_numeric(x, strip_attributes = FALSE)
 
   expect_type(out, "integer")
   expect_false(inherits(out, "haven_labelled_defined"))

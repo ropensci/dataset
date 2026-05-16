@@ -1,7 +1,8 @@
 #' @keywords internal
 dublincore_to_triples <- function(
-    dclist,
-    dataset_id = "http://example.com/dataset") {
+  dclist,
+  dataset_id = "http://example.com/dataset"
+) {
   if (is.null(dclist) || is.null(dclist$title) || nchar(dclist$title) == 0) {
     stop("Error: dublincore_to_triples(dclist, dataset_id): no title found in dclist")
   }

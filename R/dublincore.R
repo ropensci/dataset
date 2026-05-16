@@ -91,22 +91,23 @@
 #' @family bibrecord functions
 
 dublincore <- function(
-    title,
-    creator,
-    contributor = NULL,
-    year = NULL,
-    publisher = NULL,
-    identifier = NULL,
-    subject = NULL,
-    type = "DCMITYPE:Dataset",
-    dataset_date = NULL,
-    language = NULL,
-    relation = NULL,
-    dataset_format = "application/r-rds",
-    rights = NULL,
-    datasource = NULL,
-    description = NULL,
-    coverage = NULL) {
+  title,
+  creator,
+  contributor = NULL,
+  year = NULL,
+  publisher = NULL,
+  identifier = NULL,
+  subject = NULL,
+  type = "DCMITYPE:Dataset",
+  dataset_date = NULL,
+  language = NULL,
+  relation = NULL,
+  dataset_format = "application/r-rds",
+  rights = NULL,
+  datasource = NULL,
+  description = NULL,
+  coverage = NULL
+) {
   if (missing(creator) || is.null(creator)) {
     stop("dublincore(): A valid `creator` (as person or list of person) is required.")
   }

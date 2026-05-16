@@ -1,6 +1,6 @@
 print.haven_labelled_defined <- function(x, ...) {
-  has_def   <- !is.null(var_concept(x)) && !is.na(var_concept(x)) && nzchar(var_concept(x))
-  has_unit  <- !is.null(var_unit(x)) && !is.na(var_unit(x)) && nzchar(var_unit(x))
+  has_def <- !is.null(var_concept(x)) && !is.na(var_concept(x)) && nzchar(var_concept(x))
+  has_unit <- !is.null(var_unit(x)) && !is.na(var_unit(x)) && nzchar(var_unit(x))
   has_label <- !is.null(var_label(x))
 
   cat(deparse(substitute(x)))
@@ -19,7 +19,7 @@ print.haven_labelled_defined <- function(x, ...) {
   cat(msg, "\n")
 
   # show code + label if available
-  codes  <- vctrs::vec_data(x)
+  codes <- vctrs::vec_data(x)
   labels <- attr(x, "labels")
   levels <- attr(x, "levels")
 

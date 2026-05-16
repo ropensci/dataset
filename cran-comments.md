@@ -11,20 +11,20 @@ rOpenSci:
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
-## 0.4.2 sumbission
+## 0.4.3 resumbission
 
-No functional changes were made to the package API or implementation.
+A fix was earlier offered but apparently out of the time window to retain 
+the package.
 
-This is the third attempt to submit (apologies!), there was in the README a 
-persistent whitespace problem in an URL--I rather removed it, because I could not find 
-out what caused the error in a badge. 
+This update fixes a failing unit test that relied on exact printed
+formatting of `bibentry`/`person` objects under recent R-devel versions.
+The affected test was revised to check semantic validity rather than
+platform-dependent textual formatting.
 
-The previous CRAN check failure on R-devel was due to a brittle unit test that 
-assumed a stable printed representation of `utils::bibentry()` output.
-The package code itself was not at fault; only the test relied on exact author
-formatting, which changed in R-devel. The test has been revised to check
-package-specific behavior rather than base R print output, making it robust 
-across R versions.
+In addition, S3 method registration/documentation was modernized to
+comply with current roxygen2 requirements.
+
+All checks now pass locally.
 
 
 

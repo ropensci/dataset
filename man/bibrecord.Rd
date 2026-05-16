@@ -64,8 +64,8 @@ bibrecord(
 Learn more in the vignette:
 \href{https://dataset.dataobservatory.eu/articles/bibrecord.html}{\code{bibrecord}}
 
-Other bibrecord functions: 
-\code{\link{as_datacite}()},
-\code{\link{as_dublincore}()}
+Other bibrecord functions:
+\code{\link[=as_datacite]{as_datacite()}},
+\code{\link[=as_dublincore]{as_dublincore()}}
 }
 \concept{bibrecord functions}

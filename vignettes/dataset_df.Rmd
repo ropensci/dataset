@@ -245,8 +245,9 @@ the following rules apply:
 -   You can retain semantic attributes via:
 
 ```{r richdataframe}
-as.data.frame(small_country_dataset, 
-              strip_attributes = FALSE)
+as.data.frame(small_country_dataset,
+  strip_attributes = FALSE
+)
 ```
 
 `as_tibble()` behaves the same way as `as.data.frame()` but returns a tibble:

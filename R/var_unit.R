@@ -86,7 +86,6 @@ var_unit.default <- function(x, ...) {
 get_variable_units <- var_unit
 
 
-
 #' @rdname var_unit
 #'
 #' @description

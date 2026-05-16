@@ -216,7 +216,6 @@ defined <- function(x,
 }
 
 
-
 #' @rdname defined
 #' @export
 is.defined <- function(x) {

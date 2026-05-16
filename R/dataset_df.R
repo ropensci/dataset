@@ -9,6 +9,7 @@
 #' S3 methods for `dataset_df` include:
 #' - `print()` to display the dataset with metadata
 #' - `summary()` to summarize both data and metadata
+#' - `names()` to retrieve variable names using standard data frame semantics
 #'
 #' For full details, see `vignette("dataset_df", package = "dataset")`.
 #'
@@ -80,19 +81,20 @@
 
 # User constructor
 dataset_df <- function(
-    ...,
-    identifier = c(obs = "http://example.com/dataset#obs"),
-    var_labels = NULL,
-    units = NULL,
-    concepts = NULL,
-    dataset_bibentry = NULL,
-    dataset_subject = NULL) {
+  ...,
+  identifier = c(obs = "http://example.com/dataset#obs"),
+  var_labels = NULL,
+  units = NULL,
+  concepts = NULL,
+  dataset_bibentry = NULL,
+  dataset_subject = NULL
+) {
   dots <- list(...)
 
   if (!"rowid" %in% names(dots)) {
     add_rowid <- TRUE
   } else {
-    add_row_id <- FALSE
+    add_rowid <- FALSE
   }
 
   sys_time <- Sys.time()
@@ -136,13 +138,14 @@ dataset_df <- function(
 #' @rdname dataset_df
 #' @export
 as_dataset_df <- function(
-    df,
-    identifier = c(obs = "http://example.com/dataset#obs"),
-    var_labels = NULL,
-    units = NULL,
-    concepts = NULL,
-    dataset_bibentry = NULL,
-    dataset_subject = NULL, ...) {
+  df,
+  identifier = c(obs = "http://example.com/dataset#obs"),
+  var_labels = NULL,
+  units = NULL,
+  concepts = NULL,
+  dataset_bibentry = NULL,
+  dataset_subject = NULL, ...
+) {
   dots <- list(...)
 
   if (is.null(dots$dataset_bibentry)) {
@@ -180,7 +183,7 @@ new_dataset <- function(x,
     nrow = nrow(x)
   )
 
-  add_rowid <- ifelse("rowid" %in% names(tmp), FALSE, TRUE)
+  add_rowid <- !"rowid" %in% names(tmp)
 
   if (add_rowid) {
     tmp <- tibble::rowid_to_column(tmp)
@@ -213,7 +216,7 @@ new_dataset <- function(x,
 #' (if the object is of class `dataset_df`.)
 #' @export
 is.dataset_df <- function(x) {
-  ifelse("dataset_df" %in% class(x), TRUE, FALSE)
+  inherits(x, "dataset_df")
 }
 
 #' @rdname dataset_df
@@ -406,14 +409,14 @@ plot.dataset_df <- function(x, y = NULL, ..., main = NULL, sub = NULL) {
 }
 
 
-
 #' @rdname dataset_df
 #' @export
 is_dataset_df <- function(x) {
   inherits(x, "dataset_df")
 }
 
-#' @keywords internal
+#' @rdname dataset_df
+#' @export
 names.dataset_df <- function(x) {
   NextMethod("names")
 }

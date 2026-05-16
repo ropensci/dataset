@@ -222,7 +222,6 @@ xsd_convert.logical <- function(x, idcol = NULL, shortform = TRUE, ...) {
 }
 
 
-
 #' @rdname xsd_convert
 #' @exportS3Method
 xsd_convert.factor <- function(x, idcol = NULL, shortform = TRUE, ...) {

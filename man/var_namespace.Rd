@@ -78,9 +78,9 @@ namespace_attribute(x) <- "https://example.org/custom/"
 
 }
 \seealso{
-Other defined metadata methods and functions: 
-\code{\link{var_label}()},
-\code{\link{var_labels}()},
-\code{\link{var_unit}()}
+Other defined metadata methods and functions:
+\code{\link{var_label}},
+\code{\link[=var_labels]{var_labels()}},
+\code{\link[=var_unit]{var_unit()}}
 }
 \concept{defined metadata methods and functions}

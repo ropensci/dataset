@@ -89,7 +89,6 @@ subject <- function(x) {
 }
 
 
-
 #' @rdname subject
 #' @export
 subject_create <- function(term,

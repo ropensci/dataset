@@ -50,13 +50,14 @@ as_character <- function(x, ...) {
 #' @rdname as_character
 #' @export
 as_character.haven_labelled_defined <- function(
-    x,
-    strip_attributes = TRUE,
-    ...) {
+  x,
+  strip_attributes = TRUE,
+  ...
+) {
   base <- vctrs::vec_data(x)
   out <- as.character(base)
 
-  if (! strip_attributes) {
+  if (!strip_attributes) {
     attr(out, "label") <- attr(x, "label")
     attr(out, "unit") <- attr(x, "unit")
     attr(out, "concept") <- attr(x, "concept")

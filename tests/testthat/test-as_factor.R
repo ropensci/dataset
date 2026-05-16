@@ -147,4 +147,3 @@ test_that("as_factor() retains level order stability for
 
   expect_equal(levels(f), c("10", "20", "30"))
 })
-

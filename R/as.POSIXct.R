@@ -50,11 +50,11 @@
 #'
 #' @export
 as.POSIXct.haven_labelled_defined <- function(
-    x,
-    tz = "",
-    strip_attributes = TRUE,
-    ...) {
-
+  x,
+  tz = "",
+  strip_attributes = TRUE,
+  ...
+) {
   if (!inherits(x, "POSIXct")) {
     stop(
       "as.POSIXct.haven_labelled_defined() requires underlying POSIXct.",
@@ -64,10 +64,10 @@ as.POSIXct.haven_labelled_defined <- function(
 
   # Save semantic metadata before we manipulate the object
   meta <- list(
-    label      = attr(x, "label",      exact = TRUE),
-    unit       = attr(x, "unit",       exact = TRUE),
+    label      = attr(x, "label", exact = TRUE),
+    unit       = attr(x, "unit", exact = TRUE),
     definition = attr(x, "definition", exact = TRUE),
-    namespace  = attr(x, "namespace",  exact = TRUE)
+    namespace  = attr(x, "namespace", exact = TRUE)
   )
 
   # Drop only the wrapper class so base::as.POSIXct() can handle tz
@@ -79,10 +79,10 @@ as.POSIXct.haven_labelled_defined <- function(
   }
 
   if (strip_attributes) {
-    attr(x, "label")      <- NULL
-    attr(x, "unit")       <- NULL
+    attr(x, "label") <- NULL
+    attr(x, "unit") <- NULL
     attr(x, "definition") <- NULL
-    attr(x, "namespace")  <- NULL
+    attr(x, "namespace") <- NULL
   } else {
     # Restore metadata in case base::as.POSIXct() dropped anything
     for (nm in names(meta)) {

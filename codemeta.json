@@ -8,19 +8,13 @@
   "codeRepository": "https://github.com/ropensci/dataset",
   "issueTracker": "https://github.com/ropensci/dataset/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 4.5.0 (2025-04-11 ucrt)",
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Comprehensive R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
-  },
   "author": [
     {
       "@type": "Person",
@@ -236,7 +230,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "944.09KB",
+  "fileSize": "946.391KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -252,7 +246,7 @@
       ],
       "name": "dataset: Create Data Frames for Exchange and Reuse",
       "url": "https://docs.ropensci.org/dataset/",
-      "description": "R package version 0.4.2"
+      "description": "R package version 0.4.3"
     },
     {
       "@type": "CreativeWork",
@@ -271,5 +265,15 @@
       "@id": "https://doi.org/10.32614/CRAN.package.dataset",
       "sameAs": "https://doi.org/10.32614/CRAN.package.dataset"
     }
-  ]
+  ],
+  "releaseNotes": "https://github.com/ropensci/dataset/blob/main/NEWS.md",
+  "readme": "https://github.com/ropensci/dataset/blob/main/README.md",
+  "contIntegration": ["https://github.com/ropensci/dataset/actions/workflows/rhub.yaml", "https://app.codecov.io/gh/ropensci/dataset?branch=main"],
+  "developmentStatus": "https://www.repostatus.org/#active",
+  "review": {
+    "@type": "Review",
+    "url": "https://github.com/ropensci/software-review/issues/681",
+    "provider": "https://ropensci.org"
+  },
+  "keywords": ["dataset", "metadata-management", "r", "rstats"]
 }

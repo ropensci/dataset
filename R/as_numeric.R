@@ -21,11 +21,11 @@
 #' @return A numeric vector with or without preserved attributes.
 #' @examples
 #' x <- defined(
-#'      1:3,
-#'      label = "Count",
-#'      unit = "n",
-#'      concept = "http://example.org/count",
-#'      namespace = "http://example.org/ns"
+#'   1:3,
+#'   label = "Count",
+#'   unit = "n",
+#'   concept = "http://example.org/count",
+#'   namespace = "http://example.org/ns"
 #' )
 #'
 #' as_numeric(x)
@@ -40,7 +40,6 @@ as_numeric <- function(x, ...) {
 as_numeric.haven_labelled_defined <- function(x,
                                               strip_attributes = TRUE,
                                               ...) {
-
   underlying <- vctrs::vec_data(x)
 
   if (!is.numeric(underlying)) {

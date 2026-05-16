@@ -272,7 +272,7 @@ times <- defined(
   label = "Timestamp"
 )
 
-times 
+times
 ```
 
 These coercion helpers ensure that `defined` vectors behave predictably in modelling, exporting, and data cleaning workflows — while still preserving semantic metadata when necessary.

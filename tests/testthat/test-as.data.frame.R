@@ -177,10 +177,11 @@ test_that("as.data.frame.dataset_df(strip_attributes = FALSE) keeps semantic att
   p <- as.POSIXct("2024-01-01 12:00:00", tz = "UTC") + (0:2) * 3600
 
   ds <- dataset_df(
-    num  = defined(1:3, label = "Num", unit = "kg", concept = "x"),
-    chr  = defined(c("A", "B", "C"),
-                   label = "Letters",
-                   namespace = "http://ns"),
+    num = defined(1:3, label = "Num", unit = "kg", concept = "x"),
+    chr = defined(c("A", "B", "C"),
+      label = "Letters",
+      namespace = "http://ns"
+    ),
     date = defined(d, label = "DateLabel", unit = "day"),
     time = defined(p, label = "TimeLabel", unit = "hour")
   )
@@ -238,4 +239,3 @@ test_that("as.data.frame.dataset_df(strip_attributes = TRUE)
   expect_equal(as.POSIXct(df_s$time), p)
   expect_null(attr(df_s, "unit"))
 })
-

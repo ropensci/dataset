@@ -169,8 +169,8 @@ as_datacite(orange_df, "list")
 Learn more in the vignette:
 \href{https://dataset.dataobservatory.eu/articles/bibrecord.html}{\code{bibrecord}}
 
-Other bibrecord functions: 
-\code{\link{as_dublincore}()},
-\code{\link{bibrecord}()}
+Other bibrecord functions:
+\code{\link[=as_dublincore]{as_dublincore()}},
+\code{\link[=bibrecord]{bibrecord()}}
 }
 \concept{bibrecord functions}

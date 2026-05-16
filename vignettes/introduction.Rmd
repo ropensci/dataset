@@ -13,8 +13,9 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-if (!requireNamespace("rdflib", 
-                      quietly = TRUE)) {
+if (!requireNamespace("rdflib",
+  quietly = TRUE
+)) {
   stop("Please install 'rdflib' to run this vignette.")
 }
 ```
@@ -113,10 +114,13 @@ triples
 This 3-column format (subject–predicate–object) is compatible with semantic web tools such as SPARQL, `rdflib`, and triple stores.
 
 ```{r ntexample}
-mycon <- tempfile("my_dataset", 
-                  fileext = "nt")
-my_description <- describe(x = small_dataset, 
-                           con = mycon)
+mycon <- tempfile("my_dataset",
+  fileext = "nt"
+)
+my_description <- describe(
+  x = small_dataset,
+  con = mycon
+)
 
 # Only three statements are shown:
 readLines(mycon)[c(4, 8, 12)]
@@ -134,8 +138,9 @@ There may be use cases when your richer dataset needs to be simplified to as bas
 We offer two coercion forms:
 
 ```{r smalldf}
-small_df <- as.data.frame(small_dataset, 
-              strip_attributes = FALSE)
+small_df <- as.data.frame(small_dataset,
+  strip_attributes = FALSE
+)
 
 attr(small_dataset, "subject")
 ```
@@ -145,8 +150,9 @@ You can also strip all these attributes, and choose `tbl_df` (if you have `tibbl
 
 ```{r smalltbl}
 small_tbl <- as_tibble(
-  small_dataset, 
-  strip_attributes = TRUE)
+  small_dataset,
+  strip_attributes = TRUE
+)
 
 small_tbl
 ```

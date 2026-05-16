@@ -40,15 +40,16 @@
 #' @family bibrecord functions
 #' @export
 bibrecord <- function(
-    title,
-    author,
-    contributor = NULL,
-    publisher = NULL,
-    year = NULL,
-    date = Sys.Date(),
-    identifier = NULL,
-    subject = NULL,
-    ...) {
+  title,
+  author,
+  contributor = NULL,
+  publisher = NULL,
+  year = NULL,
+  date = Sys.Date(),
+  identifier = NULL,
+  subject = NULL,
+  ...
+) {
   stopifnot(inherits(author, "person") ||
     all(vapply(author, inherits, logical(1), "person")))
 

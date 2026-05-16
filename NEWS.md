@@ -1,7 +1,9 @@
-# dataset 0.4.2
+# dataset 0.4.3
 
-Fixing a a brittle unit test that assumed a stable printed representation of 
+- Fixing a a brittle unit test that assumed a stable printed representation of 
 `utils::bibentry()`.
+- Modernized S3 method registration/documentation for recent roxygen2.
+- Minor internal cleanup and consistency improvements.
 
 # dataset 0.4.1
 

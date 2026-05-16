@@ -104,18 +104,18 @@ is.related(rel) # TRUE
 
 }
 \seealso{
-Other bibliographic helper functions: 
-\code{\link{contributor}()},
-\code{\link{creator}()},
-\code{\link{dataset_format}()},
-\code{\link{dataset_title}()},
-\code{\link{description}()},
-\code{\link{geolocation}()},
-\code{\link{get_bibentry}()},
-\code{\link{language}},
-\code{\link{publication_year}()},
-\code{\link{publisher}()},
-\code{\link{rights}()},
-\code{\link{subject}()}
+Other bibliographic helper functions:
+\code{\link[=contributor]{contributor()}},
+\code{\link[=creator]{creator()}},
+\code{\link[=dataset_format]{dataset_format()}},
+\code{\link[=dataset_title]{dataset_title()}},
+\code{\link[=description]{description()}},
+\code{\link[=geolocation]{geolocation()}},
+\code{\link[=get_bibentry]{get_bibentry()}},
+\code{\link[=language]{language()}},
+\code{\link[=publication_year]{publication_year()}},
+\code{\link[=publisher]{publisher()}},
+\code{\link[=rights]{rights()}},
+\code{\link[=subject]{subject()}}
 }
 \concept{bibliographic helper functions}

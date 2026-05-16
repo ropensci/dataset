@@ -63,13 +63,14 @@ test_that("as.POSIXct.haven_labelled_defined respects
 
   # 4) Metadata: by default strip_attributes = TRUE, so we keep it
   expect_identical(attr(out, "label"), "Timestamp")
-  expect_identical(attr(out, "unit"),  "seconds")
+  expect_identical(attr(out, "unit"), "seconds")
 })
 
 test_that("as.POSIXct.haven_labelled_defined
           strips attributes when requested", {
   base_time <- as.POSIXct("2024-01-01 12:00:00",
-                          tz = "UTC")
+    tz = "UTC"
+  )
 
   x <- defined(
     base_time,

@@ -32,9 +32,7 @@ of a list. Defaults to \code{FALSE}.}
 \item For setting: a named list or named character vector of labels.
 Names must match column names in \code{x}.
 Unnamed elements are ignored.
-\itemize{
 \item For getting: ignored.
-}
 }}
 }
 \value{
@@ -78,9 +76,9 @@ var_labels(df, unlist = TRUE, null_action = "empty")
 \seealso{
 \code{\link[=var_label]{var_label()}}
 
-Other defined metadata methods and functions: 
-\code{\link{var_label}()},
-\code{\link{var_namespace}()},
-\code{\link{var_unit}()}
+Other defined metadata methods and functions:
+\code{\link{var_label}},
+\code{\link[=var_namespace]{var_namespace()}},
+\code{\link[=var_unit]{var_unit()}}
 }
 \concept{defined metadata methods and functions}

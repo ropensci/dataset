@@ -33,3 +33,5 @@
 ^examples/index.html
 ^examples/dataset.ttl
 ^dataset*.txt
+^\.positai$
+^\.claude$
