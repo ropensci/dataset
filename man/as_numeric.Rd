@@ -35,11 +35,11 @@ a vector.
 }
 \examples{
 x <- defined(
-     1:3,
-     label = "Count",
-     unit = "n",
-     concept = "http://example.org/count",
-     namespace = "http://example.org/ns"
+  1:3,
+  label = "Count",
+  unit = "n",
+  concept = "http://example.org/count",
+  namespace = "http://example.org/ns"
 )
 
 as_numeric(x)

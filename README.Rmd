@@ -25,7 +25,6 @@ rlang::check_installed("here")
 [![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/dataset)](https://cran.r-project.org/package=dataset)
 [![CRAN_time_from_release](https://www.r-pkg.org/badges/ago/dataset)](https://cran.r-project.org/package=dataset)
-[![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/681_status.svg)](https://github.com/ropensci/software-review/issues/681)
 <!-- [![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.dataset-blue)](https://doi.org/10.32614/CRAN.package.dataset) --->
 [![dataobservatory](https://img.shields.io/badge/ecosystem-dataobservatory.eu-3EA135.svg)](https://dataobservatory.eu/)
 <!-- badges: end -->
@@ -130,7 +129,7 @@ We welcome contributions and discussion!
 
 Please refer to this package as:
 
-Daniel Antal. (2025). _dataset: Create Data Frames that are Easier to Exchange and Reuse (0.4.1)_. The Comprehensive R Archive Network. <https://zenodo.org/records/17621464>, DOI: [	10.32614/CRAN.package.dataset](https:://doi.org/	10.32614/CRAN.package.dataset)
+Daniel Antal. (2025). _dataset: Create Data Frames that are Easier to Exchange and Reuse (0.4.1)_. The Comprehensive R Archive Network. <https://zenodo.org/records/17621464>, DOI: [10.32614/CRAN.package.dataset](https:://doi.org/	10.32614/CRAN.package.dataset)
 
 See contributors on the website and in the DESCRIPTION file.
 

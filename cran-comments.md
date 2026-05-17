@@ -11,18 +11,12 @@ rOpenSci:
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
-## 0.4.3 resumbission
+## 0.4.3 resumbission (malformatted URL)
 
-A fix was earlier offered but apparently out of the time window to retain 
-the package.
+The README had a malformatted URL. 
 
-This update fixes a failing unit test that relied on exact printed
-formatting of `bibentry`/`person` objects under recent R-devel versions.
-The affected test was revised to check semantic validity rather than
-platform-dependent textual formatting.
-
-In addition, S3 method registration/documentation was modernized to
-comply with current roxygen2 requirements.
+The 0.4.3 is a resubmission of 0.4.2 that was offered out of the time
+window to retain the package on CRAN (0.4.1 was on CRAN.)
 
 All checks now pass locally.
 
