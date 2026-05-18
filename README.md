@@ -125,7 +125,7 @@ provenance(df)
     #> [4] "_:doejane <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Agent> ."                                              
     #> [5] "<https://doi.org/10.32614/CRAN.package.dataset> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#SoftwareAgent> ."
     #> [6] "<http://example.com/creation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> ."                       
-    #> [7] "<http://example.com/creation> <http://www.w3.org/ns/prov#generatedAtTime> \"2026-05-17T14:33:39Z\"^^<xsd:dateTime> ."
+    #> [7] "<http://example.com/creation> <http://www.w3.org/ns/prov#generatedAtTime> \"2026-05-18T07:18:53Z\"^^<xsd:dateTime> ."
 
 </div>
 
@@ -145,10 +145,10 @@ We welcome contributions and discussion!
 
 Please refer to this package as:
 
-Daniel Antal. (2025). *dataset: Create Data Frames that are Easier to
-Exchange and Reuse (0.4.1)*. The Comprehensive R Archive Network.
+Daniel Antal. (2026). *dataset: Create Data Frames that are Easier to
+Exchange and Reuse (0.4.4)*. The Comprehensive R Archive Network.
 <https://zenodo.org/records/17621464>, DOI:
-[10.32614/CRAN.package.dataset](https:://doi.org/%2010.32614/CRAN.package.dataset)
+10.32614/CRAN.package.dataset
 
 See contributors on the website and in the DESCRIPTION file.
 

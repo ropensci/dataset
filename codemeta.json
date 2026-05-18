@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/ropensci/dataset",
   "issueTracker": "https://github.com/ropensci/dataset/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -230,7 +230,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "946.391KB",
+  "fileSize": "946.176KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -246,7 +246,7 @@
       ],
       "name": "dataset: Create Data Frames for Exchange and Reuse",
       "url": "https://docs.ropensci.org/dataset/",
-      "description": "R package version 0.4.3"
+      "description": "R package version 0.4.4"
     },
     {
       "@type": "CreativeWork",
@@ -270,10 +270,5 @@
   "readme": "https://github.com/ropensci/dataset/blob/main/README.md",
   "contIntegration": ["https://github.com/ropensci/dataset/actions/workflows/rhub.yaml", "https://app.codecov.io/gh/ropensci/dataset?branch=main"],
   "developmentStatus": "https://www.repostatus.org/#active",
-  "review": {
-    "@type": "Review",
-    "url": "https://github.com/ropensci/software-review/issues/681",
-    "provider": "https://ropensci.org"
-  },
   "keywords": ["dataset", "metadata-management", "r", "rstats"]
 }
