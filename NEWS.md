@@ -1,10 +1,17 @@
+# dataset 0.4.5
+
+- Introduced the `prelabelled` class for lightweight semantic stabilization workflows.
+- Added `prelabel()` for provisional semantic mappings prior to formal definition.
+- Added `as_value_key()` and `invert_value_key()` helpers for canonical semantic mapping workflows.
+- Added a new vignette on incremental semantic stabilization and semantic harmonisation workflows.
+- Improved documentation and conceptual alignment between `prelabel()`, `defined()`, and `dataset_df()`.
+
 # dataset 0.4.4
 
-- Fixing a a brittle unit test that assumed a stable printed representation of 
-`utils::bibentry()`.
-- Modernized S3 method registration/documentation for recent roxygen2.
+- Fixed a brittle unit test that assumed a stable printed representation of `utils::bibentry()`.
+- Modernized S3 method registration and documentation for recent roxygen2.
 - Minor internal cleanup and consistency improvements.
-- CRAN release candidate
+- Released on CRAN
 
 # dataset 0.4.1
 

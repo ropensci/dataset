@@ -15,4 +15,3 @@ reprextemplates::concat_text_files(
   output_file = "data-raw/dataset-review-bak.txt",
   TRUE
 )
-

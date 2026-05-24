@@ -1,7 +1,7 @@
 Package: dataset
 Title: Create Data Frames for Exchange and Reuse
-Version: 0.4.4
-Date: 2026-05-18
+Version: 0.4.5
+Date: 2026-05-24
 Language: en-GB
 Authors@R: 
     c(person(given = "Daniel", family = "Antal", 
@@ -23,11 +23,14 @@ Authors@R:
             )
       )
 Maintainer: Daniel Antal <daniel.antal@dataobservatory.eu>
-Description: The 'dataset' package helps create semantically rich, 
-    machine-readable, and interoperable datasets in R. It extends tidy
-    data frames with metadata that preserves meaning, improves 
-    interoperability, and makes datasets easier to publish, exchange, 
-    and reuse in line with ISO and W3C standards.
+Description: The 'dataset' package extends tidy data frames with
+    machine-readable metadata, semantic definitions, and provenance
+    information. It supports incremental semantic stabilization,
+    interoperable dataset exchange, and FAIR-oriented publication
+    workflows by preserving contextual metadata directly within R
+    objects. The package facilitates the creation, exchange, reuse,
+    and RDF serialization of datasets in line with ISO and W3C
+    standards.
 License: GPL (>= 3)
 Encoding: UTF-8
 URL: https://docs.ropensci.org/dataset/, https://github.com/ropensci/dataset, https://dataset.dataobservatory.eu
@@ -40,6 +43,7 @@ Imports:
     ISOcodes,
     labelled,
     pillar,
+    stats,
     tibble,
     utils,
     vctrs

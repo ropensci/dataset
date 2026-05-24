@@ -2,19 +2,25 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "dataset",
-  "description": "The 'dataset' package helps create semantically rich, machine-readable, and interoperable datasets in R. It extends tidy data frames with metadata that preserves meaning, improves interoperability, and makes datasets easier to publish, exchange, and reuse in line with ISO and W3C standards.",
+  "description": "The 'dataset' package extends tidy data frames with machine-readable metadata, semantic definitions, and provenance information. It supports incremental semantic stabilization, interoperable dataset exchange, and FAIR-oriented publication workflows by preserving contextual metadata directly within R objects. The package facilitates the creation, exchange, reuse, and RDF serialization of datasets in line with ISO and W3C standards.",
   "name": "dataset: Create Data Frames for Exchange and Reuse",
-  "relatedLink": ["https://docs.ropensci.org/dataset/", "https://dataset.dataobservatory.eu"],
+  "relatedLink": ["https://docs.ropensci.org/dataset/", "https://dataset.dataobservatory.eu", "https://CRAN.R-project.org/package=dataset"],
   "codeRepository": "https://github.com/ropensci/dataset",
   "issueTracker": "https://github.com/ropensci/dataset/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 4.5.0 (2025-04-11 ucrt)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -195,6 +201,11 @@
     },
     "6": {
       "@type": "SoftwareApplication",
+      "identifier": "stats",
+      "name": "stats"
+    },
+    "7": {
+      "@type": "SoftwareApplication",
       "identifier": "tibble",
       "name": "tibble",
       "provider": {
@@ -205,12 +216,12 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
     },
-    "7": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
-    "8": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "vctrs",
       "name": "vctrs",
@@ -222,7 +233,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=vctrs"
     },
-    "9": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
@@ -230,7 +241,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "946.176KB",
+  "fileSize": "984.514KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -246,7 +257,7 @@
       ],
       "name": "dataset: Create Data Frames for Exchange and Reuse",
       "url": "https://docs.ropensci.org/dataset/",
-      "description": "R package version 0.4.4"
+      "description": "R package version 0.4.5"
     },
     {
       "@type": "CreativeWork",
