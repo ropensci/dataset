@@ -99,3 +99,30 @@ test_that("id_to_column final return path is exercised", {
   expect_equal(out$rowid, c("z:1", "z:2"))
   expect_equal(names(out)[1], "rowid")
 })
+
+test_that("id_to_column works on dataset_df with existing rowid", {
+  df <- dataset_df(
+    rowid = c("a", "b"),
+    x = 1:2
+  )
+
+  out <- id_to_column(df, prefix = "ex:")
+
+  expect_s3_class(out, "dataset_df")
+  expect_equal(out$rowid, c("ex:1", "ex:2"))
+})
+
+
+test_that("id_to_column handles dataset_df without subject metadata", {
+  df <- dataset_df(
+    a = 1:2,
+    dataset_bibentry = dublincore(
+      title = "Test",
+      creator = person("A", "B")
+    )
+  )
+
+  out <- id_to_column(df)
+
+  expect_s3_class(out, "dataset_df")
+})
