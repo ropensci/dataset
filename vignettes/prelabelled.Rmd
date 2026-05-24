@@ -1,0 +1,251 @@
+---
+title: "Handling Semantic Ambiguity with prelabelled Vectors"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Handling Semantic Ambiguity with prelabelled Vectors}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+# Introduction
+
+You are developing a family of R packages that extend tidy data
+workflows with richer semantic and provenance-aware capabilities.
+The work began from practical experience building tidyverse-based
+data pipelines and repeatedly encountering the same limitation:
+while tidy datasets are highly efficient and semantically clear
+within a given workflow, much of their meaning remains implicit and
+dependent on the contextual knowledge of their creator. Once
+exported, serialized, or transferred across environments, this
+contextual information is often lost. :contentReference[oaicite:0]{index=0}
+
+```{r setup}
+library(fscontext)
+library(dataset)
+```
+
+The `dataset` package introduces semantically enriched vectors and
+data frames that preserve explicit metadata throughout the workflow
+lifecycle. However, fully formal semantic annotation is verbose and
+cognitively demanding. Constructing semantically complete
+RDF-compatible objects is appropriate only for mature stages of a
+workflow.
+
+In practice, semantic stabilization is usually incremental.
+Observational data often arrive with partially inconsistent,
+incomplete, or ambiguous labels. Before a variable can mature into
+a formally defined vector created with `labelled::labelled()` or
+`dataset::defined()`, analysts typically perform several rounds of
+semantic harmonisation.
+
+The `prelabelled` class supports this intermediate stage.
+
+Unlike formally defined semantic vectors, `prelabelled` vectors
+tolerate:
+
+- incomplete semantic mappings;
+- unresolved observational values;
+- mixed coding conventions;
+- gradual semantic stabilization.
+
+This vignette demonstrates how provisional semantic assertions can
+be incrementally stabilised while preserving the original
+observational evidence.
+
+# A small ambiguous dataset
+
+We begin with a small dataset containing country observations. The
+dataset is intentionally inconsistent: some observations use full
+country names, while others already use ISO 3166 alpha-2 country
+codes.
+
+Such ambiguity is extremely common in operational analytical
+workflows, particularly when datasets are merged from multiple
+sources or manually curated over time.
+
+```{r countrydata1}
+country_data_1 <- data.frame(
+  country = c(
+    "Andorra", "LI", "San Marino", "AD", "Liechtenstein"
+  ),
+  time = c(
+    2020, 2020, 2020, 2021, 2021
+  ),
+  value = c(
+    1.2, 2.4, 3.1, 1.3, 2.5
+  )
+)
+```
+
+
+## Creating provisional semantic assertions
+
+We now create a lightweight semantic mapping.
+
+The goal is not yet to create a formally closed semantic vocabulary.
+Instead, we begin stabilising the semantics incrementally by mapping
+some observational values to candidate semantic assertions.
+
+Values that are not explicitly mapped remain self-describing.
+
+
+```{r countrymap1}
+country_map <- c(
+  "Andorra" = "AD",
+  "Liechtenstein" = "LI",
+  "San Marino" = "SM"
+)
+
+country_data_1$country <-
+  prelabel(
+    country_data_1$country,
+    labels = country_map
+  )
+```
+
+## Inspecting the prelabelled vector
+
+The resulting vector preserves the original observational values
+while attaching a provisional semantic vocabulary in the
+`"prelabel"` attribute.
+
+```{r printcountrydata1}
+print(country_data_1$country)
+```
+
+This separation between:
+
+- observational evidence;
+- semantic interpretation;
+
+is a central design principle of the `prelabelled` class.
+
+The observational values remain unchanged, while semantic
+operationalisation may evolve iteratively over time.
+
+## Semantic operationalisation
+
+Using `as.character()` operationalises the semantic assertions into
+a semantically stabilised character vector.
+
+```{r countrydata2}
+country_data_2 <- data.frame(
+  country = as.character(country_data_1$country),
+  time = country_data_1$time,
+  value = country_data_1$value
+)
+
+country_data_2
+```
+Mapped observations are converted into their candidate semantic
+assertions, while unmatched values remain self-describing.
+
+This allows analysts to gradually reduce semantic ambiguity without
+destroying the original observational evidence.
+
+# A more ambiguous dataset
+
+The next dataset contains a more difficult form of semantic
+ambiguity.
+
+Some observations use ISO 3166 alpha-2 country codes, while others
+use ISO 3166 alpha-3 codes or full country names. Although the
+observations are semantically related, they do not yet form a
+stable closed vocabulary.
+
+```{r countrydata3}
+country_data_3 <- data.frame(
+  country = c(
+    "AD", "AND", "LI", "LIE", "SMR", "San Marino"
+  ),
+  time = c(
+    2020, 2020, 2020, 2021, 2021, 2021
+  ),
+  value = c(
+    1, 2, 3, 4, 5, 6
+  )
+)
+```
+
+
+# Incremental semantic stabilization
+
+The `prelabelled` workflow does not require complete semantic
+resolution from the outset.
+
+Instead, semantic stabilization can proceed incrementally:
+
+- observational ambiguities become explicit;
+- partial semantic mappings accumulate gradually;
+- unresolved values remain operationally usable;
+- semantic assertions become progressively more stable.
+
+
+```{r countrymap3}
+country_map_3 <- c(
+  "Andorra" = "AD",
+  "Andorra" = "AND",
+  "Liechtenstein" = "LI",
+  "San Marino" = "SM",
+  "San Marino" = "SMR"
+)
+
+prelabelled_country <- prelabel(
+  country_data_3$country,
+  labels = country_map_3
+)
+```
+
+
+This approach is particularly useful in exploratory analytical
+workflows, archival reconstruction, metadata harmonisation, and
+cross-dataset integration tasks.
+
+```{r}
+prelabelled_country
+```
+##  Semantic workspaces
+
+While `as.character()` provides lightweight semantic coercion, which may be more useful after semantic stabilisation.
+
+```{r}
+as.character(prelabelled_country)
+```
+
+The `as_character()` method creates a provenance-preserving semantic
+workspace.
+
+```{r}
+as_character(prelabelled_country)
+```
+
+The resulting vector retains:
+
+- the original observational values;
+- the provisional semantic vocabulary;
+- additional semantic attributes.
+
+This allows analysts to continue semantic refinement workflows
+while preserving reversibility and provenance awareness.
+
+## From provisional semantics to formally defined semantics
+
+The goal of `prelabelled` vectors is not to replace formally
+defined semantic vectors.
+
+Instead, they provide a lightweight preparatory stage for
+incremental semantic stabilization.
+
+Once semantic ambiguity has been sufficiently reduced,
+`prelabelled` vectors may mature into formally defined semantic
+vectors created with `labelled::labelled()` or
+`dataset::defined()`.
+
+In this sense, semantic enrichment becomes an iterative analytical
+workflow rather than a single terminal annotation step.
