@@ -36,6 +36,8 @@ navbar:
         href: articles/design.html
       - text: "Core concepts"
       - text: "-------"
+      - text: "Prelabelled"
+        href: articles/prelabelled.html
       - text: "Defined"
         href: articles/defined.html
       - text: "Dataset_df"
@@ -58,7 +60,7 @@ articles:
   - title: "Introduction"
     contents: [introduction, design]
   - title: "Core concepts"
-    contents: [defined, dataset_df]
+    contents: [prelabelled, defined, dataset_df]
   - title: "Metadata & citation"
     contents: [bibrecord]
   - title: "Dataset exchanges"
@@ -73,6 +75,15 @@ reference:
       - bind_defined_rows
       - as.data.frame.dataset_df
       - as_tibble.dataset_df
+  - title: "Semantic harmonisation"
+    desc: >
+      Lightweight semantic mappings and semantic preprocessing.
+    contents:
+      - prelabel
+      - is.prelabelled
+      - as_character.prelabelled
+      - as_value_key
+      - invert_value_key
   - title: "Defined"
     desc: >
       A labelled subclass that retains unit, definition and namespace.

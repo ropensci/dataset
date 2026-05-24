@@ -59,9 +59,9 @@ interface to the W3C Data Cube model.
 
 A tidy dataset, per Wickham’s definition, adheres to three core rules:
 
--   Each variable forms a column\
--   Each observation forms a row\
--   Each value forms a cell
+- Each variable forms a column\
+- Each observation forms a row\
+- Each value forms a cell
 
 ![Figure 12.1 in R for Data Science: tidy data structure.](images/tidy-1.png)
 
@@ -71,19 +71,51 @@ often conflate the in-memory structure with the abstract concept of a dataset,
 which in metadata terms refers not just to structure but also to definitions,
 units, provenance, and contributors.
 
+Several ISO and W3C standards define what constitutes a dataset. According to
+ISO/IEC 20546, a dataset is an identifiable collection of data available for
+access or download in one or more formats. The Dublin Core DCMI Metadata Terms
+define a
+[dataset](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dcmitype/Dataset/)
+as “data encoded in a defined structure.” The W3C’s [Data Cube
+Vocabulary](https://www.w3.org/TR/vocab-data-cube/#cubes-model-datasets), widely
+used in official statistics, describes a dataset as a “collection of statistical
+data that corresponds to a defined structure.” That structure includes
+observations, metadata about their organisation, *structural metadata* (e.g.,
+units of measure), and *reference metadata* (e.g., creator, publisher).
 
-Several ISO and W3C standards define what constitutes a dataset. According to ISO/IEC 20546, a dataset is an identifiable collection of data available for access or download in one or more formats. The Dublin Core DCMI Metadata Terms define a [dataset](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dcmitype/Dataset/) as “data encoded in a defined structure.” The W3C’s [Data Cube Vocabulary](https://www.w3.org/TR/vocab-data-cube/#cubes-model-datasets), widely used in official statistics, describes a dataset as a “collection of statistical data that corresponds to a defined structure.” That structure includes observations, metadata about their organisation, *structural metadata* (e.g., units of measure), and *reference metadata* (e.g., creator, publisher).  
+This differs from R’s `data.frame` object, which is defined as “tightly coupled
+collections of variables which share many of the properties of matrices and of
+lists, used as the fundamental data structure by most of R's modeling software.”
+In practice, R users often use the terms *data frame* (or tibble) and *dataset*
+interchangeably. However, even a tidy data frame is underspecified for use in
+scientific repositories, statistical data exchanges, or many database
+applications. A `data.frame` exists only in the memory of an R session, limiting
+its interoperability and reusability. While R can already serialise data frames
+to formats like `.rds`, `.rda`, or `.csv`, these serialisations by default lack
+rich, standardised metadata. The `dataset` package bridges that gap by aligning
+with established metadata standards, producing serialisations that are easier to
+reuse and interpret.
 
-This differs from R’s `data.frame` object, which is defined as “tightly coupled collections of variables which share many of the properties of matrices and of lists, used as the fundamental data structure by most of R's modeling software.” In practice, R users often use the terms *data frame* (or tibble) and *dataset* interchangeably. However, even a tidy data frame is underspecified for use in scientific repositories, statistical data exchanges, or many database applications. A `data.frame` exists only in the memory of an R session, limiting its interoperability and reusability. While R can already serialise data frames to formats like `.rds`, `.rda`, or `.csv`, these serialisations by default lack rich, standardised metadata. The `dataset` package bridges that gap by aligning with established metadata standards, producing serialisations that are easier to reuse and interpret.  
+The `dataset` package extends R's native data structures with machine-readable
+metadata. It follows a *semantic early-binding* approach: metadata is embedded
+as soon as the data is created, making datasets suitable for long-term reuse,
+FAIR-compliant publishing, and integration into semantic web systems.
 
-The `dataset` package extends R's native data structures with machine-readable metadata. It follows a *semantic early-binding* approach: metadata is embedded as soon as the data is created, making datasets suitable for long-term reuse, FAIR-compliant publishing, and integration into semantic web systems.  
-
-The central innovation of the package is an extended data-frame-like object: a `tibble::tibble()` enhanced with R’s `attributes()` system to store standard metadata from ISO and W3C vocabularies. This `dataset_df` class integrates naturally with tidy data principles (Wickham, 2014), where each variable is a column, each observation is a row, and each type of observational unit forms a table. On top of this tidy structure, `dataset_df` adds a semantic layer so that the meaning of variables and datasets is explicit and machine-readable.  This new class is introduced in  `vignette("dataset_df", package = "dataset").
+The central innovation of the package is an extended data-frame-like object: a
+`tibble::tibble()` enhanced with R’s `attributes()` system to store standard
+metadata from ISO and W3C vocabularies. This `dataset_df` class integrates
+naturally with tidy data principles (Wickham, 2014), where each variable is a
+column, each observation is a row, and each type of observational unit forms a
+table. On top of this tidy structure, `dataset_df` adds a semantic layer so that
+the meaning of variables and datasets is explicit and machine-readable. This new
+class is introduced in \`vignette("dataset_df", package = "dataset").
 
 In research or institutional contexts, a dataset is a form of digital resource,
 often archived, cited, or published. Such resources are typically described with
 metadata using the Resource Description Framework (RDF), enabling
-machine-actionable, language-independent, schema-neutral representation. Our aim is to facilitate the translation or annotation of a tidy R data.frame into such a resource.
+machine-actionable, language-independent, schema-neutral representation. Our aim
+is to facilitate the translation or annotation of a tidy R data.frame into such
+a resource.
 
 RDF also enables description at the level of **elementary statements** — that
 is, per-cell metadata combining variable (column) and observation (row). This
@@ -100,34 +132,67 @@ Moreover, many statistical data providers follow the **data cube model**, which
 resembles tidy data but supports higher dimensionality and more formal metadata.
 Examples include SDMX and the W3C Data Cube vocabulary.
 
-Tidy data assumes that column names and structure are sufficient for clarity.
-However, ambiguity arises quickly when combining datasets from heterogeneous
-sources. A column named `geo` might contain ISO codes in one dataset and
-Eurostat codes in another. GDP figures may differ in currency or base year.
-These inconsistencies often go unnoticed until late-stage analytical errors.
+Tidy data assumes that column names and structure are sufficient for clarity. However, ambiguity arises quickly when combining datasets from heterogeneous sources. A column named `geo` might contain ISO codes in one dataset and
+Eurostat codes in another. GDP figures may differ in currency or base year. These inconsistencies often go unnoticed until late-stage analytical errors.
+
+Real analytical workflows rarely begin with fully stabilized
+semantics. Datasets may contain inconsistent labels,
+abbreviations, or partially harmonised coding systems.
+
+The `prelabel()` constructor supports lightweight semantic
+stabilization by attaching provisional semantic mappings while
+preserving original observational values. Once semantic
+assumptions become sufficiently stable, variables may be
+formalized with `defined()` and assembled into `dataset_df()`
+objects.
 
 For example:
 
 ```{r dataframe}
 data.frame(
-  geo = c("LI", "SM"),
-  CPI = c("0.8", "0.9"),
-  GNI = c("8976", "9672")
+  geo = c(
+    "LI", "Liechtenstein", "SM", "SMR"
+  ),
+  year = c(2024, 2025, 2024, 2025),
+  CPI = c(
+    "0.8", "0.8", "0.9", "0.9"
+  ),
+  GNI = c(
+    "8976", "8976", "9672", "9672"
+  )
 )
 ```
+This dataset is tidy, but not semantically stable. The `geo`
+column mixes country names with multiple coding systems:
+ISO-3166 alpha-2 (`LI`, `SM`) and ISO-3166 alpha-3 (`SMR`).
 
-This dataset is tidy, but not self-describing. Is geo using ISO 3166 or Eurostat
-codes? Is GNI measured in euros, dollars, or PPP-adjusted values?
+Real analytical workflows rarely begin with fully harmonised
+semantics. Datasets may contain inconsistent labels,
+abbreviations, or partially reconciled coding systems.
 
-The dataset package addresses these challenges by introducing structures for
-semantically rich vectors (`defined()`) and annotated tibbles (`dataset_df()`).
-It integrates machine-readable metadata directly into R objects and ensures that
-labels, units, concept URIs, and provenance are preserved from creation to
-publication.
+The `prelabel()` constructor supports lightweight semantic
+stabilization by attaching provisional semantic mappings while
+preserving the original observational values:
 
-This approach bridges the gap between tidy data and RDF, making formal semantics
-part of the tidyverse workflow — without requiring users to leave R or manually
-manage external metadata schemas.
+```{r}
+geo <- prelabel(
+  c("LI", "Liechtenstein", "SM", "SMR"),
+  labels = c(
+    Liechtenstein = "LI", SMR = "SM"
+  )
+)
+
+as.character(geo)
+```
+Once semantic assumptions become sufficiently stable, vectors
+may be formalized with `defined()` and assembled into
+`dataset_df()` objects with explicit units, namespaces,
+provenance, and machine-readable metadata.
+
+This approach extends tidy data workflows with semantic and
+provenance-aware structures while remaining compatible with
+ordinary tidyverse operations. Because metadata is attached
+workflows.
 
 ## Related Work
 
@@ -191,18 +256,18 @@ publication.
 
 ## Design Principles
 
--   **Early binding of semantics**: Metadata is attached at the point of dataset
-    creation, not after the fact.
--   **Attribute-based, not schema-based**: Metadata lives inside the R object
-    itself, not in external schemas or files.
--   **Minimal friction with tidyverse workflows**: Compatible with `dplyr`,
-    `tidyr`, `vctrs`, and coercible to `tibble` or `data.frame`.
--   **Persistence across save/load cycles**: Metadata survives R serialization
-    (`.rds`, `.rda`).
--   **Tidyverse-like grammar**: Core verbs include `defined()`, `dataset_df()`,
-    `provenance()`, `describe()`, `datacite()`, and `dublincore()`.
--   **Full interoperability outside R**: Datasets can be exported as RDF using
-    `dataset_to_triples()` and ingested into triple stores.
+- **Early binding of semantics**: Metadata is attached at the point of dataset
+  creation, not after the fact.
+- **Attribute-based, not schema-based**: Metadata lives inside the R object
+  itself, not in external schemas or files.
+- **Minimal friction with tidyverse workflows**: Compatible with `dplyr`,
+  `tidyr`, `vctrs`, and coercible to `tibble` or `data.frame`.
+- **Persistence across save/load cycles**: Metadata survives R serialization
+  (`.rds`, `.rda`).
+- **Tidyverse-like grammar**: Core verbs include `defined()`, `dataset_df()`,
+  `provenance()`, `describe()`, `datacite()`, and `dublincore()`.
+- **Full interoperability outside R**: Datasets can be exported as RDF using
+  `dataset_to_triples()` and ingested into triple stores.
 
 ### Semantic Early Binding
 
@@ -221,13 +286,13 @@ itself.
 The `defined()` constructor builds on `labelled::labelled` (originally from
 `haven`) and provides a more expressive way to annotate vectors with:
 
--   A human-readable label (e.g., `"Gross Domestic Product"`)
--   A unit or measurement system (e.g., `"CP_MEUR"`), accessible via
-    `var_unit()` and set with `var_unit() <-`
--   A concept URI that uniquely identifies the variable or dimension, handled
-    via `var_concept()` and assignment
--   A namespace URI pattern for resolving coded values (e.g., ISO or Eurostat
-    country codes), via `var_namespace()`
+- A human-readable label (e.g., `"Gross Domestic Product"`)
+- A unit or measurement system (e.g., `"CP_MEUR"`), accessible via `var_unit()`
+  and set with `var_unit() <-`
+- A concept URI that uniquely identifies the variable or dimension, handled via
+  `var_concept()` and assignment
+- A namespace URI pattern for resolving coded values (e.g., ISO or Eurostat
+  country codes), via `var_namespace()`
 
 The `dataset_df()` class extends `tibble` and supports combining enriched
 vectors with dataset-level metadata. This includes Dublin Core and DataCite
@@ -248,12 +313,12 @@ workflows.
 In R, most objects (especially vectors and data frames) can carry attributes
 such as:
 
--   `names`
--   `class`
--   `label`
--   `unit`
--   `concept`
--   `namespace`
+- `names`
+- `class`
+- `label`
+- `unit`
+- `concept`
+- `namespace`
 
 These are lightweight, internal, and flexible. For example:
 
@@ -612,10 +677,10 @@ users to convert annotated datasets into RDF-compatible formats.
 
 The key function in this process is:
 
--   `dataset_to_triples()`: Converts a `dataset_df` into a three-column
-    long-form structure—subject, predicate, object—representing each cell as an
-    RDF-style triple. These can be exported to tabular or text-based formats, or
-    directly ingested by triple stores.
+- `dataset_to_triples()`: Converts a `dataset_df` into a three-column long-form
+  structure—subject, predicate, object—representing each cell as an RDF-style
+  triple. These can be exported to tabular or text-based formats, or directly
+  ingested by triple stores.
 
 This structure aligns with the W3C's RDF and Data Cube vocabularies, where: -
 The **subject** typically encodes an observation or observation unit - The
@@ -628,13 +693,13 @@ These outputs are fully compatible with the
 datasets into: - Turtle (`.ttl`) - RDF/XML (`.rdf`) - N-Triples (`.nt`) -
 JSON-LD (`.jsonld`)
 
-This enables dataset publication to: 
+This enables dataset publication to:
 
-- SPARQL endpoints 
+- SPARQL endpoints
 
 - FAIR data repositories
 
-- Wikibase instances (via planned extensions) 
+- Wikibase instances (via planned extensions)
 
 - Semantic web catalogues
 
@@ -651,12 +716,12 @@ domains, such as SDMX, DDI, and DCAT.
 Some features have been deliberately left out to keep the package lightweight
 and analyst-friendly:
 
--   No native support for **data cube slicing** (e.g., filtering all
-    observations for a specific dimension level)
--   No column-wise binding (e.g., `bind_cols()`) with semantic integrity checks
--   No built-in **validation against controlled vocabularies** or semantic
-    registries
--   Limited UI or interactive support for defining or editing metadata.
+- No native support for **data cube slicing** (e.g., filtering all observations
+  for a specific dimension level)
+- No column-wise binding (e.g., `bind_cols()`) with semantic integrity checks
+- No built-in **validation against controlled vocabularies** or semantic
+  registries
+- Limited UI or interactive support for defining or editing metadata.
 
 One key limitation is the lack of experience with `dataset` in large-scale,
 multi-institutional ingestion, exchange, or publication workflows. For example,
@@ -666,33 +731,33 @@ automatically filtered out by triple stores.
 
 Some features could be better developed as stand-alone packages.
 
--   The
-    [`bibrecord()`](https://dataset.dataobservatory.eu/articles/bibrecord.html)
-    s3 class with its constructor was created out of necessity, because the
-    `utils::bibentry` class and the `utils::person()` do not handle well modern
-    library and repository metadata. Most of the work carried out with the
-    `bibentry` class to use the `dublincore()` and `datacite()` constructors
-    could be easily adopted in the utils package of R, because it does not raise
-    backward compatibility problems.
+- The
+  [`bibrecord()`](https://dataset.dataobservatory.eu/articles/bibrecord.html) s3
+  class with its constructor was created out of necessity, because the
+  `utils::bibentry` class and the `utils::person()` do not handle well modern
+  library and repository metadata. Most of the work carried out with the
+  `bibentry` class to use the `dublincore()` and `datacite()` constructors could
+  be easily adopted in the utils package of R, because it does not raise
+  backward compatibility problems.
 
--   The
-    [`provenance()`](https://dataset.dataobservatory.eu/reference/provenance.html)
-    function could safely be developed into a package of its own, because there
-    are countless ways to improve the granularity a dataset provenance
-    description.
+- The
+  [`provenance()`](https://dataset.dataobservatory.eu/reference/provenance.html)
+  function could safely be developed into a package of its own, because there
+  are countless ways to improve the granularity a dataset provenance
+  description.
 
 Several downstream features and companion packages are under development:
 
--   **`wbdataset`**: export to the Wikibase data model for collaborative
-    metadata curation
--   **Observation status flags**: support for tagging cells as "estimated",
-    "provisional", or "forecasted"
--   **Validation helpers**: checks for missing concept URIs, unit mismatches, or
-    inconsistent namespaces
--   **External thesauri support**: integration with vocabularies such as EuroVoc
-    or GEMET
--   **FAIR alignment**: better coverage of 5-star and 8-star FAIR metadata
-    criteria
+- **`wbdataset`**: export to the Wikibase data model for collaborative metadata
+  curation
+- **Observation status flags**: support for tagging cells as "estimated",
+  "provisional", or "forecasted"
+- **Validation helpers**: checks for missing concept URIs, unit mismatches, or
+  inconsistent namespaces
+- **External thesauri support**: integration with vocabularies such as EuroVoc
+  or GEMET
+- **FAIR alignment**: better coverage of 5-star and 8-star FAIR metadata
+  criteria
 
 We expect the need for tailored adaptations in specific domains — including
 environmental statistics, cultural heritage, and social sciences — where
@@ -713,12 +778,12 @@ SDMX, DDI, and DCAT.
 Several features have been deliberately left out to keep the package lightweight
 and analyst-friendly:
 
--   No native support for **data cube slicing** (e.g., filtering all
-    observations for a specific dimension level)
--   No column-wise binding (e.g., `bind_cols()`) with semantic integrity checks
--   No built-in validation against **controlled vocabularies** or semantic
-    registries
--   Limited UI or interactive tooling for defining or editing metadata
+- No native support for **data cube slicing** (e.g., filtering all observations
+  for a specific dimension level)
+- No column-wise binding (e.g., `bind_cols()`) with semantic integrity checks
+- No built-in validation against **controlled vocabularies** or semantic
+  registries
+- Limited UI or interactive tooling for defining or editing metadata
 
 A key limitation is the limited experience with `dataset` in large-scale,
 multi-institutional ingestion, exchange, or publication workflows. For example,
@@ -728,31 +793,31 @@ naturally eliminated by triple stores.
 
 Some internal components could be better developed as stand-alone packages:
 
--   The
-    [`bibrecord()`](https://dataset.dataobservatory.eu/articles/bibrecord.html)
-    S3 class was introduced out of necessity. Base R’s `utils::bibentry` and
-    `utils::person()` do not adequately support modern library and repository
-    metadata. Much of the work done in the `dublincore()` and `datacite()`
-    constructors could be ported upstream to the `utils` package without
-    introducing backward compatibility issues.
+- The
+  [`bibrecord()`](https://dataset.dataobservatory.eu/articles/bibrecord.html) S3
+  class was introduced out of necessity. Base R’s `utils::bibentry` and
+  `utils::person()` do not adequately support modern library and repository
+  metadata. Much of the work done in the `dublincore()` and `datacite()`
+  constructors could be ported upstream to the `utils` package without
+  introducing backward compatibility issues.
 
--   The
-    [`provenance()`](https://dataset.dataobservatory.eu/reference/provenance.html)
-    function could reasonably be split into a separate package, as there are
-    many opportunities to increase the granularity and expressiveness of dataset
-    provenance descriptions.
+- The
+  [`provenance()`](https://dataset.dataobservatory.eu/reference/provenance.html)
+  function could reasonably be split into a separate package, as there are many
+  opportunities to increase the granularity and expressiveness of dataset
+  provenance descriptions.
 
 Several downstream features and companion packages are under development:
 
--   **`wbdataset`**: export to the Wikibase data model for collaborative
-    metadata curation
--   **Observation status flags**: tagging of individual cells as "estimated",
-    "provisional", or "forecasted"
--   **Validation helpers**: checks for missing concept URIs, unit mismatches, or
-    inconsistent namespaces
--   **External thesauri support**: integration with vocabularies such as EuroVoc
-    or GEMET
--   **FAIR alignment**: support for 5-star and 8-star FAIR metadata compliance
+- **`wbdataset`**: export to the Wikibase data model for collaborative metadata
+  curation
+- **Observation status flags**: tagging of individual cells as "estimated",
+  "provisional", or "forecasted"
+- **Validation helpers**: checks for missing concept URIs, unit mismatches, or
+  inconsistent namespaces
+- **External thesauri support**: integration with vocabularies such as EuroVoc
+  or GEMET
+- **FAIR alignment**: support for 5-star and 8-star FAIR metadata compliance
 
 We anticipate the need for tailored extensions in domain-specific contexts —
 including environmental statistics, cultural heritage, and social sciences —
