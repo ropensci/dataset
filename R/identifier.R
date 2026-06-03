@@ -21,7 +21,7 @@
 #' For best practice in choosing identifier schemes, see the [IANA-registered
 #' URI schemes](https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml).
 #'
-#' @param x A [dataset_df()] object or a [`utils::bibentry`] object (including
+#' @param x A [dataset_df()] object or a [utils::bibentry()] object (including
 #'   [dublincore()] or [datacite()] records).
 #' @param value A character string giving the identifier. Can be named (e.g.,
 #'   `c(doi = "...")`) or unnamed. Numeric values are coerced to character.

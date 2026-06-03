@@ -1,20 +1,20 @@
-#' Convert a \code{dataset_df} to a base \code{data.frame}
+#' Convert a `dataset_df` to a base `data.frame`
 #'
 #' @description
-#' Converts a [`dataset_df`] into a plain `data.frame`. By default this
+#' Converts a `dataset_df` into a plain `data.frame`. By default this
 #' strips semantic metadata (label, unit, concept/definition, namespace) from
 #' each column, but this can be controlled via the
-#' \code{strip_attributes} argument.
+#' `strip_attributes` argument.
 #'
 #' Dataset-level metadata remains attached as inert attributes.
 #'
-#' @param x A [`dataset_df`].
+#' @param x A `dataset_df`.
 #' @param strip_attributes Logical: should column-level semantic metadata
-#'   be stripped? Default: \code{TRUE}.
+#'   be stripped? Default: `TRUE`.
 #' @param ... Passed to \code{base::as.data.frame()}.
 #' @inheritParams base::as.data.frame
 #'
-#' @return A base R `data.frame` without the \code{dataset_df} class.
+#' @return A base R `data.frame` without the `dataset_df` class.
 #'
 #' @examples
 #' data(orange_df)
@@ -142,7 +142,7 @@ as.data.frame.dataset_df <- function(x, ...,
 #' @name as_tibble.dataset_df
 #'
 #' @return
-#' A [`tibble`][tibble::tibble()] containing the data (and optionally some
+#' A [tibble`][tibble::tibble()] containing the data (and optionally some
 #' attributes) of the `dataset_df`.
 #'
 #' @param x A `dataset_df` object.

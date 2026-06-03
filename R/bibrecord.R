@@ -35,7 +35,7 @@
 #'
 #' @seealso
 #' Learn more in the vignette:
-#' [`bibrecord`](https://dataset.dataobservatory.eu/articles/bibrecord.html)
+#' [bibrecord](https://dataset.dataobservatory.eu/articles/bibrecord.html)
 #' @importFrom utils bibentry
 #' @family bibrecord functions
 #' @export

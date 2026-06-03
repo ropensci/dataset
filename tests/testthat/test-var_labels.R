@@ -1,14 +1,14 @@
 test_that("var_labels() retrieves all variable labels", {
   df <- dataset_df(
     id = defined(1:3, label = "Observation ID"),
-    temp = defined(c(22.5, 23.0, 21.8), label = "Temperature (°C)"),
+    temp = defined(c(22.5, 23.0, 21.8), label = "Temperature (<U+00B0>C)"),
     site = defined(c("A", "B", "A"))
   )
 
   labs <- var_labels(df)
   expect_type(labs, "list")
   expect_equal(labs$id, "Observation ID")
-  expect_equal(labs$temp, "Temperature (°C)")
+  expect_equal(labs$temp, "Temperature (<U+00B0>C)")
   expect_null(labs$site) # unlabeled by default
 })
 

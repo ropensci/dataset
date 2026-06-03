@@ -1,7 +1,7 @@
 test_that("relation() gets/sets structured and flat variants", {
   df <- dataset_df(data.frame(x = 1))
 
-  # character → normalized
+  # character <U+2192> normalized
   relation(df) <- "https://doi.org/10.1234/abc"
   r <- relation(df)
   expect_s3_class(r, "related")

@@ -16,10 +16,10 @@
 #'
 #' @param x A semantically rich data frame created with [dataset_df()] or
 #'   [as_dataset_df()].
-#' @param value A length‑one character string specifying the format
+#' @param value A length<U+2011>one character string specifying the format
 #'   (e.g., `"text/csv"`). Use `NULL` to reset to the default.
-#' @param overwrite Logical. Replace an existing non‑default value? If `FALSE`
-#'   and a non‑default value already exists, a message is emitted and the value
+#' @param overwrite Logical. Replace an existing non<U+2011>default value? If `FALSE`
+#'   and a non<U+2011>default value already exists, a message is emitted and the value
 #'   is kept. Defaults to `FALSE`.
 #'
 #' @return

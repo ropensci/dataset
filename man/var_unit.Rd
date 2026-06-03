@@ -51,8 +51,8 @@ The object \code{x} with updated \code{"unit"} attribute.
 }
 \description{
 Adds or retrieves a unit of measure (UoM) attribute to a vector. Units
-provide semantic meaning for numeric or character data — such as currency,
-weight, or time — helping prevent incorrect operations like merging values
+provide semantic meaning for numeric or character data <U+2014> such as currency,
+weight, or time <U+2014> helping prevent incorrect operations like merging values
 measured in incompatible units.
 
 The \verb{var_unit<-} assignment method sets, updates, or removes the \code{"unit"}

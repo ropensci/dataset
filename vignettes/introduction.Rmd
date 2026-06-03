@@ -22,30 +22,72 @@ if (!requireNamespace("rdflib",
 
 ## Overview
 
-The `dataset` package enriches R’s native data structures with machine-readable metadata. It allows variables and datasets to carry semantic definitions — such as URIs, labels, units, and provenance — which makes them suitable for long-term reuse, FAIR-compliant publishing, and integration into semantic web systems.
+The `dataset` package extends tidy data with semantic metadata, provenance, and machine-readable definitions.
 
-Unlike most metadata packages that attach metadata after the fact, `dataset` follows a **semantic early-binding** approach: metadata is embedded as soon as the data is created.
+It supports a gradual workflow from provisional semantic harmonisation with `prelabel()` to formally defined variables with `defined()` and fully described datasets with `dataset_df()`.
 
-This vignette provides a high-level introduction. For details on key components, see the following: 
+This makes datasets easier to exchange, reuse, publish, and serialize to RDF and other FAIR-compliant formats.
 
-- `vignette("defined", package = "dataset")`: Semantic vectors with `defined()` 
-- `vignette("dataset_df", package = "dataset")`: Structuring and metadata with `dataset_df()` 
-- `vignette("rdf", package = "dataset")`: Exporting to RDF and Linked Data 
+This vignette provides a high-level introduction. For details on key components, see:
+
+- `vignette("prelabelled", package = "dataset")`: Handling Semantic Ambiguity with `prelabelled` Vectors.
+- `vignette("defined", package = "dataset")`: Semantic vectors with `defined()`
+- `vignette("dataset_df", package = "dataset")`: Structuring and metadata with `dataset_df()`
+- `vignette("rdf", package = "dataset")`: Exporting to RDF and Linked Data
 - `vignette("bibrecord", package = "dataset")`: Creating rich citation metadata using `bibrecord()`
 
 ## Why extend tidy data?
 
-Hadley Wickham (2014) defines tidy data with three principles:
+Hadley Wickham (2014) defines [tidy data](https://vita.had.co.nz/papers/tidy-data.pdf) with three principles:
 
--   Each variable forms a column
--   Each observation forms a row
--   Each observational unit forms a table
+- Each variable forms a column
+- Each observation forms a row
+- Each observational unit forms a table
 
-This structure is ideal for analysis, but lacks **semantic clarity**, particularly when an analyst is working in a realistic, but not ideal scenario with several datasets received from various internet services. For example, two datasets might both contain a column named `gdp`, but one might be in euros and the other in dollars. Without metadata, tools cannot detect this mismatch.
+This structure is ideal for analysis because it links the structure of a dataset with its meaning. A variable represents an underlying attribute, and an observation represents measurements collected on the same unit.
 
-The `dataset` package addresses this by allowing you to define variables explicitly, and to store dataset-level metadata within a tidy tibble.
+In practice, however, analysts rarely begin with perfectly harmonized data. During data cleaning, transformation, and integration, they make many semantic decisions: resolving inconsistent coding schemes, standardizing categories, selecting units of measurement, or deciding how concepts from different sources correspond to one another. By the time a dataset is ready for analysis, these assumptions are usually clear to the analyst who created it.
+
+The problem arises when the dataset leaves its original context. Other analysts may use different terminology, apply different coding conventions, or simply lack knowledge of the decisions that were made during data preparation. Even the original analyst may find these assumptions difficult to reconstruct months or years later.
+
+The `dataset` package extends tidy data by making such semantic assumptions explicit and preserving them alongside the data. Rather than treating semantic harmonisation and data provenance as undocumented steps in a workflow, it allows them to be recorded incrementally as the dataset evolves.
+
+The goal is not to burden analysts with complex semantic technologies. Instead, the package provides lightweight tools for gradually recording the information needed to review, reuse, audit, publish, and correctly combine datasets across projects, organisations, and time.
+
+## Example: gradual semantic stabilisation
+
+Many data integration problems begin with values that refer to the same concept but use different coding conventions.
+
+```{r predefine}
+library(dataset)
+
+country <- prelabel(
+  c("AD", "Andorra", "AND", "LI", "Liechtenstein"),
+  labels = c(
+    Andorra = "AD",
+    AND = "AD",
+    Liechtenstein = "LI"
+  )
+)
+
+country
+```
+
+The `prelabelled` class records provisional semantic assumptions without requiring a formal semantic definition. In this example, "AD", "Andorra", and "AND" are treated as equivalent representations of the same geopolitical entity.
+
+The current mappings can be inspected directly:
+
+```{r predefine-attribute}
+attr(country, "prelabel")
+```
+
+This approach is useful during data cleaning and integration, where semantic assumptions may still evolve. Once these assumptions become sufficiently stable, they can be formalized with `defined()`.
+
+For further information, see `vignette("prelabelled", package = "dataset")`: Handling Semantic Ambiguity with `prelabelled` Vectors.
 
 ## Example: defining semantically rich vectors
+
+After values have been harmonized, variables can be formally defined with machine-readable semantic metadata.
 
 Semantically rich vectors are vectors in a data.frame that contain richer semantics than a simple column name; a long-form human-readable title; a machine- and human-readable variable definition; and if needed, an external resource that contains the codebook.
 
@@ -72,6 +114,8 @@ geo
 
 In this case, we define `geo` as the geopolitical entity <http://purl.org/linked-data/sdmx/2009/dimension#refArea>, and we know that the `AD` value can resolve to Andorra: <https://www.geonames.org/countries/AD/>. These vectors now carry metadata you can inspect directly — including their label, unit, and concept URI — which will be preserved even after transformation or storage.
 
+For further information, see vignette("defined", package = "dataset")`: Semantic vectors with`defined()\`.
+
 ## Example: creating a dataset from a metadata-enriched data frame
 
 ```{r smalldatasetexample}
@@ -90,11 +134,15 @@ small_dataset <- dataset_df(
 small_dataset
 ```
 
+For further information see `vignette("dataset_df", package = "dataset")`: Structuring and metadata with `dataset_df()`.
+
 This dataset not only stores the variables and values, but also includes embedded metadata that supports precise interpretation and repository-level publication.
 
 ```{r dublincoremetadata}
 as_dublincore(small_dataset)
 ```
+
+For further information see`vignette("bibrecord", package = "dataset")`: Creating rich citation metadata using `bibrecord()`
 
 ## Exporting to RDF
 
@@ -131,9 +179,11 @@ readLines(mycon)[c(4, 8, 12)]
 provenance(small_dataset)[c(6, 7)]
 ```
 
+For further information, see `vignette("rdf", package = "dataset")`: Exporting to RDF and Linked Data.
+
 ## Coercing back
 
-There may be use cases when your richer dataset needs to be simplified to as base R `data.frame` or a `tbf_df`. 
+There may be use cases when your richer dataset needs to be simplified to as base R `data.frame` or a `tbf_df`.
 
 We offer two coercion forms:
 
@@ -144,6 +194,7 @@ small_df <- as.data.frame(small_dataset,
 
 attr(small_dataset, "subject")
 ```
+
 Using the `strip_attributes = FALSE` the rich attributes remain in the base R data.frame. In most pipelines the attributes play no role, and you can retain it, and perhaps later load it back to a richer form.
 
 You can also strip all these attributes, and choose `tbl_df` (if you have `tibble`) installed":
@@ -157,23 +208,12 @@ small_tbl <- as_tibble(
 small_tbl
 ```
 
-
 ## Summary
 
 The *dataset* package enriches tidy data by attaching metadata from the start of the workflow. It helps avoid semantic mismatches, supports RDF publication, and meets interoperability standards like SDMX, DataCite, and Dublin Core. Use it when you need:
 
--   Meaningful variable descriptions and URIs
+- Meaningful variable descriptions and URIs
 
--   Dataset-level metadata embedded directly in .rds or .rda files
+- Dataset-level metadata embedded directly in .rds or .rda files
 
--   Easy export to RDF and semantic web formats
-
-For deeper examples, see:
-
--   `vignette("defined", package = "dataset")`: Working with semantic vectors
-
--   `vignette("dataset_df", package = "dataset")`: Dataset-level metadata and structure
-
--   `vignette("rdf", package = "dataset")`: Linked Data and export
-
--   `vignette("bibrecord", package = "dataset")`: Creating rich citation metadata using `bibrecord()`
+- Easy export to RDF and semantic web formats.

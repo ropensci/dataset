@@ -15,7 +15,7 @@
 \code{x}, invisibly.
 }
 \description{
-Custom print method for \code{\link{haven_labelled_defined}} vectors created with
+Custom print method for \link{haven_labelled_defined} vectors created with
 \code{\link[=defined]{defined()}}. It prints the variable name, label, and a short semantic
 summary before the underlying values.
 }

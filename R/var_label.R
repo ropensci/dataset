@@ -103,7 +103,7 @@ label_attribute <- function(x) {
 #' # Example: Retrieve variable labels from a dataset_df
 #' df <- dataset_df(
 #'   id = defined(1:3, label = "Observation ID"),
-#'   temp = defined(c(22.5, 23.0, 21.8), label = "Temperature (°C)"),
+#'   temp = defined(c(22.5, 23.0, 21.8), label = "Temperature (<U+00B0>C)"),
 #'   site = defined(c("A", "B", "A"))
 #' )
 #'

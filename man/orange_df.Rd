@@ -18,7 +18,7 @@ orange_df
 }
 \description{
 A dataset recording the growth of orange trees, replicated from the classic
-\href{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Orange.html}{\code{datasets::Orange}}
+\href{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Orange.html}{datasets::Orange}
 dataset and implemented as a \code{dataset_df} S3 class with enhanced semantic metadata.
 }
 \details{

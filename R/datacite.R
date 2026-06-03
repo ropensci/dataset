@@ -61,7 +61,7 @@
 #' @family bibrecord functions
 #' @seealso
 #' Learn more in the vignette:
-#' [`bibrecord`](https://dataset.dataobservatory.eu/articles/bibrecord.html)
+#' [bibrecord](https://dataset.dataobservatory.eu/articles/bibrecord.html)
 #' @importFrom utils person bibentry
 #'
 #' @examples
@@ -232,8 +232,8 @@ new_datacite <- function(Title,
 }
 
 #' @rdname datacite
-#' @return \code{is.datacite(x)} returns a logical values (if the object
-#' \code{x} is of class \code{datacite}).
+#' @return[is.datacite()] returns a logical values (if the object
+#' `x` is of class `datacite`).
 is.datacite <- function(x) {
   UseMethod("is.datacite", x)
 }

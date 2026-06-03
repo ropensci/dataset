@@ -24,7 +24,7 @@ A logical vector. If \code{strip_attributes = FALSE}, any semantic
 metadata attached to \code{x} will be carried over to the returned vector.
 }
 \description{
-Coerces a \code{\link{haven_labelled_defined}} vector created with \code{\link[=defined]{defined()}}
+Coerces a \code{haven_labelled_defined} vector created with \code{\link[=defined]{defined()}}
 into a base R logical vector.
 
 This function is the recommended, semantic-aware interface for converting

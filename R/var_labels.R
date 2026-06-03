@@ -15,7 +15,7 @@
 #' attribute and delegates to [var_label()] and
 #' [var_label<-()] on individual columns.
 #'
-#' @param x A `data.frame` or [`dataset_df`] object.
+#' @param x A `data.frame` or `dataset_df` object.
 #' @param value
 #'   - For setting: a named list or named character vector of labels.
 #'     Names must match column names in `x`.
@@ -37,7 +37,7 @@
 #' @examples
 #' df <- dataset_df(
 #'   id = defined(1:3, label = "Observation ID"),
-#'   temp = defined(c(22.5, 23.0, 21.8), label = "Temperature (°C)"),
+#'   temp = defined(c(22.5, 23.0, 21.8), label = "Temperature (<U+00B0>C)"),
 #'   site = defined(c("A", "B", "A"))
 #' )
 #'

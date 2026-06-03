@@ -1,12 +1,12 @@
 #' Coerce a defined vector to a factor
 #'
 #' @description
-#' `as_factor()` converts a [`defined()`][defined] vector into a standard R
+#' `as_factor()` converts a [defined()] vector into a standard R
 #' factor. If value labels are present, they are turned into factor levels
 #' via [haven::as_factor()]. Otherwise, the underlying values are converted
 #' with [base::factor()].
 #' @details
-#' Use \code{strip_attributes = TRUE} when flattening or preparing data for
+#' Use `strip_attributes = TRUE` when flattening or preparing data for
 #' external pipelines, but keep the default when working with defined
 #' vectors directly.
 #' @param x A vector created with [defined()].
@@ -32,9 +32,9 @@ as_factor <- function(x, ...) {
 #' @rdname as_factor
 #' @export
 #' @param strip_attributes Logical; should semantic metadata attributes
-#'   (such as \code{label}, \code{unit}, \code{definition}, and
-#'   \code{namespace}) be removed from the returned vector?
-#'   Defaults to \code{TRUE}.
+#'   (such as `label`, `unit`, `definition`, and
+#'   `namespace`) be removed from the returned vector?
+#'   Defaults to 'TRUE'.
 #' @importFrom haven as_factor labelled
 #' @importFrom vctrs vec_data
 as_factor.haven_labelled_defined <- function(
@@ -45,14 +45,14 @@ as_factor.haven_labelled_defined <- function(
   vals <- vctrs::vec_data(x)
   lbls <- attr(x, "labels", exact = TRUE)
 
-  # CASE 1: value labels present → labelled → haven::as_factor()
+  # CASE 1: value labels present <U+2192> labelled <U+2192> haven::as_factor()
   if (!is.null(lbls)) {
     fac <- haven::as_factor(
       haven::labelled(vals, labels = lbls),
       ...
     )
   } else {
-    # CASE 2: no value labels → plain factor on values
+    # CASE 2: no value labels <U+2192> plain factor on values
     fac <- factor(vals)
   }
 

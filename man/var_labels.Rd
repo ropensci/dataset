@@ -14,7 +14,7 @@ var_labels(
 var_labels(x) <- value
 }
 \arguments{
-\item{x}{A \code{data.frame} or \code{\link{dataset_df}} object.}
+\item{x}{A \code{data.frame} or \code{dataset_df} object.}
 
 \item{unlist}{Logical; if \code{TRUE}, return a named character vector instead
 of a list. Defaults to \code{FALSE}.}
@@ -59,7 +59,7 @@ attribute and delegates to \code{\link[=var_label]{var_label()}} and
 \examples{
 df <- dataset_df(
   id = defined(1:3, label = "Observation ID"),
-  temp = defined(c(22.5, 23.0, 21.8), label = "Temperature (°C)"),
+  temp = defined(c(22.5, 23.0, 21.8), label = "Temperature (<U+00B0>C)"),
   site = defined(c("A", "B", "A"))
 )
 

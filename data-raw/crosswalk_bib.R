@@ -44,7 +44,7 @@ clean_person_name <- function(p) {
 #'
 #' @param x A `dublincore` or `datacite` object produced by your helpers
 #' @param target One of "schema.org" or "dataspice"
-#' @return For "schema.org": a named list ready to be JSON‑LD.
+#' @return For "schema.org": a named list ready to be JSON<U+2011>LD.
 #'         For "dataspice": a list with data frames: $biblio, $creators, $contributors.
 crosswalk_bib <- function(x, target = c("schema.org", "dataspice")) {
   target <- match.arg(target)

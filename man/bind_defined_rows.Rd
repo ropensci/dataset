@@ -12,7 +12,7 @@ bind_defined_rows(x, y, ..., strict = FALSE)
 \item{y}{A \code{dataset_df} object to bind to \code{x}.}
 
 \item{...}{Optional dataset-level attributes such as \code{title} or
-\code{creator} to override.}
+\code{\link[=creator]{creator()}} to override.}
 
 \item{strict}{Logical. If \code{TRUE} (default), require full semantic
 compatibility, including rowid.}
@@ -29,8 +29,8 @@ title and creator can be overridden using \code{...}.
 }
 \details{
 This function combines two semantically enriched datasets created
-with \code{dataset_df()}. All variable-level attributes — including labels,
-units, concept definitions, and namespaces — must match. If \code{strict =
+with \code{dataset_df()}. All variable-level attributes <U+2014> including labels,
+units, concept definitions, and namespaces <U+2014> must match. If \code{strict =
 TRUE} (the default), the row identifier namespace (used in the \code{rowid}
 column) must also match exactly.
 

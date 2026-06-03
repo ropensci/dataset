@@ -2,7 +2,7 @@
 #'
 #' `defined()` constructs a vector that behaves like a base R vector but carries
 #' semantic metadata used for documentation, validation, and interoperability.
-#' The resulting object inherits from [`haven::labelled()`] (for numeric,
+#' The resulting object inherits from [haven::labelled()] (for numeric,
 #' character, and factor data) or from base date/time classes, and adds:
 #'
 #' * a human-readable variable label,
@@ -18,17 +18,17 @@
 #'
 #' `defined()` vectors preserve their metadata during subsetting, printing,
 #' summarizing, comparisons, and many tidyverse operations. They integrate
-#' smoothly with [`dataset_df()`] objects and can be safely flattened via
-#' [`as.data.frame()`], [`as_tibble()`], or coercion helpers such as
-#' [`as_numeric()`] and [`as_character()`].
+#' smoothly with [dataset_df()] objects and can be safely flattened via
+#' [as.data.frame()], [as_tibble()], or coercion helpers such as
+#' [as_numeric()] and [as_character()].
 #'
 #' @section Supported input types:
 #' * numeric (integer or double)
 #' * character
-#' * factor (converted via [`labelled::to_labelled()`])
-#' * [`Date`]
-#' * [`POSIXct`]
-#' * [`haven::labelled()`]
+#' * factor (converted via [labelled::to_labelled()])
+#' * `Date`
+#' * `POSIXct`
+#' * [haven::labelled()]
 #' * logical (with restrictions: logical vectors **cannot** have value labels)
 #'
 #' @param x A vector to annotate.
@@ -43,19 +43,18 @@
 #' @param ... For backward compatibility; the deprecated `definition`
 #'   argument is still accepted and mapped to `concept`.
 #'
-#' @return A vector of class `"haven_labelled_defined"` or `"datetime_defined"`,
+#' @return A vector of class `haven_labelled_defined` or `datetime_defined`,
 #'   depending on the input type.
 #'
 #' @importFrom labelled is.labelled
 #'
 #' @seealso
-#'   [`is.defined()`],
-#'   [`as_numeric()`],
-#'   [`as_character()`],
-#'   [`as_logical()`],
-#'   [`strip_defined()`],
-#'   [`dataset_df()`]
-#'   [`print.haven_labelled_defined()`]
+#'   [is.defined()],
+#'   [as_numeric()],
+#'   [as_character()],
+#'   [as_logical()],
+#'   [strip_defined()],
+#'   [dataset_df()].
 #'
 #' @examples
 #' gdp_vector <- defined(
@@ -71,7 +70,7 @@
 #' gdp_vector[1:2]
 #'
 #' @export
-# Main generic ---------------------------------------------------------------
+
 defined <- function(x,
                     labels = NULL,
                     label = NULL,
@@ -85,7 +84,9 @@ defined <- function(x,
   # DEPRECATED ARGUMENT SUPPORT
   # ------------------------------------------------------------------
   if (!is.null(dots$definition)) {
-    warning("`definition` is deprecated; use `concept` instead.", call. = FALSE)
+    warning("`definition` is deprecated; use `concept` instead.",
+      call. = FALSE
+    )
     if (is.null(concept)) {
       concept <- dots$definition
     }
@@ -374,7 +375,7 @@ tail.haven_labelled_defined <- function(x, n = 6L, ...) {
 #' Print a defined (haven_labelled_defined) vector
 #'
 #' @description
-#' Custom print method for [`haven_labelled_defined`] vectors created with
+#' Custom print method for [haven_labelled_defined] vectors created with
 #' [defined()]. It prints the variable name, label, and a short semantic
 #' summary before the underlying values.
 #'

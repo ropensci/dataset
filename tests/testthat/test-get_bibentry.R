@@ -93,7 +93,7 @@ test_that("as_dublincore/as_datacite list views reflect bibentry", {
 })
 
 test_that("get_bibentry() error message is informative", {
-  # plain data.frame → no attribute
+  # plain data.frame <U+2192> no attribute
   df <- data.frame(x = 1)
   expect_error(
     get_bibentry(df),

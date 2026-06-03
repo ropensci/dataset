@@ -8,7 +8,7 @@
 #' [W3C RDF 1.2 N-Triples specification](https://www.w3.org/TR/rdf12-n-triples/).
 #'
 #' @param triples A character vector of concatenated N-Triples, created with
-#'   [`n_triple()`].
+#'   [n_triple()].
 #'
 #' @return A character vector of unique N-Triple strings.
 #'
@@ -22,7 +22,7 @@
 #' triple_2 <- n_triple(
 #'   "http://example.org/show/218",
 #'   "http://example.org/show/localName",
-#'   '"Cette Série des Années Septante"@fr-be'
+#'   '"Cette S<U+00E9>rie des Ann<U+00E9>es Septante"@fr-be'
 #' )
 #'
 #' n_triples(c(triple_1, triple_2, triple_1))

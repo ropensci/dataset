@@ -67,7 +67,7 @@ as_datacite <- function(x, type = "bibentry", ...) {
   Geolocation <- ifelse(is.null(ds_bibentry$geolocation), ":unas", as.character(ds_bibentry$geolocation))
   FundingReference <- ifelse(is.null(ds_bibentry$fundingreference), ":unas", as.character(ds_bibentry$fundingreference))
 
-  # Contributors — check attribute if available
+  # Contributors <U+2014> check attribute if available
   Contributor <- if (!is.null(attr(ds_bibentry, "contributor"))) {
     attr(ds_bibentry, "contributor")
   } else if (!is.null(ds_bibentry$contributor)) {

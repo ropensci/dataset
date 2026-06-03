@@ -14,3 +14,5 @@ review.md
 ^dataset*.txt
 dataset-041.txt
 .positai
+review-dataset.txt
+dataset-reviewR.txt

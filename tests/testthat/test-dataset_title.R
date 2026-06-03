@@ -44,9 +44,9 @@ test_that("dataset_title<-() errors on character vector of length > 1", {
 test_that("dataset_title<-() errors on non-dataset_df input", {
   x <- data.frame(x = 1:3)
   expect_error(dataset_title(x),
-    regexp = "must be a dataset object"
+    regexp = "must be created with dataset"
   )
   expect_error(dataset_title(x) <- "Invalid",
-    regexp = "must be a dataset object"
+    regexp = "must be created with dataset"
   )
 })

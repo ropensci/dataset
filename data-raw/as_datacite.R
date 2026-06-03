@@ -1,10 +1,10 @@
 #' @rdname datacite
 #' @param x A dataset object created with \code{dataset::\link{dataset}}.
 #' @param type A DataCite 4.4  metadata can be returned as a \code{type="list"},
-#' a \code{type="dataset"}, or a \code{type="bibentry"} (default).
-#' @param ... Optional parameters to add to a \code{datacite} object.
+#' a `type="dataset"`, or a `type="bibentry"` (default).
+#' @param ... Optional parameters to add to a `datacite` object.
 #' \code{author=person("Jane", "Doe")} adds an author to the citation
-#' object if \code{type="dataset"}.
+#' object if `type="dataset"`.
 #' @keywords internal
 as_datacite <- function(x, type = "bibentry", ...) {
   citation_author <- person(NULL, NULL)

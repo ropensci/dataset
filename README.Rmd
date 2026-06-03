@@ -17,27 +17,16 @@ rlang::check_installed("here")
 # The dataset R Package <a href='https://dataset.dataobservatory.eu/'><img src="man/figures/logo.png" align="right"/></a>
 
 <!-- badges: start -->
-[![rhub](https://github.com/ropensci/dataset/actions/workflows/rhub.yaml/badge.svg)](https://github.com/ropensci/dataset/actions/workflows/rhub.yaml)
-[![devel-version](https://img.shields.io/badge/devel%20version-0.4.5-blue.svg)](https://github.com/ropensci/dataset)
-[![Codecov test coverage](https://codecov.io/gh/ropensci/dataset/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ropensci/dataset?branch=main)
-[![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/dataset)](https://cran.r-project.org/package=dataset)
-[![CRAN_time_from_release](https://www.r-pkg.org/badges/ago/dataset)](https://cran.r-project.org/package=dataset)
-<!-- [![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.dataset-blue)](https://doi.org/10.32614/CRAN.package.dataset) --->
-[![dataobservatory](https://img.shields.io/badge/ecosystem-dataobservatory.eu-3EA135.svg)](https://dataobservatory.eu/)
-<!-- badges: end -->
 
+[![rhub](https://github.com/ropensci/dataset/actions/workflows/rhub.yaml/badge.svg)](https://github.com/ropensci/dataset/actions/workflows/rhub.yaml) [![devel-version](https://img.shields.io/badge/devel%20version-0.4.5-blue.svg)](https://github.com/ropensci/dataset) [![Codecov test coverage](https://codecov.io/gh/ropensci/dataset/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ropensci/dataset?branch=main) [![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/dataset)](https://cran.r-project.org/package=dataset) [![CRAN_time_from_release](https://www.r-pkg.org/badges/ago/dataset)](https://cran.r-project.org/package=dataset) <!-- [![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.dataset-blue)](https://doi.org/10.32614/CRAN.package.dataset) ---> [![dataobservatory](https://img.shields.io/badge/ecosystem-dataobservatory.eu-3EA135.svg)](https://dataobservatory.eu/)
+
+<!-- badges: end -->
 
 # Overview
 
-The `dataset` package extends tidyverse workflows with
-lightweight semantic metadata, provenance tracking, and
-interoperable dataset structures.
+The `dataset` package extends tidyverse workflows with lightweight semantic metadata, provenance tracking, and interoperable dataset structures.
 
-It supports gradual semantic stabilization ranging from
-lightweight semantic mappings to formally defined variables
-and semantically enriched datasets suitable for FAIR,
-machine-readable, and standards-aligned data exchange.
+It supports gradual semantic stabilization ranging from lightweight semantic mappings to formally defined variables and semantically enriched datasets suitable for FAIR, machine-readable, and standards-aligned data exchange.
 
 The package draws inspiration from:
 
@@ -46,7 +35,6 @@ The package draws inspiration from:
 - **FAIR and reproducible research workflows**
 
 The goal is to preserve metadata when reusing statistical and repository datasets, improve interoperability, and make it easy to turn tidy data frames into web-ready, publishable datasets that comply with ISO and W3C standards.
-
 
 ## Installation
 
@@ -66,45 +54,46 @@ pak::pak("dataobservatory-eu/dataset")
 remotes::install_github("dataobservatory-eu/dataset")
 ```
 
-
 ## Minimal Example
 
-In real analytical workflows, we often encounter inconsistent
-semantic labeling. Early in a project, inconsistencies may be
-easy to detect, such as mixing `AD` and `Andorra`, but later we may join datasets that use different coding systems, for example the ISO-3166 alpha-3 `AND` code for the same country.
+Real-world datasets rarely begin with fully standardized values. Early in a project, inconsistencies may be easy to spot, such as mixing `AD` and `Andorra` for the same country. As datasets are combined from multiple sources, however, additional variants often appear, for example the ISO-3166 alpha-2 code `AD`, the country name `Andorra`, or the ISO-3166 alpha-3 code `AND`.
+
+The `prelabel()` constructor provides a lightweight way to stabilize such values before committing to a formal semantic definition.
 
 ```{r prelabel}
 library(dataset)
 
 x <- prelabel(
-  c("AD", "Andorra", "LI"),
+  c("AD", "Andorra", "AND", "LI", "Liechtenstein"),
   labels = c(
     Andorra = "AD",
+    AND = "AD",
     Liechtenstein = "LI"
   )
 )
 
 as.character(x)
 ```
-The `prelabel()` constructor supports lightweight semantic
-stabilization while preserving the original observational
-values and provisional semantic mappings:
+
+Unlike a formal semantic definition, a `prelabelled` vector records provisional mappings that may still evolve during data integration. The original observational values remain available alongside the current semantic assumptions:
 
 ```{r labelprovenance}
 attr(x, "prelabel")
 ```
 
-Once semantic assumptions become sufficiently stable, variables can be formalized with `defined()` and combined into a semantically enriched `dataset_df()` object:
+When semantic assumptions become sufficiently stable, variables can be formalized with `defined()` and combined into a semantically enriched `dataset_df()` object:
 
 ```{r example}
 library(dataset)
+
 df <- dataset_df(
   country = defined(
     c("AD", "LI"),
     label = "Country",
     namespace = "https://www.geonames.org/countries/$1/"
   ),
-  gdp = defined(c(3897, 7365),
+  gdp = defined(
+    c(3897, 7365),
     label = "GDP",
     unit = "million euros"
   ),
@@ -114,13 +103,25 @@ df <- dataset_df(
     publisher = "Small Repository"
   )
 )
+
 print(df)
 ```
 
-Because semantic assumptions and provenance are preserved
-explicitly, semantically enriched datasets can be exported as
-interoperable RDF triples without manually reconstructing
-metadata at publication time.
+This illustrates the semantic lifecycle supported by the package:
+
+``` text
+raw values
+    ↓
+prelabelled
+    ↓
+defined
+    ↓
+dataset_df
+    ↓
+RDF and FAIR publication
+```
+
+Because semantic assumptions and provenance are preserved explicitly, semantically enriched datasets can be exported as interoperable RDF triples without manually reconstructing metadata at publication time.
 
 Export as RDF triples:
 
@@ -146,7 +147,7 @@ dataset_to_triples(df, format = "nt")
 ```
 :::
 
-Retain automatically recorded provenance: 
+Retain automatically recorded provenance:
 
 ```{r provenance, eval=FALSE}
 provenance(df)
@@ -160,19 +161,19 @@ provenance(df)
 
 ## Contributing
 
+The package does not attempt automatic ontology alignment, entity reconciliation, or rule-based semantic inference. It focuses on preserving semantic assumptions made by the analyst in a transparent and reproducible form.
+
 We welcome contributions and discussion!
 
--   Please see our [CONTRIBUTING.md](https://github.com/ropensci/dataset/blob/main/CONTRIBUTING.md) guide.
--   Ideas, bug reports, and feedback are welcome via [GitHub issues](https://github.com/ropensci/dataset/issues).
--  The design principles and ideas for futher development are explained in [Design Principles & Future Work Semantically Enriched, Standards-Aligned Datasets in R](https://dataset.dataobservatory.eu/articles/design.html).
+- Please see our [CONTRIBUTING.md](https://github.com/ropensci/dataset/blob/main/CONTRIBUTING.md) guide.
+- Ideas, bug reports, and feedback are welcome via [GitHub issues](https://github.com/ropensci/dataset/issues).
+- The design principles and ideas for futher development are explained in [Design Principles & Future Work Semantically Enriched, Standards-Aligned Datasets in R](https://dataset.dataobservatory.eu/articles/design.html).
 
 Please refer to this package as:
 
-Daniel Antal. (2026). _dataset: Create Data Frames that are Easier to Exchange and Reuse (0.4.4)_. The Comprehensive R Archive Network. <https://zenodo.org/records/17621464>,
-DOI: 10.32614/CRAN.package.dataset
+Daniel Antal. (2026). *dataset: Create Data Frames that are Easier to Exchange and Reuse (0.4.4)*. The Comprehensive R Archive Network. <https://zenodo.org/records/17621464>, DOI: 10.32614/CRAN.package.dataset
 
 See contributors on the website and in the DESCRIPTION file.
-
 
 ## Code of Conduct
 

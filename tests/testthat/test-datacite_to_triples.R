@@ -94,7 +94,7 @@ test_that("datacite_to_triples handles multiple related items", {
 })
 
 test_that("datacite_to_triples falls back to flat relatedidentifier", {
-  # here you don’t use the setter, so calling directly on the bibentry is fine
+  # here you don<U+2019>t use the setter, so calling directly on the bibentry is fine
   dc <- datacite(
     Title = "Climate Data",
     Creator = person("Jane", "Doe", role = "cre"),

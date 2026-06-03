@@ -1,12 +1,12 @@
 #' Coerce a defined vector to numeric
 #'
 #' @description
-#' `as_numeric()` converts a [`defined()`][defined] vector to a numeric vector.
+#' `as_numeric()` converts a [defined()][defined] vector to a numeric vector.
 #' It validates that the underlying data are numeric, and optionally preserves
 #' or strips semantic metadata.
 #'
 #' @details
-#' Use \code{strip_attributes = TRUE} when flattening or preparing data for
+#' Use `strip_attributes = TRUE` when flattening or preparing data for
 #' external pipelines, but keep the default when working with defined
 #' vectors directly.
 #'

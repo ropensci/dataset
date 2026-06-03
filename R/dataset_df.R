@@ -1,7 +1,7 @@
 #' Create a new `dataset_df` object
 #'
 #' The `dataset_df()` constructor creates semantically rich modern data frames.
-#' These inherit from [`tibble::tibble`] and carry structured metadata using
+#' These inherit from `tbl_df` and carry structured metadata using
 #' attributes.
 #'
 #' Use `is.dataset_df()` to check class membership.
@@ -20,13 +20,13 @@
 #'   `c(obs = "https://doi.org/1234#")`, which will generate row URIs such as
 #'   `https://doi.org/1234#1`, ..., `#n`.
 #' @param dataset_bibentry A bibliographic metadata record for the dataset,
-#'   created using [`datacite()`] or [`dublincore()`].
+#'   created using [datacite()] or [dublincore()].
 #' @param var_labels A named list of human-readable labels for each variable.
 #' @param units A named list of measurement units for measured variables.
 #' @param concepts A named list of linked concepts (URIs) for variables or
 #'   dimensions.
-#' @param dataset_subject A subject descriptor created with [`subject()`] or
-#'   [`subject_create()`].
+#' @param dataset_subject A subject descriptor created with [subject()] or
+#'   [subject_create()].
 #' @param x A `dataset_df` object (used in method dispatch).
 #' @param df A `data.frame` to convert to a `dataset_df`.
 #'
@@ -79,7 +79,6 @@
 #'
 #' @export
 
-# User constructor
 dataset_df <- function(
   ...,
   identifier = c(obs = "http://example.com/dataset#obs"),
@@ -161,7 +160,6 @@ as_dataset_df <- function(
   )
 }
 
-# Developer constructor
 #' @importFrom tibble new_tibble
 #' @keywords internal
 new_dataset <- function(x,

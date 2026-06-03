@@ -5,7 +5,7 @@
 #'   entries in the dataset's bibliographic metadata.
 #'
 #' @details All people are stored in the `author` slot of the underlying
-#'   [`utils::bibentry`]. This helper preserves primary creators and filters or
+#'   [utils::bibentry()]. This helper preserves primary creators and filters or
 #'   updates only those entries that represent contributors.
 #'
 #'   A *contributor* is defined as:
@@ -18,12 +18,11 @@
 #'   Contributors can be further annotated with metadata in `comment`, for
 #'   example:
 #'
-#' ```r
-#' comment = c(contributorType = "hostingInstitution", ORCID = "0000-0000-0000-0000")
-#' ```
+#'  `comment = c(contributorType = "hostingInstitution",`
+#'  `           ORCID = "0000-0000-0000-0000")`
 #'
 #' @param x A dataset object created with [dataset_df()] or [as_dataset_df()].
-#' @param value A [`utils::person`] object representing a single contributor. If
+#' @param value A [utils::person()] object representing a single contributor. If
 #'   the `role` field is missing, it will be set to `"ctb"`. If `NULL`, the
 #'   dataset is returned unchanged.
 #' @param overwrite Logical. If `TRUE`, replace all existing contributors with
@@ -31,7 +30,7 @@
 #'   to `FALSE`.
 #'
 #' @return
-#' * `contributor()` returns a [`utils::person`] or a list of such objects
+#' * `contributor()` returns a [utils::person()] or a list of such objects
 #' corresponding to contributors.
 #' * `contributor<-()` returns the updated dataset (invisibly).
 #'
@@ -58,7 +57,8 @@
 contributor <- function(x) {
   assertthat::assert_that(
     is.dataset_df(x),
-    msg = "contributor(x): x must be a dataset created with dataset_df() or as_dataset_df()."
+    msg =
+      "contributor(x): x must be created with dataset_df() or as_dataset_df()."
   )
   auth <- get_bibentry(x)$author
   if (is.null(auth)) {

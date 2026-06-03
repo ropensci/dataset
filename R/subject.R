@@ -9,14 +9,14 @@
 #' The subject property records what the dataset is about.
 #' The [DataCite subject property](https://schema.datacite.org/meta/kernel-4/)
 #' allows multiple subproperties, but these cannot be stored directly in a
-#' standard [`utils::bibentry`] object.
+#' standard [utils::bibentry()] object.
 #' Therefore:
 #'
 #' * If you set a character string as the subject, it is stored in both the
 #'   bibentry and the `"subject"` attribute.
 #' * If you set a structured subject (via [subject_create()]), the `$term` value
 #'   is stored in the bibentry, and the full object is stored in the `"subject"`
-#'   attribute of the [`dataset_df`] object.
+#'   attribute of the `dataset_df` object.
 #'
 #' @param x A dataset object created with [dataset_df()] or [as_dataset_df()].
 #' @param term A subject term, for example `"Data sets"`.
@@ -41,7 +41,7 @@
 #' * `subject(x) <- value` accepts a character vector, a `"subject"` object, or
 #'   a list of `"subject"` objects, and updates both the bibentry slot and the
 #'   `"subject"` attribute. Returns the dataset invisibly.
-#' * `subject_create()` returns a structured `"subject"` object — or a list of
+#' * `subject_create()` returns a structured `"subject"` object <U+2014> or a list of
 #'   them if multiple terms are provided.
 #' * `is.subject(x)` returns `TRUE` if `x` inherits from class `"subject"`.
 #'
@@ -110,7 +110,7 @@ subject_create <- function(term,
         prefix = prefix[i]
       )
     })
-    # don’t force class on the whole list
+    # don<U+2019>t force class on the whole list
     return(dataset_subject)
   } else {
     return(new_Subject(

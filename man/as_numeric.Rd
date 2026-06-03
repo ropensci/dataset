@@ -21,7 +21,7 @@ as_numeric(x, ...)
 A numeric vector with or without preserved attributes.
 }
 \description{
-\code{as_numeric()} converts a \code{\link[=defined]{defined()}} vector to a numeric vector.
+\code{as_numeric()} converts a \link[=defined]{defined()} vector to a numeric vector.
 It validates that the underlying data are numeric, and optionally preserves
 or strips semantic metadata.
 }

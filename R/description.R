@@ -5,11 +5,11 @@
 #'
 #' @details The `Description` is recommended for discovery in DataCite. It
 #'   captures additional information that does not fit other metadata categories
-#'   — such as technical notes or dataset usage. It is a free-text field. See
+#'   <U+2014> such as technical notes or dataset usage. It is a free-text field. See
 #'   [dct:description](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/elements11/description/).
 #'
-#' @param x A dataset object created with [`dataset_df()`] or
-#'   [`as_dataset_df()`].
+#' @param x A dataset object created with [dataset_df()] or
+#'   [as_dataset_df()].
 #' @param value The new description, as a character string.
 #' @param overwrite Logical. If `TRUE`, will overwrite any existing description.
 #'   If `FALSE` (default), will warn and keep the existing description.

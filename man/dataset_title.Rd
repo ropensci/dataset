@@ -29,7 +29,8 @@ Retrieve or assign the main title of a dataset, typically used
 as the primary label in metadata exports (e.g., DataCite or Dublin Core).
 }
 \details{
-According to the \href{https://www.dublincore.org/specifications/dublin-core/dcmi-terms/elements11/title/}{Dublin Core specification for \code{title}},
+According to the [Dublin Core specification for
+\href{https://www.dublincore.org/specifications/dublin-core/dcmi-terms/elements11/title/}{title},
 the title represents the name by which the resource is formally known.
 
 The DataCite metadata schema supports multiple titles (e.g., translated,

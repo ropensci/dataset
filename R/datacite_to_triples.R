@@ -117,7 +117,7 @@ datacite_to_triples <- function(dc_list,
   # --- Related identifiers ---
   rel_attr <- attr(dc_list, "relation", exact = TRUE)
   if (!is.null(rel_attr)) {
-    # normalize: single object → list
+    # normalize: single object <U+2192> list
     if (is.related(rel_attr)) rel_attr <- list(rel_attr)
 
     if (is.list(rel_attr) && all(vapply(rel_attr, is.related, logical(1)))) {

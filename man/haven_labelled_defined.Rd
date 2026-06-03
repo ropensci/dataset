@@ -9,12 +9,12 @@ the class can be referenced in help topics.
 }
 \description{
 The class \code{haven_labelled_defined} represents a semantically
-enriched labelled vector created by \code{\link{defined}}.
+enriched labelled vector created by \code{\link[=defined]{defined()}}.
 
 Objects of this class inherit from:
 
 \itemize{
-\item \code{\link[haven:labelled]{haven::labelled}} for numeric,
+\item \verb{[haven:labelled]()} for numeric,
 character, and factor data;
 \item \code{Date} for temporal dates;
 \item \code{POSIXct} and \code{POSIXt} for timestamps;
@@ -24,9 +24,9 @@ character, and factor data;
 The class tag enables S3 method dispatch for:
 
 \itemize{
-\item \code{\link{as_character}}
-\item \code{\link{as_numeric}}
-\item \code{\link{as_logical}}
+\item \verb{[as_character()]}
+\item \verb{[as_numeric()]}
+\item \verb{[as_logical()]}
 \item \code{as.Date}
 \item \code{as.POSIXct}
 \item \code{\link{print.haven_labelled_defined}}
@@ -34,6 +34,6 @@ The class tag enables S3 method dispatch for:
 }
 
 Users normally do not construct this class directly; it is returned
-as the result of calling \code{\link{defined}}.
+as the result of calling \code{\link[=defined]{defined()}}.
 }
 \keyword{internal}

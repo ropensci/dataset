@@ -1,7 +1,7 @@
 #' Coerce a defined vector to logical
 #'
 #' @description
-#' Coerces a [`haven_labelled_defined`] vector created with [`defined()`]
+#' Coerces a `haven_labelled_defined` vector created with [defined()]
 #' into a base R logical vector.
 #'
 #' This function is the recommended, semantic-aware interface for converting
@@ -10,26 +10,26 @@
 #' variable.
 #'
 #' @details
-#' Use \code{strip_attributes = TRUE} when flattening or preparing data for
+#' Use `strip_attributes = TRUE` when flattening or preparing data for
 #' external pipelines, but keep the default when working with defined
 #' vectors directly.
 #'
-#' Users may also call base R's [`as.logical()`], which will dispatch to this
+#' Users may also call base R's [as.logical()], which will dispatch to this
 #' method automatically via S3. However, `as_logical()` is preferred because
 #' it makes the semantics explicit and supports the `strip_attributes`
 #' argument.
 #'
-#' @param x A vector created with [`defined()`].
+#' @param x A vector created with [defined()].
 #' @param strip_attributes Logical; should semantic metadata attributes
-#'   (such as \code{label}, \code{unit}, \code{definition}, and
-#'   \code{namespace}) be removed from the returned vector?
-#'   Defaults to \code{FALSE}.
+#'   (such as `label`, `unit`, `definition`, and
+#'   `namespace`) be removed from the returned vector?
+#'   Defaults to `FALSE`.
 #'
 #'
 #' @param ... Additional arguments (currently unused).
 #'
-#' @return A logical vector. If \code{strip_attributes = FALSE}, any semantic
-#'   metadata attached to \code{x} will be carried over to the returned vector.
+#' @return A logical vector. If `strip_attributes = FALSE`, any semantic
+#'   metadata attached to `x` will be carried over to the returned vector.
 #'
 #' @examples
 #' # Basic usage
@@ -46,9 +46,9 @@
 #' as.logical(flg)
 #'
 #' @seealso
-#'   [`as_numeric()`], [`as_character()`],
-#'   [`as.Date()`], [`as.POSIXct()`],
-#'   [`defined()`]
+#'   [as_numeric()], [as_character()],
+#'   [as.Date()], [as.POSIXct()],
+#'   [defined()]
 #'
 #' @export
 as_logical <- function(x, ...) {

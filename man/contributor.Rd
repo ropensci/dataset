@@ -16,13 +16,13 @@ contributor(x, overwrite = FALSE) <- value
 \code{value}. If \code{FALSE}, append \code{value} to the existing contributors. Defaults
 to \code{FALSE}.}
 
-\item{value}{A \code{\link[utils:person]{utils::person}} object representing a single contributor. If
+\item{value}{A \code{\link[utils:person]{utils::person()}} object representing a single contributor. If
 the \code{role} field is missing, it will be set to \code{"ctb"}. If \code{NULL}, the
 dataset is returned unchanged.}
 }
 \value{
 \itemize{
-\item \code{contributor()} returns a \code{\link[utils:person]{utils::person}} or a list of such objects
+\item \code{contributor()} returns a \code{\link[utils:person]{utils::person()}} or a list of such objects
 corresponding to contributors.
 \item \verb{contributor<-()} returns the updated dataset (invisibly).
 }
@@ -34,7 +34,7 @@ entries in the dataset's bibliographic metadata.
 }
 \details{
 All people are stored in the \code{author} slot of the underlying
-\code{\link[utils:bibentry]{utils::bibentry}}. This helper preserves primary creators and filters or
+\code{\link[utils:bibentry]{utils::bibentry()}}. This helper preserves primary creators and filters or
 updates only those entries that represent contributors.
 
 A \emph{contributor} is defined as:
@@ -48,8 +48,8 @@ Contributors can be further annotated with metadata in \code{comment}, for
 example:
 }
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{comment = c(contributorType = "hostingInstitution", ORCID = "0000-0000-0000-0000")
-}\if{html}{\out{</div>}}
+\verb{comment = c(contributorType = "hostingInstitution",}
+\verb{           ORCID = "0000-0000-0000-0000")}
 }
 \examples{
 df <- dataset_df(data.frame(x = 1))

@@ -40,7 +40,7 @@
 #' similar names may exist. In such cases, it is safer to use a specific
 #' language code (e.g., `"ang"` instead of `"English, Old"` and `"enm"`
 #'  for `"English, Middle (1100-1500)"`). You can also
-#' refer directly to the definitions in [`ISOcodes::ISO_639_2`]
+#' refer directly to the definitions in [ISOcodes::ISO_639_2]
 #' for clarity.
 #'
 #' @param x A dataset object created by [dataset_df()] or [as_dataset_df()].
