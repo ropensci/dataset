@@ -10,7 +10,7 @@ identifier(x)
 identifier(x, overwrite = TRUE) <- value
 }
 \arguments{
-\item{x}{A \code{\link[=dataset_df]{dataset_df()}} object or a \code{\link[utils:bibentry]{utils::bibentry}} object (including
+\item{x}{A \code{\link[=dataset_df]{dataset_df()}} object or a \code{\link[utils:bibentry]{utils::bibentry()}} object (including
 \code{\link[=dublincore]{dublincore()}} or \code{\link[=datacite]{datacite()}} records).}
 
 \item{overwrite}{Logical. If \code{TRUE} (default), any existing identifier is

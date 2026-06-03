@@ -12,12 +12,12 @@ set_bibentry(dataset) <- value
 \arguments{
 \item{dataset}{A dataset created with \code{\link[=dataset_df]{dataset_df()}}.}
 
-\item{value}{A \code{\link[utils:bibentry]{utils::bibentry}} to store on the dataset. If \code{NULL}, a
+\item{value}{A \code{\link[utils:bibentry]{utils::bibentry()}} to store on the dataset. If \code{NULL}, a
 minimal default entry is created.}
 }
 \value{
 \itemize{
-\item \code{get_bibentry(dataset)} returns the \code{\link[utils:bibentry]{utils::bibentry}} stored in
+\item \code{get_bibentry(dataset)} returns the \code{\link[utils:bibentry]{utils::bibentry()}} stored in
 \code{dataset}'s attributes.
 \item \code{set_bibentry(dataset) <- value} sets the attribute and returns the
 modified dataset invisibly.
@@ -25,7 +25,7 @@ modified dataset invisibly.
 }
 \description{
 Retrieve or replace the bibliographic entry stored in a dataset's attributes.
-The entry is a \code{\link[utils:bibentry]{utils::bibentry}} used to hold citation metadata for
+The entry is a \code{\link[utils:bibentry]{utils::bibentry()}} used to hold citation metadata for
 \code{\link[=dataset_df]{dataset_df()}} objects.
 }
 \details{

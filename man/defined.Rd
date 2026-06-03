@@ -42,7 +42,7 @@ argument is still accepted and mapped to \code{concept}.}
 \item{object}{An R object to be summarised.}
 }
 \value{
-A vector of class \code{"haven_labelled_defined"} or \code{"datetime_defined"},
+A vector of class \code{haven_labelled_defined} or \code{datetime_defined},
 depending on the input type.
 }
 \description{
@@ -77,8 +77,8 @@ smoothly with \code{\link[=dataset_df]{dataset_df()}} objects and can be safely 
 \item numeric (integer or double)
 \item character
 \item factor (converted via \code{\link[labelled:to_labelled]{labelled::to_labelled()}})
-\item \code{\link{Date}}
-\item \code{\link{POSIXct}}
+\item \code{Date}
+\item \code{POSIXct}
 \item \code{\link[haven:labelled]{haven::labelled()}}
 \item logical (with restrictions: logical vectors \strong{cannot} have value labels)
 }
@@ -104,6 +104,5 @@ gdp_vector[1:2]
 \code{\link[=as_character]{as_character()}},
 \code{\link[=as_logical]{as_logical()}},
 \code{\link[=strip_defined]{strip_defined()}},
-\code{\link[=dataset_df]{dataset_df()}}
-\code{\link[=print.haven_labelled_defined]{print.haven_labelled_defined()}}
+\code{\link[=dataset_df]{dataset_df()}}.
 }

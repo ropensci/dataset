@@ -35,8 +35,7 @@ be stripped? Default: \code{TRUE}.}
 }}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble}} containing the data (and optionally some
-attributes) of the \code{dataset_df}.
+A [tibble\verb{][tibble::tibble()] containing the data (and optionally some attributes) of the }dataset_df`.
 }
 \description{
 \code{\link[=as_tibble]{as_tibble()}} method for \code{dataset_df} objects.

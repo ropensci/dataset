@@ -2,8 +2,8 @@
 #'
 #' @description
 #' Retrieve or replace the bibliographic entry stored in a dataset's attributes.
-#' The entry is a [`utils::bibentry`] used to hold citation metadata for
-#' [`dataset_df()`] objects.
+#' The entry is a [utils::bibentry()] used to hold citation metadata for
+#' [dataset_df()] objects.
 #'
 #' @details
 #' New datasets are initialized with reasonable defaults. To build a new
@@ -15,11 +15,11 @@
 #' `vignette("bibentry", package = "dataset")`.
 #'
 #' @param dataset A dataset created with [dataset_df()].
-#' @param value A [`utils::bibentry`] to store on the dataset. If `NULL`, a
+#' @param value A [utils::bibentry()] to store on the dataset. If `NULL`, a
 #'   minimal default entry is created.
 #'
 #' @return
-#' * `get_bibentry(dataset)` returns the [`utils::bibentry`] stored in
+#' * `get_bibentry(dataset)` returns the [utils::bibentry()] stored in
 #'   `dataset`'s attributes.
 #' * `set_bibentry(dataset) <- value` sets the attribute and returns the
 #'   modified dataset invisibly.

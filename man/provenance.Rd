@@ -12,25 +12,25 @@ provenance(x) <- value
 \arguments{
 \item{x}{A dataset created with \code{\link[=dataset_df]{dataset_df()}}.}
 
-\item{value}{Character vector of N‑Triples created by \code{\link[=n_triple]{n_triple()}} or
+\item{value}{Character vector of N<U+2011>Triples created by \code{\link[=n_triple]{n_triple()}} or
 \code{\link[=n_triples]{n_triples()}} to append to existing provenance.}
 }
 \value{
 \itemize{
 \item \code{provenance(x)} returns the contents of the \code{"prov"} attribute (character
-vector of N‑Triples), or \code{NULL} if none is set.
+vector of N<U+2011>Triples), or \code{NULL} if none is set.
 \item \code{provenance(x) <- value} appends \code{value} to the \code{"prov"} attribute and
 returns the modified dataset invisibly.
 }
 }
 \description{
-Retrieve or append provenance statements (in N‑Triples form) stored on a
+Retrieve or append provenance statements (in N<U+2011>Triples form) stored on a
 \code{\link[=dataset_df]{dataset_df()}} object.
 }
 \details{
-Provenance is stored in the \code{"prov"} attribute as N‑Triples text. Use
+Provenance is stored in the \code{"prov"} attribute as N<U+2011>Triples text. Use
 \code{\link[=n_triple]{n_triple()}} or \code{\link[=n_triples]{n_triples()}} to construct valid statements that follow
-PROV‑O (e.g., \code{prov:wasGeneratedBy}, \code{prov:wasInformedBy}).
+PROV<U+2011>O (e.g., \code{prov:wasGeneratedBy}, \code{prov:wasInformedBy}).
 }
 \examples{
 provenance(orange_df)

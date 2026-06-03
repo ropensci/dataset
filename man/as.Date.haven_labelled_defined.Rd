@@ -20,8 +20,8 @@ vector? Defaults to \code{FALSE}.}
 A \code{Date} vector, optionally carrying semantic metadata.
 }
 \description{
-Coerces a \code{\link{haven_labelled_defined}} vector whose underlying type is
-\code{\link{Date}} into a base R \code{Date} vector.
+Coerces a \code{haven_labelled_defined} vector whose underlying type is
+\code{Date} into a base R \code{Date} vector.
 
 This method preserves the underlying date values and, by default,
 also retains any semantic metadata attached to the variable.

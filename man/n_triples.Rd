@@ -32,7 +32,7 @@ triple_1 <- n_triple(
 triple_2 <- n_triple(
   "http://example.org/show/218",
   "http://example.org/show/localName",
-  '"Cette Série des Années Septante"@fr-be'
+  '"Cette S<U+00E9>rie des Ann<U+00E9>es Septante"@fr-be'
 )
 
 n_triples(c(triple_1, triple_2, triple_1))

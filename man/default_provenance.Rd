@@ -21,10 +21,10 @@ default_provenance(
 \item{generated_at_time}{Optional POSIXct time; defaults to \code{\link[=Sys.time]{Sys.time()}}.}
 }
 \value{
-A character vector of N‑Triples suitable for the \code{"prov"} attribute.
+A character vector of N<U+2011>Triples suitable for the \code{"prov"} attribute.
 }
 \description{
-Construct a small PROV bundle (as N‑Triples) describing the dataset, the
+Construct a small PROV bundle (as N<U+2011>Triples) describing the dataset, the
 software agent, and an optional creation time.
 }
 \details{

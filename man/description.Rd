@@ -28,7 +28,7 @@ on a dataset object.
 \details{
 The \code{Description} is recommended for discovery in DataCite. It
 captures additional information that does not fit other metadata categories
-— such as technical notes or dataset usage. It is a free-text field. See
+<U+2014> such as technical notes or dataset usage. It is a free-text field. See
 \href{https://www.dublincore.org/specifications/dublin-core/dcmi-terms/elements11/description/}{dct:description}.
 }
 \examples{

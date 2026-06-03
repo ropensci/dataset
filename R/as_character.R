@@ -1,7 +1,7 @@
 #' Coerce a defined vector to character
 #'
 #' `as_character()` is the recommended method to convert a
-#' [`defined()`][defined] vector into a character vector. It is metadata-aware
+#' [defined()][defined] vector into a character vector. It is metadata-aware
 #' and provides explicit control over whether semantic attributes are preserved.
 #'
 #' If `preserve_attributes = TRUE`, the returned character vector retains
@@ -12,7 +12,7 @@
 #' returned with *all* metadata stripped.
 #'
 #' @details
-#' Use \code{strip_attributes = TRUE} when flattening or preparing data for
+#' Use `strip_attributes = TRUE` when flattening or preparing data for
 #' external pipelines, but keep the default when working with defined
 #' vectors directly.
 #'
@@ -22,9 +22,9 @@
 #'
 #' @param x A vector created with [defined()].
 #' @param strip_attributes Logical; should semantic metadata attributes
-#'   (such as \code{label}, \code{unit}, \code{definition}, and
-#'   \code{namespace}) be removed from the returned vector?
-#'   Defaults to \code{FALSE}.
+#'   (such as `label`, `unit`, `definition`, and
+#'   `namespace`) be removed from the returned vector?
+#'   Defaults to `FALSE`.
 #'
 #' @param ... Reserved for potential future use.
 #'

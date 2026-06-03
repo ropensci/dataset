@@ -13,11 +13,11 @@ dataset_format(x, overwrite = FALSE) <- value
 \item{x}{A semantically rich data frame created with \code{\link[=dataset_df]{dataset_df()}} or
 \code{\link[=as_dataset_df]{as_dataset_df()}}.}
 
-\item{overwrite}{Logical. Replace an existing non‑default value? If \code{FALSE}
-and a non‑default value already exists, a message is emitted and the value
+\item{overwrite}{Logical. Replace an existing non<U+2011>default value? If \code{FALSE}
+and a non<U+2011>default value already exists, a message is emitted and the value
 is kept. Defaults to \code{FALSE}.}
 
-\item{value}{A length‑one character string specifying the format
+\item{value}{A length<U+2011>one character string specifying the format
 (e.g., \code{"text/csv"}). Use \code{NULL} to reset to the default.}
 }
 \value{

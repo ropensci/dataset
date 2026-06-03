@@ -10,7 +10,7 @@ items <- data.frame(
     "401/item_GU75RCP7ATGKK2DUIJ3RGNGB4QQLCJGI"
   ),
   title_et = c(
-    "Foto. Meremäe Dobrova külakooli juures tegutsev laulukoor, mida juhatajas õpetaja Edgar Raudsepp.Setud esimest korda rahvariietes Tallinna laulupeol 1933(?)",
+    "Foto. Merem<U+00E4>e Dobrova k<U+00FC>lakooli juures tegutsev laulukoor, mida juhatajas <U+00F5>petaja Edgar Raudsepp.Setud esimest korda rahvariietes Tallinna laulupeol 1933(?)",
     "Setud (setu pruutpaar)",
     "Setud Meeksi kabeli juures."
   ),
@@ -20,22 +20,22 @@ items <- data.frame(
     NA_character_
   ),
   description_et = c(
-    "sündmuse kommentaar: Setud esimest korda rahvariietes Tallinna laulupeol, esiplaanil M.Tammemägi, Eher ja Anne Lumi.",
-    "sündmuse kommentaar: tiraaž 1000",
+    "s<U+00FC>ndmuse kommentaar: Setud esimest korda rahvariietes Tallinna laulupeol, esiplaanil M.Tammem<U+00E4>gi, Eher ja Anne Lumi.",
+    "s<U+00FC>ndmuse kommentaar: tiraa<U+017E> 1000",
     NA_character_
   ),
   creator = c(
     "Unknown",
-    "Eesti Rahva Muuseum (kirjastaja); Thomson, Woldemar (fotograaf); Trau ja Schwab Dresden Graphische Kunstanstalt (trükkija (valmistaja))",
+    "Eesti Rahva Muuseum (kirjastaja); Thomson, Woldemar (fotograaf); Trau ja Schwab Dresden Graphische Kunstanstalt (tr<U+00FC>kkija (valmistaja))",
     "ERKA (kopeerija); Parikas, Johannes-Georg (autor)"
   ),
   date_literal = c("1930", "1924", "umbes.1905"),
   year = c("1930", "1924", NA_character_),
   format_width = c("tervik laius: 13.5 cm", "tervik kujutise laius: 9.0 cm", "tervik laius: 17.5 cm"),
-  format_height = c("tervik kõrgus: 8.4 cm", "tervik kujutise kõrgus: 14.0 cm", "tervik pikkus: 12.5 cm"),
+  format_height = c("tervik k<U+00F5>rgus: 8.4 cm", "tervik kujutise k<U+00F5>rgus: 14.0 cm", "tervik pikkus: 12.5 cm"),
   subject_et = c("foto", "postkaart", "foto"),
   subject_en = c("photograph", "postcard", "photograph"),
-  spatial_labels = c("Võru; Eesti; Meremäe", "Saksamaa", "Eesti"),
+  spatial_labels = c("V<U+00F5>ru; Eesti; Merem<U+00E4>e", "Saksamaa", "Eesti"),
   landingPage = c(
     "https://www.europeana.eu/item/401/item_I42WBR2HJCSOEHIG66B72JSWP3IBK36X",
     "https://www.europeana.eu/item/401/item_OMXACK7NJ6U6B3BZGPZCKMFHBKTJVDZY",
@@ -67,7 +67,7 @@ items <- data.frame(
     "http://data.europeana.eu/organization/1955"
   ),
   dataProvider = c(
-    "Võrumaa Muuseum",
+    "V<U+00F5>rumaa Muuseum",
     "Eesti Rahva Muuseum",
     "Tallinna Linnamuuseum"
   ),
@@ -121,7 +121,7 @@ ds <- dataset_df(
   edm_type = defined(items$edm_type, label = "EDM Type", concept = "http://www.europeana.eu/schemas/edm/type"),
   europeana_id = defined(items$europeana_id, label = "Europeana ID", concept = "http://purl.org/dc/terms/identifier"),
 
-  # Row URI prefix — tweak to your namespace/DOI if you like
+  # Row URI prefix <U+2014> tweak to your namespace/DOI if you like
   identifier = c(item = "https://example.org/dataset/seto-photos#"),
 
   # Minimal dataset-level bibentry

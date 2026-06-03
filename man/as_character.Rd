@@ -29,7 +29,7 @@ A character vector (plain or with attributes).
 }
 \description{
 \code{as_character()} is the recommended method to convert a
-\code{\link[=defined]{defined()}} vector into a character vector. It is metadata-aware
+\link[=defined]{defined()} vector into a character vector. It is metadata-aware
 and provides explicit control over whether semantic attributes are preserved.
 
 Base R \code{as.character()} always strips the class and metadata.

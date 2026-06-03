@@ -106,6 +106,13 @@ prelabel <- function(
   unmatched = "keep",
   missing_label = "<NA>"
 ) {
+  if (is.null(x)) {
+    stop(
+      "x cannot be NULL",
+      call. = FALSE
+    )
+  }
+
   if (!is.vector(x)) {
     stop(
       "x must be a vector",

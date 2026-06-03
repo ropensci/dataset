@@ -116,7 +116,7 @@ relation <- function(x) {
   } else if (is.related(value)) {
     value <- list(value) # wrap single related in a list
   } else if (is.list(value) && all(vapply(value, is.related, logical(1)))) {
-    # already a list of related objects → nothing to do
+    # already a list of related objects <U+2192> nothing to do
   } else {
     stop("relation(x, value)<- : value must be created with `related_create()` or be a character string (or list thereof).")
   }

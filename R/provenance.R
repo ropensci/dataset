@@ -1,21 +1,21 @@
 #' @title Get or update provenance information
 #'
 #' @description
-#' Retrieve or append provenance statements (in N‑Triples form) stored on a
-#' [`dataset_df()`] object.
+#' Retrieve or append provenance statements (in N<U+2011>Triples form) stored on a
+#' [dataset_df()] object.
 #'
 #' @details
-#' Provenance is stored in the `"prov"` attribute as N‑Triples text. Use
+#' Provenance is stored in the `"prov"` attribute as N<U+2011>Triples text. Use
 #' [n_triple()] or [n_triples()] to construct valid statements that follow
-#' PROV‑O (e.g., `prov:wasGeneratedBy`, `prov:wasInformedBy`).
+#' PROV<U+2011>O (e.g., `prov:wasGeneratedBy`, `prov:wasInformedBy`).
 #'
 #' @param x A dataset created with [dataset_df()].
-#' @param value Character vector of N‑Triples created by [n_triple()] or
+#' @param value Character vector of N<U+2011>Triples created by [n_triple()] or
 #'   [n_triples()] to append to existing provenance.
 #'
 #' @return
 #' * `provenance(x)` returns the contents of the `"prov"` attribute (character
-#'   vector of N‑Triples), or `NULL` if none is set.
+#'   vector of N<U+2011>Triples), or `NULL` if none is set.
 #' * `provenance(x) <- value` appends `value` to the `"prov"` attribute and
 #'   returns the modified dataset invisibly.
 #'
@@ -54,7 +54,7 @@ provenance <- function(x) {
 
 #' @title Build default provenance bundle
 #' @description
-#' Construct a small PROV bundle (as N‑Triples) describing the dataset, the
+#' Construct a small PROV bundle (as N<U+2011>Triples) describing the dataset, the
 #' software agent, and an optional creation time.
 #'
 #' @details
@@ -67,7 +67,7 @@ provenance <- function(x) {
 #' @param dtm Optional data team/maintainer agent.
 #' @param generated_at_time Optional POSIXct time; defaults to [Sys.time()].
 #'
-#' @return A character vector of N‑Triples suitable for the `"prov"` attribute.
+#' @return A character vector of N<U+2011>Triples suitable for the `"prov"` attribute.
 #'
 #' @keywords internal
 #' @importFrom utils citation

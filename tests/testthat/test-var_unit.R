@@ -42,8 +42,8 @@ test_that("get_unit_attribute is an alias for unit_attribute", {
 
 test_that("unit_attribute<- sets a unit using the low-level setter", {
   x <- 1:3
-  unit_attribute(x) <- "°C"
-  expect_equal(attr(x, "unit"), "°C")
+  unit_attribute(x) <- "<U+00B0>C"
+  expect_equal(attr(x, "unit"), "<U+00B0>C")
 })
 
 test_that("set_unit_attribute sets and removes units correctly", {

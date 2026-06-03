@@ -4,7 +4,7 @@
   "identifier": "dataset",
   "description": "The 'dataset' package extends tidy data frames with machine-readable metadata, semantic definitions, and provenance information. It supports incremental semantic stabilization, interoperable dataset exchange, and FAIR-oriented publication workflows by preserving contextual metadata directly within R objects. The package facilitates the creation, exchange, reuse, and RDF serialization of datasets in line with ISO and W3C standards.",
   "name": "dataset: Create Data Frames for Exchange and Reuse",
-  "relatedLink": ["https://docs.ropensci.org/dataset/", "https://dataset.dataobservatory.eu", "https://CRAN.R-project.org/package=dataset"],
+  "relatedLink": ["https://docs.ropensci.org/dataset/", "https://dataset.dataobservatory.eu"],
   "codeRepository": "https://github.com/ropensci/dataset",
   "issueTracker": "https://github.com/ropensci/dataset/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
@@ -241,7 +241,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "984.514KB",
+  "fileSize": "1135.995KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -276,10 +276,5 @@
       "@id": "https://doi.org/10.32614/CRAN.package.dataset",
       "sameAs": "https://doi.org/10.32614/CRAN.package.dataset"
     }
-  ],
-  "releaseNotes": "https://github.com/ropensci/dataset/blob/main/NEWS.md",
-  "readme": "https://github.com/ropensci/dataset/blob/main/README.md",
-  "contIntegration": ["https://github.com/ropensci/dataset/actions/workflows/rhub.yaml", "https://app.codecov.io/gh/ropensci/dataset?branch=main"],
-  "developmentStatus": "https://www.repostatus.org/#active",
-  "keywords": ["dataset", "metadata-management", "r", "rstats"]
+  ]
 }

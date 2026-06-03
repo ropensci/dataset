@@ -15,6 +15,7 @@ Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repost
 [![CRAN_time_from_release](https://www.r-pkg.org/badges/ago/dataset)](https://cran.r-project.org/package=dataset)
 <!-- [![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.dataset-blue)](https://doi.org/10.32614/CRAN.package.dataset) --->
 [![dataobservatory](https://img.shields.io/badge/ecosystem-dataobservatory.eu-3EA135.svg)](https://dataobservatory.eu/)
+
 <!-- badges: end -->
 
 # Overview
@@ -60,50 +61,58 @@ remotes::install_github("dataobservatory-eu/dataset")
 
 ## Minimal Example
 
-In real analytical workflows, we often encounter inconsistent semantic
-labeling. Early in a project, inconsistencies may be easy to detect,
-such as mixing `AD` and `Andorra`, but later we may join datasets that
-use different coding systems, for example the ISO-3166 alpha-3 `AND`
-code for the same country.
+Real-world datasets rarely begin with fully standardized values. Early
+in a project, inconsistencies may be easy to spot, such as mixing `AD`
+and `Andorra` for the same country. As datasets are combined from
+multiple sources, however, additional variants often appear, for example
+the ISO-3166 alpha-2 code `AD`, the country name `Andorra`, or the
+ISO-3166 alpha-3 code `AND`.
+
+The `prelabel()` constructor provides a lightweight way to stabilize
+such values before committing to a formal semantic definition.
 
 ``` r
 library(dataset)
 
 x <- prelabel(
-  c("AD", "Andorra", "LI"),
+  c("AD", "Andorra", "AND", "LI", "Liechtenstein"),
   labels = c(
     Andorra = "AD",
+    AND = "AD",
     Liechtenstein = "LI"
   )
 )
 
 as.character(x)
-#> [1] "AD" "AD" "LI"
+#> [1] "AD" "AD" "AD" "LI" "LI"
 ```
 
-The `prelabel()` constructor supports lightweight semantic stabilization
-while preserving the original observational values and provisional
-semantic mappings:
+Unlike a formal semantic definition, a `prelabelled` vector records
+provisional mappings that may still evolve during data integration. The
+original observational values remain available alongside the current
+semantic assumptions:
 
 ``` r
 attr(x, "prelabel")
-#>       Andorra Liechtenstein            AD            LI 
-#>          "AD"          "LI"          "AD"          "LI"
+#>       Andorra           AND Liechtenstein            AD            LI 
+#>          "AD"          "AD"          "LI"          "AD"          "LI"
 ```
 
-Once semantic assumptions become sufficiently stable, variables can be
+When semantic assumptions become sufficiently stable, variables can be
 formalized with `defined()` and combined into a semantically enriched
 `dataset_df()` object:
 
 ``` r
 library(dataset)
+
 df <- dataset_df(
   country = defined(
     c("AD", "LI"),
     label = "Country",
     namespace = "https://www.geonames.org/countries/$1/"
   ),
-  gdp = defined(c(3897, 7365),
+  gdp = defined(
+    c(3897, 7365),
     label = "GDP",
     unit = "million euros"
   ),
@@ -113,12 +122,27 @@ df <- dataset_df(
     publisher = "Small Repository"
   )
 )
+
 print(df)
 #> Doe (2026): GDP Dataset [dataset]
 #>   rowid country   gdp 
 #>   <chr> <chr>   <dbl>
 #> 1 obs1  AD       3897
 #> 2 obs2  LI       7365
+```
+
+This illustrates the semantic lifecycle supported by the package:
+
+``` text
+raw values
+    ↓
+prelabelled
+    ↓
+defined
+    ↓
+dataset_df
+    ↓
+RDF and FAIR publication
 ```
 
 Because semantic assumptions and provenance are preserved explicitly,
@@ -165,11 +189,16 @@ provenance(df)
     #> [4] "_:doejane <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Agent> ."                                              
     #> [5] "<https://doi.org/10.32614/CRAN.package.dataset> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#SoftwareAgent> ."
     #> [6] "<http://example.com/creation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> ."                       
-    #> [7] "<http://example.com/creation> <http://www.w3.org/ns/prov#generatedAtTime> \"2026-05-24T18:48:53Z\"^^<xsd:dateTime> ."
+    #> [7] "<http://example.com/creation> <http://www.w3.org/ns/prov#generatedAtTime> \"2026-06-03T06:29:26Z\"^^<xsd:dateTime> ."
 
 </div>
 
 ## Contributing
+
+The package does not attempt automatic ontology alignment, entity
+reconciliation, or rule-based semantic inference. It focuses on
+preserving semantic assumptions made by the analyst in a transparent and
+reproducible form.
 
 We welcome contributions and discussion!
 

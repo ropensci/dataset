@@ -4,7 +4,7 @@
 #' as the primary label in metadata exports (e.g., DataCite or Dublin Core).
 #'
 #' @details According to the [Dublin Core specification for
-#' `title`](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/elements11/title/),
+#' [title](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/elements11/title/),
 #' the title represents the name by which the resource is formally known.
 #'
 #' The DataCite metadata schema supports multiple titles (e.g., translated,
@@ -34,7 +34,7 @@
 
 dataset_title <- function(x) {
   if (!is.dataset_df(x)) {
-    stop("dataset_title(x) must be a dataset object created with dataset() or as_dataset_df().")
+    stop("dataset_title(x) must be created with dataset() or as_dataset_df().")
   }
 
   ds_bibentry <- get_bibentry(x)
@@ -46,7 +46,7 @@ dataset_title <- function(x) {
 #' @export
 `dataset_title<-` <- function(x, overwrite = FALSE, value) {
   if (!is.dataset_df(x)) {
-    stop("title(x) <- x must be a dataset object created with dataset() or as_dataset_df().")
+    stop("title(x) <- x must be created with dataset() or as_dataset_df().")
   }
 
   ds_bibentry <- invisible(get_bibentry(x))
@@ -59,7 +59,9 @@ dataset_title <- function(x) {
 
   if (inherits(value, "factor") || inherits(value, "character")) {
     if (length(value) > 1) {
-      stop("title(x) <- value: if you have multiple titles, use dataset_title_create()")
+      stop(
+        "title(x) <- value: if you have multiple titles, use dataset_title_create()"
+        )
     }
   }
 

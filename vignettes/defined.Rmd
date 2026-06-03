@@ -18,7 +18,18 @@ The `dataset` package extends R's native data structures with machine-readable m
 
 `defined` works naturally with data structured according to tidy data principles (Wickham, 2014), where each variable is a column, each observation is a row, and each type of observational unit forms a table. It adds an additional semantic layer to individual vectors so their meaning is explicit, consistent, and machine-readable.
 
+In many workflows, semantic clarity is reached gradually. Values may first be
+cleaned, compared, or provisionally harmonised before the analyst is ready to
+attach a stable definition. The `prelabelled` class supports this earlier stage:
+it records provisional semantic mappings while preserving the original observed
+values. Once these assumptions become stable, they can be formalised with
+`defined()`.
+
 This vignette focuses specifically on the `defined` function, which you can use to create a semantically enriched vector. For details on semantically enriched data frames, see `vignette("dataset_df", package = "dataset")`.
+
+This vignette focuses on the `defined()` function, which is used once semantic
+assumptions are sufficiently stable to create semantically enriched vectors.
+For provisional mappings before this stage, see `vignette("prelabelled", package = "dataset")`: Handling Semantic Ambiguity with `prelabelled` Vectors.
 
 ## Purpose
 
@@ -39,7 +50,6 @@ data("gdp")
 ```
 
 We’ll start by wrapping a numeric GDP vector using `defined()`.
-
 
 ```{r gdp1}
 gdp_1 <- defined(
@@ -73,9 +83,10 @@ cat("Get the unit only: ", var_unit(gdp_1), "\n")
 cat("Get the concept definition only: ", var_concept(gdp_1), "\n")
 cat("All attributes:\n")
 ```
+
 ## Printing and summary
 
-The most frequently used vector methods, such as print or summary are implemented as expected: 
+The most frequently used vector methods, such as print or summary are implemented as expected:
 
 ```{r printdefined}
 print(gdp_1)
@@ -88,7 +99,6 @@ summary(gdp_1)
 ## Handling ambiguity
 
 If you try to concatenate a semantically under-specified new vector to an existing `defined` vector, you will get an intended error indicating that some attributes are not compatible. This prevents combining values that differ in meaning, such as GDP figures expressed in different currencies.
-
 
 ```{r ambiguous}
 gdp_2 <- defined(
@@ -103,11 +113,12 @@ In the following example, `gdp_1` and `gdp_2` are not defined with the same leve
 c(gdp_1, gdp_2)
 ```
 
-```
+```         
 Error in vec_c():
 ! Can't combine ..1 <haven_labelled_defined> and ..2 <haven_labelled_defined>.
 ✖ Some attributes are incompatible.
 ```
+
 To resolve this, you can add the missing attributes so that the vectors are semantically compatible.
 
 Let's define better the GDP of the Faroe Islands:
@@ -131,7 +142,6 @@ summary(new_gdp)
 
 You can also define variables that store codes (like country codes) with a namespace that points to a human- and machine-readable definition of those codes. In statistical datasets, such attribute columns describe characteristics of the observations or the measured variables.
 
-
 ```{r country}
 country <- defined(
   c("AD", "LI", "SM"),
@@ -152,6 +162,7 @@ You can get or set the namespace of a defined vector with `var_namespace()`.
 ```{r shownamespace}
 var_namespace(country)
 ```
+
 A URI such as <http://publications.europa.eu/resource/authority/bna/c_6c2bb82d> resolves to a machine-readable definition of geographical names.
 
 The use of several `defined` vectors in a `dataset_df` object is explained in a separate vignette.
@@ -159,7 +170,6 @@ The use of several `defined` vectors in a `dataset_df` object is explained in a 
 ## Basic Usage
 
 You can create `defined` vectors from character values as well as numeric values. Methods like `as_character()` and `as_numeric()` let you coerce back to base R types while controlling what happens to the metadata.
-
 
 ```{r characters}
 countries <- defined(
@@ -181,23 +191,25 @@ gdp_1[1:2]
 gdp_1[gdp_1 > 5000]
 ```
 
-- `as.vector()` removes the metadata entirely.  
+- `as.vector()` removes the metadata entirely.\
 - `as.list()` retains the metadata for each element (definitions are repeated for each entry).
-
 
 ```{r coerctionmethods}
 as.vector(gdp_1)
 as.list(gdp_1)
 ```
+
 ### Coerce to base R types
 
-`defined()` vectors support a family of coercion helpers.  
+`defined()` vectors support a family of coercion helpers.\
 These methods avoid silent metadata loss and provide predictable conversions while respecting the underlying data type.
 
 All coercion functions follow the same principles:
 
 - **They operate on the underlying values**, not on labels.  
+
 - **Metadata is removed by default** unless explicitly preserved.  
+
 - **Errors are thrown when coercion would lose information** (e.g., converting character data to numeric).
 
 Below are the available coercion helpers.
@@ -233,7 +245,6 @@ It throws an error if the underlying data is not numeric.
 ```{r coerce-num}
 as_numeric(c(gdp_1, gdp_2))
 ```
-
 
 #### Logical coercion
 
@@ -281,10 +292,10 @@ These coercion helpers ensure that `defined` vectors behave predictably in model
 
 The `defined()` function provides a lightweight yet powerful way to make vectors self-descriptive by attaching semantic metadata directly to them. By combining a variable label, unit of measurement, concept definition, and optional namespace, `defined` ensures that each vector's meaning is explicit, consistent, and machine-readable.
 
-Because the metadata is embedded at creation time, it travels with the vector throughout your workflow — whether you are analysing, transforming, or exporting data.  
+Because the metadata is embedded at creation time, it travels with the vector throughout your workflow — whether you are analysing, transforming, or exporting data.\
 This prevents context loss, supports the FAIR data principles (Findable, Accessible, Interoperable, Reusable), and facilitates integration with semantic web technologies.
 
-`defined` vectors work seamlessly with the [`dataset_df`](https://dataset.dataobservatory.eu/articles/dataset_df.html) class to create semantically enriched data frames where both datasets and their constituent variables carry rich, standardised metadata.  
-For more on creating semantically enriched datasets, see the **dataset_df** vignette.  
+`defined` vectors work seamlessly with the [`dataset_df`](https://dataset.dataobservatory.eu/articles/dataset_df.html) class to create semantically enriched data frames where both datasets and their constituent variables carry rich, standardised metadata.\
+For more on creating semantically enriched datasets, see the **dataset_df** vignette.
 
 For guidance on recording bibliographic metadata and citations, see the **bibrecord** vignette.

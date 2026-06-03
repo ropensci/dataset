@@ -27,8 +27,8 @@ some platforms with a warning.}
 A \code{POSIXct} vector with timestamp values preserved.
 }
 \description{
-Coerces a \code{\link{haven_labelled_defined}} vector whose underlying type is
-\code{\link{POSIXct}} into a base R \code{POSIXct} time vector.
+Coerces a \code{haven_labelled_defined} vector whose underlying type is
+\code{POSIXct} into a base R \code{POSIXct} time vector.
 
 This method preserves both the timestamp values and the original time zone.
 By default, semantic metadata is also retained.

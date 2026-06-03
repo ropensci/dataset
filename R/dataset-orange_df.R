@@ -1,7 +1,7 @@
 #' Growth of Orange Trees
 #'
 #' A dataset recording the growth of orange trees, replicated from the classic
-#' [`datasets::Orange`](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Orange.html)
+#' [datasets::Orange](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Orange.html)
 #' dataset and implemented as a `dataset_df` S3 class with enhanced semantic metadata.
 #'
 #' @format A data frame with 35 rows and 4 variables:

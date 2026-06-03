@@ -17,7 +17,7 @@ as_factor(x, ...)
 \item{strip_attributes}{Logical; should semantic metadata attributes
 (such as \code{label}, \code{unit}, \code{definition}, and
 \code{namespace}) be removed from the returned vector?
-Defaults to \code{TRUE}.}
+Defaults to 'TRUE'.}
 }
 \value{
 A factor vector.

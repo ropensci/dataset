@@ -35,3 +35,5 @@
 ^dataset*.txt
 ^\.positai$
 ^\.claude$
+^review-dataset.txt$
+^dataset-reviewR.txt$

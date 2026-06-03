@@ -13,7 +13,7 @@
 )
 }
 \arguments{
-\item{x}{A \code{\link{dataset_df}}.}
+\item{x}{A \code{dataset_df}.}
 
 \item{...}{Passed to \code{base::as.data.frame()}.}
 
@@ -35,7 +35,7 @@ be stripped? Default: \code{TRUE}.}
 A base R \code{data.frame} without the \code{dataset_df} class.
 }
 \description{
-Converts a \code{\link{dataset_df}} into a plain \code{data.frame}. By default this
+Converts a \code{dataset_df} into a plain \code{data.frame}. By default this
 strips semantic metadata (label, unit, concept/definition, namespace) from
 each column, but this can be controlled via the
 \code{strip_attributes} argument.

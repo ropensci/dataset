@@ -73,7 +73,7 @@ attributes.
 }
 \description{
 The \code{dataset_df()} constructor creates semantically rich modern data frames.
-These inherit from \code{\link[tibble:tibble]{tibble::tibble}} and carry structured metadata using
+These inherit from \code{tbl_df} and carry structured metadata using
 attributes.
 }
 \details{

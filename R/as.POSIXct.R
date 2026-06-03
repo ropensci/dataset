@@ -1,31 +1,31 @@
 #' Coerce a defined POSIXct vector to a base R POSIXct
 #'
 #' @description
-#' Coerces a [`haven_labelled_defined`] vector whose underlying type is
-#' [`POSIXct`] into a base R `POSIXct` time vector.
+#' Coerces a `haven_labelled_defined` vector whose underlying type is
+#' `POSIXct` into a base R `POSIXct` time vector.
 #'
 #' This method preserves both the timestamp values and the original time zone.
 #' By default, semantic metadata is also retained.
 #'
 #' @details
-#' Use \code{strip_attributes = TRUE} when flattening or preparing data for
+#' Use `strip_attributes = TRUE` when flattening or preparing data for
 #' external pipelines, but keep the default when working with defined
 #' vectors directly.\cr
-#' Base R's [`as.POSIXct()`] also works, as it dispatches to this method via
+#' Base R's [as.POSIXct()] also works, as it dispatches to this method via
 #' S3. Using this method directly is preferred when metadata preservation
 #' matters.
 #'
-#' @param x A vector created with [`defined()`] with underlying type
-#'   \code{POSIXct}.
+#' @param x A vector created with [defined()] with underlying type
+#'   `POSIXct`.
 #' @param tz a character string. The time zone specification to be used for
 #' the conversion, if one is required. System-specific timezones
-#' (see [`base::timezones()`],
+#' (see [base::timezones()],
 #' but "" is the current time zone, and "GMT" is UTC (Universal Time,
 #' Coordinated). Invalid values are most commonly treated as UTC, on
 #' some platforms with a warning.
 #' @param strip_attributes Logical; should semantic metadata attributes
 #'   (label, unit, definition, namespace) be removed? Defaults to
-#'   \code{FALSE}.
+#'   `FALSE`.
 #'
 #' @param ... Additional arguments passed to [base::as.POSIXct()].
 #'
@@ -44,9 +44,9 @@
 #' as.POSIXct(p, strip_attributes = TRUE)
 #'
 #' @seealso
-#'   [`as.Date()`],
-#'   [`as_numeric()`], [`as_character()`], [`as_logical()`],
-#'   [`defined()`]
+#'   [as.Date()],
+#'   [as_numeric()], [as_character()], [as_logical()],
+#'   [defined()]
 #'
 #' @export
 as.POSIXct.haven_labelled_defined <- function(

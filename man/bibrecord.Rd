@@ -62,7 +62,7 @@ bibrecord(
 }
 \seealso{
 Learn more in the vignette:
-\href{https://dataset.dataobservatory.eu/articles/bibrecord.html}{\code{bibrecord}}
+\href{https://dataset.dataobservatory.eu/articles/bibrecord.html}{bibrecord}
 
 Other bibrecord functions:
 \code{\link[=as_datacite]{as_datacite()}},

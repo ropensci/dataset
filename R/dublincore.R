@@ -18,7 +18,7 @@
 #' automatically used to derive both `publication_date` and `year` fields.
 #'
 #' @param x An object to annotate. Typically a `data.frame`, `tibble`,
-#'   or named list; can be added with [`set_bibentry<-`] to a semantically
+#'   or named list; can be added with [set_bibentry<-`] to a semantically
 #'   rich `dataset_df`.
 #' @param title A name given to the resource. See [dataset_title()].
 #' @param creator One or more [utils::person()] objects representing the
@@ -87,7 +87,7 @@
 #' @export
 #' @seealso
 #' Learn more in the vignette:
-#' [`bibrecord`](https://dataset.dataobservatory.eu/articles/bibrecord.html)
+#' [bibrecord](https://dataset.dataobservatory.eu/articles/bibrecord.html)
 #' @family bibrecord functions
 
 dublincore <- function(

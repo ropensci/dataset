@@ -74,7 +74,7 @@ In some cases<U+2014>especially for historical or moribund languages<U+2014>mult
 similar names may exist. In such cases, it is safer to use a specific
 language code (e.g., \code{"ang"} instead of \code{"English, Old"} and \code{"enm"}
 for \code{"English, Middle (1100-1500)"}). You can also
-refer directly to the definitions in \code{\link[ISOcodes:ISO_639_2]{ISOcodes::ISO_639_2}}
+refer directly to the definitions in \link[ISOcodes:ISO_639_2]{ISOcodes::ISO_639_2}
 for clarity.
 }
 \examples{

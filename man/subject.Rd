@@ -56,7 +56,7 @@ string. Used by \verb{subject<-} to replace the subject.}
 \item \code{subject(x) <- value} accepts a character vector, a \code{"subject"} object, or
 a list of \code{"subject"} objects, and updates both the bibentry slot and the
 \code{"subject"} attribute. Returns the dataset invisibly.
-\item \code{subject_create()} returns a structured \code{"subject"} object — or a list of
+\item \code{subject_create()} returns a structured \code{"subject"} object <U+2014> or a list of
 them if multiple terms are provided.
 \item \code{is.subject(x)} returns \code{TRUE} if \code{x} inherits from class \code{"subject"}.
 }
@@ -70,14 +70,14 @@ simple character term or as a structured object with subproperties created by
 The subject property records what the dataset is about.
 The \href{https://schema.datacite.org/meta/kernel-4/}{DataCite subject property}
 allows multiple subproperties, but these cannot be stored directly in a
-standard \code{\link[utils:bibentry]{utils::bibentry}} object.
+standard \code{\link[utils:bibentry]{utils::bibentry()}} object.
 Therefore:
 \itemize{
 \item If you set a character string as the subject, it is stored in both the
 bibentry and the \code{"subject"} attribute.
 \item If you set a structured subject (via \code{\link[=subject_create]{subject_create()}}), the \verb{$term} value
 is stored in the bibentry, and the full object is stored in the \code{"subject"}
-attribute of the \code{\link{dataset_df}} object.
+attribute of the \code{dataset_df} object.
 }
 }
 \examples{

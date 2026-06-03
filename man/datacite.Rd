@@ -119,7 +119,7 @@ or a dataset_df object.
 A \code{\link[utils:bibentry]{utils::bibentry()}} object with DataCite-compliant fields. Use
 \code{\link[=as_datacite]{as_datacite()}} to extract the metadata as a list or bibentry object.
 
-\code{is.datacite(x)} returns a logical values (if the object
+\code{\link[=is.datacite]{is.datacite()}} returns a logical values (if the object
 \code{x} is of class \code{datacite}).
 }
 \description{
@@ -167,7 +167,7 @@ as_datacite(orange_df, "list")
 }
 \seealso{
 Learn more in the vignette:
-\href{https://dataset.dataobservatory.eu/articles/bibrecord.html}{\code{bibrecord}}
+\href{https://dataset.dataobservatory.eu/articles/bibrecord.html}{bibrecord}
 
 Other bibrecord functions:
 \code{\link[=as_dublincore]{as_dublincore()}},
