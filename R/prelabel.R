@@ -3,7 +3,9 @@
 #' `prelabel()` applies lightweight semantic mappings to a vector
 #' before formal definition with [defined()].
 #'
-#' It is intended for:
+#'
+#' @details
+#' The `prelabelled` class is intended for:
 #'
 #' - provisional harmonisation;
 #' - contextual grouping;
@@ -21,6 +23,8 @@
 #'
 #' These mappings are normalised internally with
 #' [as_value_key()].
+#'
+#' `is.prelabelled()` tests if a vector inherits the `prelabelled` class.
 #'
 #' @param x A vector.
 #'
@@ -72,12 +76,7 @@
 #'
 #' @examples
 #'
-#' x <- c(
-#'   "R",
-#'   "png",
-#'   "csv",
-#'   "unknown"
-#' )
+#' x <- c("R","png", "csv", "unknown")
 #'
 #' extension_map <- c(
 #'   R = "functional_programming",
@@ -85,12 +84,11 @@
 #'   csv = "tabular_data"
 #' )
 #'
-#' x <- prelabel(
-#'   x,
-#'   labels = extension_map
-#' )
+#' x <- prelabel(x, labels = extension_map)
 #'
 #' x
+#'
+#' is.prelabelled(x)
 #'
 #' as.character(x)
 #'
@@ -185,16 +183,7 @@ prelabel <- function(
 }
 
 
-#' Test if a vector is prelabelled
-#'
-#' Determine whether an object inherits from the
-#' `"prelabelled"` class.
-#'
-#' @inheritParams prelabel
-#'
-#' @return
-#' Logical scalar.
-#'
+#' @rdname prelabel
 #' @export
 is.prelabelled <- function(x) {
   inherits(x, "prelabelled")

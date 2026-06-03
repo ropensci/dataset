@@ -2,9 +2,12 @@
 % Please edit documentation in R/prelabel.R
 \name{prelabel}
 \alias{prelabel}
+\alias{is.prelabelled}
 \title{Add lightweight semantic mappings to a vector}
 \usage{
 prelabel(x, labels, unmatched = "keep", missing_label = "<NA>")
+
+is.prelabelled(x)
 }
 \arguments{
 \item{x}{A vector.}
@@ -46,7 +49,7 @@ A vector with:
 before formal definition with \code{\link[=defined]{defined()}}.
 }
 \details{
-It is intended for:
+The \code{prelabelled} class is intended for:
 \itemize{
 \item provisional harmonisation;
 \item contextual grouping;
@@ -66,6 +69,8 @@ Semantic mappings may be supplied as:
 
 These mappings are normalised internally with
 \code{\link[=as_value_key]{as_value_key()}}.
+
+\code{is.prelabelled()} tests if a vector inherits the \code{prelabelled} class.
 
 \code{prelabelled} vectors intentionally separate:
 \itemize{
@@ -87,12 +92,7 @@ workspaces.
 }
 \examples{
 
-x <- c(
-  "R",
-  "png",
-  "csv",
-  "unknown"
-)
+x <- c("R","png", "csv", "unknown")
 
 extension_map <- c(
   R = "functional_programming",
@@ -100,12 +100,11 @@ extension_map <- c(
   csv = "tabular_data"
 )
 
-x <- prelabel(
-  x,
-  labels = extension_map
-)
+x <- prelabel(x, labels = extension_map)
 
 x
+
+is.prelabelled(x)
 
 as.character(x)
 
